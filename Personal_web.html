@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gary Samuel | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Smooth Scrolling -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ffe4d6;
+            border-radius: 2px;
+        }
+    </style>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Particle Background -->
+    <div id="particles-js" class="absolute top-0 left-0 w-full h-full -z-10"></div>
+
+    <!-- Navbar -->
+    <nav class="bg-[#007bff] text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex items-center justify-between px-8 py-2">
+            
+           
+
+            <!-- GitHub & LinkedIn Links -->
+            <div class="flex space-x-6">
+                <a href="https://github.com/garybs16" target="_blank" 
+                   class="text-white underline hover:bg-[#0056b3] px-3 py-1 rounded-md">
+                   GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" 
+                   class="text-white underline hover:bg-[#0056b3] px-3 py-1 rounded-md">
+                   LinkedIn
+                </a>
+            </div>
+
+            <div class="space-x-4">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\about.html" class="nav-link">About Me</a>
+
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="h-screen flex flex-col items-center justify-center text-center bg-gradient-to-r from-[#007bff] to-[#0056b3] text-white px-6">
+        <div class="backdrop-blur-md p-12 rounded-lg shadow-2xl max-w-4xl flex items-center space-x-8">
+            <img src="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\IMG_4711.jpg" alt="Profile Picture" class="w-48 h-48 rounded-full border-4 border-[#ffe4d6] shadow-2xl">
+            <div>
+                <h1 class="text-7xl font-extrabold animate-fade-in">Hi, I'm <span class="text-[#ffe4d6]">Gary Samuel</span></h1>
+                <p class="text-2xl mt-4"><span id="typed-text"></span></p>
+                <a href="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\Untitled document (9).pdf"
+                   download 
+                   class="bg-[#ffe4d6] text-[#007bff] px-6 py-2 rounded-lg mt-6 inline-block font-bold shadow-lg transform hover:scale-105 transition-transform duration-300">
+                   📄 Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <!-- Technical Projects Section -->
+<section id="projects" class="py-20 bg-[#f0f8ff]">
+    <div class="container mx-auto text-center">
+        <h2 class="text-5xl font-extrabold mb-10">Technical Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project 1 -->
+            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-2">Portfolio Website</h3>
+                <p class="text-gray-600 mb-4">A responsive portfolio showcasing my skills, projects, and contact details using Tailwind CSS, AOS animations, and GSAP.</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> HTML, CSS, JavaScript, Tailwind CSS</p>
+                <a href="https://www.missionkaizen.org/" 
+                   target="_blank"
+                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+                    🔗 Visit the Website
+                </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-2xl font-bold mb-2">Task Manager App</h3>
+                <p class="text-gray-600 mb-4">A feature-rich web app for creating, organizing, and tracking tasks with deadlines and priorities.</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> React, Firebase, Tailwind CSS</p>
+                <a href="https://github.com/garybs16/Python-Project-FULLSTACK-"
+                   target="_blank"
+                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+                    🔗 View on GitHub
+                </a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-2xl font-bold mb-2">E-Commerce Website</h3>
+                <p class="text-gray-600 mb-4">An interactive e-commerce platform with user authentication, product filtering, and a cart system.</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> PHP, MySQL, Bootstrap</p>
+                <a href="https://github.com/garybs16/ecommerce-website"
+                   target="_blank"
+                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+                    🔗 View on GitHub
+                </a>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-2xl font-bold mb-2">Weather App</h3>
+                <p class="text-gray-600 mb-4">A dynamic weather app that fetches real-time weather data using OpenWeatherMap API.</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> JavaScript, API Integration, CSS</p>
+                <a href="https://github.com/garybs16/weather-app"
+                   target="_blank"
+                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+                    🔗 View on GitHub
+                </a>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-2xl font-bold mb-2">Library Management System</h3>
+                <p class="text-gray-600 mb-4">A comprehensive system to manage books, users, and borrowing records for a library.</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> Java, MySQL, Swing</p>
+                <a href="https://github.com/garybs16/library-management-system"
+                   target="_blank"
+                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+                    🔗 View on GitHub
+                </a>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-2xl font-bold mb-2">Guessing Game (Assembly)</h3>
+                <p class="text-gray-600 mb-4">A guessing game utilizing an Assembly language</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> Assembly</p>
+                <a href="https://github.com/garybs16/Assembly_Project"
+                   target="_blank"
+                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+                    🔗 View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Skills Section -->
+<section id="skills" class="py-20 bg-white">
+    <div class="container mx-auto text-center">
+        <h2 class="text-5xl font-extrabold mb-10">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+            <!-- HTML -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">HTML</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 95%">95%</div>
+                </div>
+            </div>
+
+            <!-- CSS -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">CSS</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
+                </div>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">JavaScript</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
+                </div>
+            </div>
+
+            <!-- PHP -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">PHP</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 80%">80%</div>
+                </div>
+            </div>
+
+            <!-- React -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">React</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 75%">75%</div>
+                </div>
+            </div>
+
+            <!-- Java -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">Java</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
+                </div>
+            </div>
+
+            <!-- Python -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">Python</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
+                </div>
+            </div>
+
+            <!-- C++ -->
+            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold">C++</h3>
+                <div class="w-full bg-gray-300 rounded-full mt-2">
+                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<form action="/send-email" method="POST" class="bg-white p-8 rounded-lg shadow-lg text-gray-800 space-y-6">
+    <h3 class="text-3xl font-bold text-center text-[#007bff]">Get In Touch</h3>
+
+    <div>
+        <label for="name" class="block text-lg font-semibold mb-2">Your Name</label>
+        <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="Enter your name"
+            class="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056b3]" 
+            required
+        >
+    </div>
+
+    <div>
+        <label for="email" class="block text-lg font-semibold mb-2">Your Email</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email"
+            class="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056b3]" 
+            required
+        >
+    </div>
+
+    <div>
+        <label for="message" class="block text-lg font-semibold mb-2">Your Message</label>
+        <textarea 
+            id="message" 
+            name="message" 
+            rows="5"
+            placeholder="Write your message here..."
+            class="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056b3]" 
+            required
+        ></textarea>
+    </div>
+
+    <button 
+        type="submit"
+        class="w-full bg-[#007bff] text-white px-6 py-3 rounded-lg text-lg font-bold hover:bg-[#0056b3] transition-transform transform hover:scale-105"
+    >
+        🚀 Send Message
+    </button>
+</form>
+
+
+
+            <!-- Contact Details -->
+            <div class="flex flex-col justify-center space-y-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center space-x-4">
+                    <span class="text-3xl">📧</span>
+                    <a href="mailto:garysamuel@example.com" class="text-lg hover:underline">garysamuel16@gmail.com</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <span class="text-3xl">📞</span>
+                    <a href="tel:+1234567890" class="text-lg hover:underline">+1 (949) 615-2493</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <span class="text-3xl">🔗</span>
+                    <a href="https://linkedin.com/in/gary-samuel-3954261b2" 
+                       target="_blank" 
+                       class="text-lg hover:underline">LinkedIn Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="fixed bottom-5 right-5 bg-[#007bff] text-white px-3 py-2 rounded-full shadow-lg hidden">
+        ⬆️
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-[#007bff] text-white text-center py-4">
+        <p>&copy; 2024 Gary Samuel - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Typed.js for Animated Intro
+        new Typed("#typed-text", {
+            strings: ["Web Developer.", "UI/UX Designer.", "Problem Solver."],
+            typeSpeed: 60,
+            backSpeed: 30,
+            loop: true
+        });
+
+        // AOS Animation
+        AOS.init({
+            duration: 1000,
+            offset: 100,
+            once: true
+        });
+
+        // Particle.js Animation
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 120 },
+                size: { value: 3 },
+                move: { speed: 2 },
+                line_linked: { enable: true, color: "#ffffff" },
+                interactivity: {
+                    events: {
+                        onhover: { enable: true, mode: "repulse" }
+                    }
+                }
+            }
+        });
+
+        // Scroll-to-Top Button
+        const scrollBtn = document.getElementById("scrollToTopBtn");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.remove("hidden");
+            } else {
+                scrollBtn.classList.add("hidden");
+            }
+        });
+
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Active Link Highlight
+        const links = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+
+            document.querySelectorAll("section").forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
