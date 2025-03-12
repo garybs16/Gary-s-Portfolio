@@ -2,6 +2,8 @@
 
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -32,61 +34,273 @@
             background-color: #ffe4d6;
             border-radius: 2px;
         }
+        body {
+        background-color: #f0f2f5;
+        color: #2d2e32;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .nav-link {
+        color: #fff;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #00c9a7;
+    }
+
+    .bg-white {
+        background: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #007bff 0%, #00c9a7 100%);
+        color: #fff;
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background: #00c9a7;
+        transform: scale(1.05);
+    }
+
+    .shadow-md {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-gradient-section {
+        background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+    }
+
+    .text-gradient {
+        background: linear-gradient(90deg, #007bff, #00c9a7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
+/* Dark Mode - Full Background & Text */
+.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Dark Mode - Full Background & Text */
+.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* === NAVBAR DARK MODE === */
+.dark .navbar {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+.dark .nav-link {
+    color: #ffffff;
+}
+
+.dark .nav-link:hover,
+.dark .nav-link.active {
+    color: #00c9a7; /* Highlight */
+}
+
+/* Dark Mode - Full Background & Text */
+.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Dark Mode for Home Section */
+/* Dark Mode for Home Section */
+.dark #home {
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+}
+
+.dark .bg-white,
+.dark .bg-gradient-section,
+.dark .game-area {
+    background-color: #121212; /* Full dark background */
+}
+
+.dark .text-gray-800 {
+    color: #ffffff; /* Ensures text is pure white */
+}
+
+.dark .nav-link {
+    color: #ffffff; /* Navbar links */
+}
+
+.dark .nav-link:hover,
+.dark .nav-link.active {
+    color: #00c9a7; /* Highlight color */
+}
+
+.dark .btn-primary {
+    background: linear-gradient(135deg, #00c9a7 0%, #007bff 100%);
+}
+
+.dark .btn-primary:hover {
+    background: #00c9a7;
+}
+
+.dark .swiper-pagination-bullet {
+    background-color: #00c9a7;
+}
+
+.dark .swiper-pagination-bullet-active {
+    background-color: #ffe4d6;
+}
+
+.dark #particles-js canvas {
+    background: #121212;
+}
+
+/* Profile Picture Glow Effect */
+.dark #home img {
+    border-color: #00c9a7; /* Neon glow effect */
+    box-shadow: 0 0 20px #00c9a7; 
+}
+        
+
+/* Technical Projects - Dark Mode */
+.dark #projects {
+    background-color: #1e1e1e; /* Deep charcoal for better contrast */
+    color: #e0e0e0; /* Light text for readability */
+}
+
+.dark .p-6 {
+    background-color: #252525; /* Slightly lighter gray for project cards */
+    border: 1px solid #00c9a7; /* Add a subtle neon accent */
+    color: #ffffff; /* Pure white text for better contrast */
+}
+
+/* Skills - Dark Mode */
+.dark #skills {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.dark .p-6 {
+    background-color: #252525;
+    color: #ffffff;
+}
+
+.dark .bg-gray-300 {
+    background-color: #3a3a3a; /* Darker background for progress bars */
+}
+
+
+
+/* Headings in Dark Mode */
+.dark h2 {
+    color: #00c9a7; /* Bright accent color for headings */
+}
     </style>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body class="bg-white text-gray-800">
 
+    <body class="bg-white text-gray-800 dark:bg-[#121212] dark:text-white">
+
+
+
     <!-- Particle Background -->
     <div id="particles-js" class="absolute top-0 left-0 w-full h-full -z-10"></div>
 
     <!-- Navbar -->
-    <nav class="bg-[#007bff] text-white p-4 shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto flex items-center justify-between px-8 py-2">
-            
-           
 
-            <!-- GitHub & LinkedIn Links -->
-            <div class="flex space-x-6">
+   <nav class="navbar bg-[#007bff] text-white p-4 shadow-lg sticky top-0 z-50">
+
+        <div class="container mx-auto flex flex-wrap items-center justify-between px-8 py-2">
+    
+            <!-- Left Section: Social Links -->
+            <div class="flex items-center space-x-6">
                 <a href="https://github.com/garybs16" target="_blank" 
                    class="text-white underline hover:bg-[#0056b3] px-3 py-1 rounded-md">
                    GitHub
                 </a>
-
+    
                 <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" 
                    class="text-white underline hover:bg-[#0056b3] px-3 py-1 rounded-md">
                    LinkedIn
                 </a>
             </div>
-
-            <div class="space-x-4">
+    
+            <!-- Middle Section: Navigation Links -->
+            <div class="hidden md:flex space-x-4">
                 <a href="#home" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About Me</a>
-
+                <a href="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\about.html" class="nav-link">About Me</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-        </div>
-    </nav>
-
-    <section id="home" class="h-screen flex flex-col items-center justify-center text-center bg-gradient-to-r from-[#007bff] to-[#0056b3] text-white px-6">
-        <div class="backdrop-blur-md p-12 rounded-lg shadow-2xl max-w-4xl flex items-center space-x-8">
-            <img src="profile.jpg" alt="Profile Picture" class="w-48 h-48 rounded-full border-4 border-[#ffe4d6] shadow-2xl">
-            <div>
-                <h1 class="text-7xl font-extrabold animate-fade-in">Hi, I'm <span class="text-[#ffe4d6]">Gary Samuel</span></h1>
-                <p class="text-2xl mt-4"><span id="typed-text"></span></p>
-               <a href="Untitled_document(9).pdf" 
-   download="Untitled_document(9).pdf" 
-   class="bg-[#ffe4d6] text-[#007bff] px-6 py-2 rounded-lg mt-6 inline-block font-bold shadow-lg transform hover:scale-105 transition-transform duration-300">
-   📄 Download Resume
-</a>
-
-
+    
+            <!-- Right Section: Dark Mode Toggle -->
+            <div class="flex items-center space-x-4">
+                <button id="darkModeToggle"
+                    class="bg-[#00c9a7] text-white px-4 py-2 rounded-lg shadow-md 
+                    hover:bg-[#0056b3] transition-colors duration-300">
+                    🌙 Dark Mode
+                </button>
+            </div>
+    
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="menuToggle" 
+                    class="text-white focus:outline-none text-3xl">
+                    ☰
+                </button>
             </div>
         </div>
-    </section>
+    
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#007bff] text-center py-4">
+            <a href="#home" class="block py-2">Home</a>
+            <a href="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\about.html" class="block py-2">About Me</a>
+            <a href="#skills" class="block py-2">Skills</a>
+            <a href="#projects" class="block py-2">Projects</a>
+            <a href="#contact" class="block py-2">Contact</a>
+        </div>
+    </nav>
+    
+    <!-- HERO SECTION - Improved with Tagline -->
+<section id="home" class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-[#007bff] to-[#00c9a7] text-white">
+    <div class="backdrop-blur-md p-12 rounded-lg shadow-2xl max-w-4xl flex items-center space-x-8 transform hover:scale-105 transition-transform duration-500">
+        <img src="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\IMG_4711.jpg" 
+             alt="Profile Picture" 
+             class="w-48 h-48 rounded-full border-4 border-[#ffe4d6] shadow-2xl animate-bounce">
+        
+        <div>
+            <h1 class="text-7xl font-extrabold animate-fade-in">
+                Hi, I'm <span class="text-[#ffe4d6]">Gary Samuel</span>
+            </h1>
+            <p class="text-2xl mt-2 font-medium italic text-[#ffe4d6]">
+                "Building creative web experiences with modern technologies."
+            </p>
+            <p class="text-2xl mt-4">
+                <span id="typed-text"></span>
+            </p>
+            <a href="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\Untitled document (9).pdf"
+               download 
+               class="btn-primary px-6 py-2 rounded-lg mt-6 inline-block shadow-lg transform hover:scale-105 transition-transform duration-300">
+               📄 Download Resume
+            </a>
+
+            <!-- New Hire Me CTA -->
+            <a href="#contact"
+               class="btn-primary px-6 py-2 rounded-lg mt-4 inline-block shadow-lg bg-[#00c9a7] hover:bg-[#0056b3] transition-transform duration-300">
+               🚀 Hire Me
+            </a>
+        </div>
+    </div>
+</section>
+
     
     
 
@@ -97,22 +311,29 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <!-- Project 1 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
-                <h3 class="text-2xl font-bold mb-2">Portfolio Website</h3>
-                <p class="text-gray-600 mb-4">A responsive portfolio showcasing my skills, projects, and contact details using Tailwind CSS, AOS animations, and GSAP.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> HTML, CSS, JavaScript, Tailwind CSS</p>
-                <a href="https://www.missionkaizen.org/" 
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 Visit the Website
-                </a>
-            </div>
+          <!-- Project 1 -->
+<div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+    <img src="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\IMG_8011.JPG" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
+    <h3 class="text-2xl font-bold mb-2">Portfolio Website</h3>
+    <p class="text-gray-600 mb-4">A responsive portfolio showcasing my skills, projects, and contact details using Tailwind CSS, AOS animations, and GSAP.</p>
+    <ul class="text-sm text-gray-500 mb-4">
+        <li>✅ Improved site performance by **30%** using lazy loading techniques.</li>
+        <li>✅ Enhanced UX with intuitive navigation and interactive features.</li>
+    </ul>
+    <a href="https://www.missionkaizen.org/" 
+       target="_blank"
+       class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
+        🔗 Visit the Website
+    </a>
+</div>
+
 
             <!-- Project 2 -->
             <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                <img src="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\taskimg.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
                 <h3 class="text-2xl font-bold mb-2">Task Manager App</h3>
-                <p class="text-gray-600 mb-4">A feature-rich app for creating, organizing, and tracking tasks with deadlines and priorities.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> Pyhton</p>
+                <p class="text-gray-600 mb-4">A feature-rich web app for creating, organizing, and tracking tasks with deadlines and priorities.</p>
+                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> React, Firebase, Tailwind CSS</p>
                 <a href="https://github.com/garybs16/Python-Project-FULLSTACK-"
                    target="_blank"
                    class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
@@ -122,39 +343,22 @@
 
             <!-- Project 3 -->
             <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="text-2xl font-bold mb-2">Calendar Project</h3>
-                <p class="text-gray-600 mb-4">A feature-rich C++ console application that efficiently manages calendar events with modular design, enabling users to schedule, organize, and track their daily activities.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> C++ (Object Oriented Programmming)</p>
-                <a href="https://github.com/garybs16/calendar.project"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
-                <h3 class="text-2xl font-bold mb-2">Library Management System</h3>
-                <p class="text-gray-600 mb-4">A comprehensive system to manage books, users, and borrowing records for a library.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> Java, MySQL, Swing</p>
-                <a href="https://github.com/garybs16/library-management-system"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="500">
+                <img src="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\guessing.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
                 <h3 class="text-2xl font-bold mb-2">Guessing Game (Assembly)</h3>
                 <p class="text-gray-600 mb-4">A guessing game utilizing an Assembly language</p>
                 <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> Assembly</p>
-                <a href="https://github.com/garybs16/Assembly_Project"
+                <a href="https://github.com/garybs16/ecommerce-website"
                    target="_blank"
                    class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
                     🔗 View on GitHub
                 </a>
             </div>
+
+           
+           
+
+            <!-- Project 6 -->
+           
         </div>
     </div>
 </section>
@@ -167,67 +371,87 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
 
             <!-- HTML -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">HTML</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 95%">95%</div>
-                </div>
-            </div>
+           
+<!-- HTML -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">HTML</h3>
+    <p class="text-sm mt-2">Experience with semantic HTML5, accessibility, and SEO best practices.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 95%">95%</div>
+    </div>
+    
+</div>
 
-            <!-- CSS -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">CSS</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
-                </div>
-            </div>
+<!-- CSS -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">CSS</h3>
+    <p class="text-sm mt-2">Proficient in responsive design, Flexbox, Grid, and CSS animations.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
+    </div>
+   
+</div>
 
-            <!-- JavaScript -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">JavaScript</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
-                </div>
-            </div>
+<!-- JavaScript -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">JavaScript</h3>
+    <p class="text-sm mt-2">Skilled in ES6+, DOM manipulation, and building interactive web applications.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
+    </div>
+    
+</div>
 
-            <!-- PHP -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">PHP</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 80%">80%</div>
-                </div>
-            </div>
+<!-- PHP -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">PHP</h3>
+    <p class="text-sm mt-2">Experience in server-side scripting, REST APIs, and database integration.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 80%">80%</div>
+    </div>
+    
+</div>
 
-            <!-- React -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">React</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 75%">75%</div>
-                </div>
-            </div>
+<!-- React -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">React</h3>
+    <p class="text-sm mt-2">Proficient in building dynamic and scalable web applications with ReactJS.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 75%">75%</div>
+    </div>
+    
+</div>
 
-            <!-- Java -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Java</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
-                </div>
-            </div>
+<!-- Java -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">Java</h3>
+    <p class="text-sm mt-2">Expert in OOP principles, data structures, and building robust applications.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
+    </div>
+    
+</div>
 
-            <!-- Python -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Python</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
+<!-- Python -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">Python</h3>
+    <p class="text-sm mt-2">Experience in web development with Django, Flask, and data analysis tools.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
+    </div>
+    
+</div>
 
-            <!-- C++ -->
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">C++</h3>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
-                </div>
+<!-- C++ -->
+<div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold">C++</h3>
+    <p class="text-sm mt-2">Strong understanding of OOP, data structures, and algorithm design in C++.</p>
+    <div class="w-full bg-gray-300 rounded-full mt-2">
+        <div class="bg-[#007bff] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
+    </div>
+    
+</div>
+
             </div>
         </div>
     </div>
@@ -251,6 +475,27 @@
 </section>
 
 <script>
+    
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Load theme from localStorage
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+        body.classList.add('dark');
+        darkModeToggle.textContent = '☀️ Light Mode';
+    }
+
+    // Toggle Dark Mode
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        const theme = body.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+
+        // Change button text
+        darkModeToggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+
     // Catch the Star Game Logic
     document.addEventListener("DOMContentLoaded", () => {
         const star = document.getElementById("star");
