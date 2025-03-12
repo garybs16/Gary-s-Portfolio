@@ -234,7 +234,73 @@
 </section>
 
 
+<!-- Catch the Star Game Section -->
+<section id="catch-the-star" class="py-20 bg-gradient-to-r from-[#007bff] to-[#00c9a7] text-white">
+    <div class="container mx-auto text-center">
+        <h2 class="text-5xl font-extrabold mb-10">🌟 Catch the Star!</h2>
+        <p class="text-lg mb-4">Click the moving star before it disappears!</p>
 
+        <div class="game-area relative w-full h-96 border-4 border-white rounded-lg overflow-hidden bg-[#f0f8ff] shadow-lg">
+            <div id="star" class="absolute w-12 h-12 bg-yellow-400 rounded-full shadow-md cursor-pointer"></div>
+        </div>
+
+        <div class="mt-6 text-xl font-bold">
+            Score: <span id="score">0</span>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Catch the Star Game Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        const star = document.getElementById("star");
+        const scoreDisplay = document.getElementById("score");
+        const gameArea = document.querySelector(".game-area");  // Fixed class selector
+
+        let score = 0;
+        let gameInterval;
+
+        // Move the star randomly within the game area
+        function moveStar() {
+            const maxX = gameArea.clientWidth - star.clientWidth;
+            const maxY = gameArea.clientHeight - star.clientHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            gsap.to(star, {
+                x: randomX,
+                y: randomY,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.3)"
+            });
+        }
+
+        // Update score when clicked
+        star.addEventListener("click", () => {
+            score++;
+            scoreDisplay.textContent = score;
+            moveStar();
+
+            // Speed up the game as the score increases
+            if (score % 5 === 0 && gameInterval) {
+                clearInterval(gameInterval);  // Clear previous interval
+                const newInterval = Math.max(800, 1500 - score * 50);  // Decrease interval over time
+                gameInterval = setInterval(moveStar, newInterval);
+            }
+
+            // Bonus Animation on Click
+            gsap.fromTo(star,
+                { scale: 1.5 },
+                { scale: 1, duration: 0.3, ease: "bounce.out" }
+            );
+        });
+
+        // Start Game
+        moveStar();  // Initial position
+        gameInterval = setInterval(moveStar, 1500);
+    });
+</script>
 
 
 
