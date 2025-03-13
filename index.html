@@ -253,6 +253,37 @@
 
         /* Buttons */
         button { padding: 0.75rem 1.5rem; font-size: 1rem; }
+
+
+        /* Mobile Menu - Horizontal Design */
+#mobileMenu {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    justify-content: center;
+    gap: 1rem; /* Adds spacing between links */
+    background-color: #1e1e1e; /* Dark background for dark mode */
+    padding: 0.75rem 0;
+    border-top: 2px solid #00c9a7; /* Clean accent border */
+}
+
+#mobileMenu a {
+    color: #ffffff; /* White text */
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#mobileMenu a:hover {
+    background-color: #00c9a7; /* Highlight effect */
+    transform: scale(1.1); /* Slight enlargement for feedback */
+}
+
+/* Ensuring visibility only on mobile */
+@media (min-width: 768px) {
+    #mobileMenu {
+        display: none; /* Hidden on larger screens */
+    }
+}
     </style>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
