@@ -200,6 +200,59 @@
 .dark h2 {
     color: #00c9a7; /* Bright accent color for headings */
 }
+
+/*Mobile Optimization*/
+        html { scroll-behavior: smooth; }
+        body { background-color: #f0f2f5; color: #2d2e32; font-family: 'Arial', sans-serif; }
+        .btn-primary { background: linear-gradient(135deg, #007bff 0%, #00c9a7 100%); color: #fff; }
+        .text-highlight { background: linear-gradient(90deg, #007bff, #00c9a7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .dark { background-color: #121212; color: #ffffff; }
+
+        /* Navigation */
+        .nav-link { color: #fff; }
+        .nav-link:hover, .nav-link.active { color: #00c9a7; }
+
+        /* Mobile Menu */
+        #mobileMenu { display: none; }
+        @media (max-width: 768px) {
+            #mobileMenu { display: block; text-align: center; background-color: #007bff; padding: 1rem 0; }
+            #mobileMenu a { display: block; padding: 0.5rem 0; color: #ffffff; transition: background 0.3s; }
+            #mobileMenu a:hover { background-color: #0056b3; }
+        }
+
+        /* Hero Section */
+        @media (max-width: 768px) {
+            #home img { width: 150px; height: 150px; }
+            #home h1 { font-size: 2.5rem; }
+            #home p { font-size: 1.2rem; }
+            .btn-primary { width: 100%; padding: 0.8rem 0; }
+        }
+
+        /* Projects Section */
+        @media (max-width: 768px) {
+            #projects .grid { grid-template-columns: 1fr; gap: 1rem; }
+            .project-card img { width: 100%; height: auto; }
+        }
+
+        /* Game Section */
+        @media (max-width: 768px) {
+            .game-area { height: 300px; }
+            .star { width: 30px; height: 30px; }
+        }
+
+        /* Contact Section */
+        @media (max-width: 768px) {
+            .contact-info { flex-direction: column; gap: 1rem; }
+            .contact-info a { font-size: 1rem; }
+        }
+
+        /* Font Sizes */
+        body { font-size: 1rem; }
+        h1 { font-size: 2.5rem; }
+        p { font-size: 1rem; }
+
+        /* Buttons */
+        button { padding: 0.75rem 1.5rem; font-size: 1rem; }
     </style>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
