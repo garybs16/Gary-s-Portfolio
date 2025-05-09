@@ -270,7 +270,13 @@
     box-shadow: 0 0 15px #ffeb3b; /* Glow effect */
 }
 
-  
+        .dark footer {
+    background-color: #1e1e1e; /* or #000000 for pure black */
+    color: #ffffff;
+}
+
+
+
         /* Mobile Menu - Horizontal Design */
 #mobileMenu {
     display: flex;
@@ -828,7 +834,7 @@
 
             links.forEach(link => {
                 link.classList.remove("active");
-                if (link.getAttribute("href") === #${current}) {
+                if (link.getAttribute("href") === `#${current}`) {
                     link.classList.add("active");
                 }
             });
@@ -836,4 +842,5 @@
     </script>
 </body>
 </html>
+
 
