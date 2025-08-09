@@ -1,73 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me | Gary Samuel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+  <title>About Me | Gary Samuel</title>
+  <meta name="description" content="About Gary Samuel — full-stack developer focused on performant Shopify storefronts, real-time systems, and developer tooling." />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800">
 
-    <!-- Navbar -->
-    <nav class="bg-[#007bff] text-white p-4 shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto flex items-center justify-between px-8 py-2">
-            <a href="index.html" class="text-xl font-bold">Home</a>
-            <div class="space-x-4">
-                <a href="index.html#skills" class="nav-link">Skills</a>
-                <a href="index.html#projects" class="nav-link">Projects</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
-            </div>
+<body class="bg-white text-gray-800 antialiased">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-50 bg-[#007bff] text-white shadow-lg">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-14 items-center justify-between">
+        <a href="index.html" class="inline-flex items-center gap-2 font-semibold tracking-wide">
+          <span aria-hidden="true" class="text-xl">←</span> Home
+        </a>
+        <nav class="hidden sm:flex items-center gap-6 text-sm">
+          <a href="index.html#skills" class="hover:underline">Skills</a>
+          <a href="index.html#projects" class="hover:underline">Projects</a>
+          <a href="index.html#contact" class="hover:underline">Contact</a>
+        </nav>
+        <a
+          href="index.html#contact"
+          class="rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium backdrop-blur transition hover:bg-white/25"
+        >
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Intro -->
+  <section class="bg-gradient-to-br from-[#f0f8ff] to-white">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div class="grid items-center gap-10 md:grid-cols-2">
+        <div class="order-2 md:order-1">
+          <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
+            About <span class="text-[#007bff]">Gary Samuel</span>
+          </h1>
+          <p class="mt-4 text-lg leading-relaxed text-gray-700">
+            I’m a full-stack developer and Computer Science student at
+            <strong>California State University, Fullerton</strong> (GPA 3.6, graduating Dec 2026),
+            focused on performant storefronts, robust real-time systems, and developer tooling.
+            I ship clean, modular code with measurable impact.
+          </p>
+
+          <!-- Quick Metrics -->
+          <div class="mt-6 flex flex-wrap gap-3">
+            <span class="rounded-full bg-[#007bff]/10 px-3 py-1 text-xs font-semibold text-[#007bff]">+15% storefront speed</span>
+            <span class="rounded-full bg-[#00c9a7]/10 px-3 py-1 text-xs font-semibold text-[#00c9a7]">700+ products automated</span>
+            <span class="rounded-full bg-[#ff7a59]/10 px-3 py-1 text-xs font-semibold text-[#ff7a59]">-40% code duplication</span>
+            <span class="rounded-full bg-gray-800/10 px-3 py-1 text-xs font-semibold text-gray-800">Real-time chat (Socket.IO)</span>
+          </div>
+
+          <!-- CTAs -->
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="index.html#projects"
+              class="inline-flex items-center justify-center rounded-xl bg-[#007bff] px-5 py-3 text-white shadow-md transition hover:translate-y-[-1px] hover:shadow-lg"
+            >
+              View Projects
+            </a>
+            <a
+              href="Untitled document (32).pdf"
+              download
+              class="inline-flex items-center justify-center rounded-xl border border-gray-300 px-5 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
+            >
+              Download Résumé
+            </a>
+          </div>
         </div>
-    </nav>
 
-    <!-- About Me Section -->
-    <section class="py-20 bg-[#f0f8ff]">
-        <div class="container mx-auto text-center">
-            <h1 class="text-5xl font-extrabold mb-6">About Me</h1>
-            <div class="max-w-4xl mx-auto text-lg leading-relaxed text-left">
-                <p class="mb-4">
-                    I’m <strong>Gary Samuel</strong>, a full-stack software developer and Computer Science student at 
-                    <strong>California State University, Fullerton</strong> (3.6 GPA, graduating Dec 2026). 
-                    I specialize in building performant, scalable, and maintainable systems across e-commerce, real-time applications, 
-                    and developer tooling.
-                </p>
-                <p class="mb-4">
-                    At <strong>Bimmer Plug</strong>, I delivered a full Shopify UI redesign with modular, reusable Liquid and JavaScript 
-                    components—boosting load speed by 15% and reducing code duplication by 40%. I engineered dynamic, API-driven product 
-                    pages for a 700+ SKU catalog, integrated them with the Shopify Storefront API, and automated product workflows via the 
-                    Admin API, cutting manual processes and minimizing data errors.
-                </p>
-                <p class="mb-4">
-                    I also developed <strong>AutoFix Bug Fixer</strong>, a Python CLI tool that integrates 
-                    <strong>AST parsing</strong>, <strong>pytest</strong> failure analysis, and traceback parsing 
-                    to detect type mismatches, unused debug prints, and other defects—outputting targeted fix suggestions without altering 
-                    the original codebase.
-                </p>
-                <p class="mb-4">
-                    My technical stack includes <strong>C, C++, Python, Java, JavaScript, PHP, Liquid, and Assembly</strong>, 
-                    with frameworks like <strong>React.js, Vue.js, Angular, Django, Flask, FastAPI</strong>, 
-                    and expertise in <strong>REST APIs, Shopify APIs, NumPy, Pandas, TensorFlow, PyTorch, and Socket.IO</strong>.
-                    I apply clean architecture principles, performance profiling, and test-driven development to ensure 
-                    codebases remain extensible, debug-friendly, and production-ready.
-                </p>
-                <p class="mb-4">
-                    Outside of professional work, I’ve taught <strong>AP Computer Science A</strong> and <strong>AP Calculus AB</strong>, 
-                    mentored students on algorithm design, and conducted debugging workshops—strengthening my ability to communicate complex 
-                    technical concepts effectively.
-                </p>
-                <p class="mb-4">
-                    If you’d like to collaborate on a project, discuss system architecture, or talk about developer tooling, 
-                    <a href="index.html#contact" class="text-[#007bff] underline">let’s connect</a>.
-                </p>
+        <!-- Profile / Card -->
+        <div class="order-1 md:order-2">
+          <div class="mx-auto w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-xl">
+            <div class="flex items-center gap-4">
+              <img
+                src="profile.jpg"
+                alt="Portrait of Gary Samuel"
+                class="h-16 w-16 rounded-full object-cover ring-4 ring-[#ffe4d6]"
+              />
+              <div>
+                <p class="text-sm text-gray-500">Full-Stack Developer</p>
+                <p class="font-semibold">Shopify · JS/TS · Python · C++</p>
+              </div>
             </div>
+            <div class="mt-6 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-xl bg-[#f0f8ff] p-3">
+                <p class="font-semibold text-gray-900">Primary Focus</p>
+                <p class="text-gray-600">Shopify (Liquid, Storefront/Admin API), React, Node</p>
+              </div>
+              <div class="rounded-xl bg-[#f0f8ff] p-3">
+                <p class="font-semibold text-gray-900">Tooling</p>
+                <p class="text-gray-600">Pytest, AST, Tracebacks</p>
+              </div>
+              <div class="rounded-xl bg-[#f0f8ff] p-3">
+                <p class="font-semibold text-gray-900">Real-Time</p>
+                <p class="text-gray-600">Socket.IO, WebSockets</p>
+              </div>
+              <div class="rounded-xl bg-[#f0f8ff] p-3">
+                <p class="font-semibold text-gray-900">Data/ML</p>
+                <p class="text-gray-600">NumPy, Pandas, TensorFlow, PyTorch</p>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600">
+              Languages: C, C++, Python, Java, JavaScript, PHP, Liquid, Assembly
+            </p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#007bff] text-white text-center py-4">
-        <p>&copy; 2024 Gary Samuel - All Rights Reserved.</p>
-    </footer>
+  <!-- Experience -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Experience</h2>
 
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <!-- Bimmer Plug -->
+        <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-xl font-semibold">Shopify Full-Stack Developer — Bimmer Plug, Irvine</h3>
+            <span class="text-sm text-gray-500">Feb 2025 – Aug 2025</span>
+          </div>
+          <p class="mt-2 text-gray-700">
+            Delivered 2025 Shopify UI redesign with modular Liquid + JS components. Improved
+            performance and maintainability across a high-SKU storefront.
+          </p>
+          <ul class="mt-3 list-disc space-y-2 pl-5 text-gray-700">
+            <li><strong>+15%</strong> page speed; <strong>-40%</strong> code duplication via reusable components.</li>
+            <li>Built dynamic product pages for <strong>700+ SKUs</strong> using Storefront API.</li>
+            <li>Automated inventory and product ops via Admin API, cutting manual errors.</li>
+            <li>Applied clean architecture; standardized conventions; refactored legacy modules.</li>
+          </ul>
+        </article>
+
+        <!-- Novel Prep -->
+        <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-xl font-semibold">Math & CS Instructor (Part-Time) — Novel Prep, Irvine</h3>
+            <span class="text-sm text-gray-500">Jun 2024 – Jul 2025</span>
+          </div>
+          <ul class="mt-2 list-disc space-y-2 pl-5 text-gray-700">
+            <li>Taught AP CSA & AP Calc AB to 10+ students; avg AP score <strong>4.3</strong>.</li>
+            <li>Project-based curriculum; +35% engagement via weekly survey metrics.</li>
+          </ul>
+        </article>
+
+        <!-- Santa Ana College -->
+        <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-xl font-semibold">CS Learning Assistant — Santa Ana College</h3>
+            <span class="text-sm text-gray-500">Feb 2023 – Jun 2024</span>
+          </div>
+          <ul class="mt-2 list-disc space-y-2 pl-5 text-gray-700">
+            <li>Supported 25+ students weekly across C++, Python, and Java fundamentals.</li>
+            <li>Led debugging workshops on algorithms, optimization, and best practices.</li>
+          </ul>
+        </article>
+
+        <!-- Education -->
+        <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-xl font-semibold">Education — California State University, Fullerton</h3>
+            <span class="text-sm text-gray-500">B.S. Computer Science • GPA 3.6 • Dec 2026</span>
+          </div>
+          <p class="mt-2 text-gray-700">
+            Focus on algorithms, data structures, systems design. Teaching and mentorship strengthened ability
+            to explain complex topics and lead collaborative problem-solving.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Highlight -->
+  <section class="bg-[#f8fbff]">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div class="grid gap-8 lg:grid-cols-2">
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-semibold">AutoFix Bug Fixer — Python Static & Runtime Analysis</h3>
+          <p class="mt-2 text-gray-700">
+            CLI tool combining <strong>AST parsing</strong>, <strong>pytest</strong> failure capture, and
+            <strong>traceback</strong> analysis to localize issues (type mismatches, stray debug prints) and output
+            actionable fix suggestions—without modifying source.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-sm">
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">Python</span>
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">AST</span>
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">pytest</span>
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">Tracebacks</span>
+          </div>
+          <a href="#" class="mt-5 inline-block rounded-xl bg-[#007bff] px-4 py-2 text-white shadow transition hover:translate-y-[-1px] hover:shadow-md">Code</a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-semibold">Customer Chat Platform — Real-Time Support</h3>
+          <p class="mt-2 text-gray-700">
+            Node.js + Socket.IO live chat to handle customer support in real time for Bimmer Plug—reduces response
+            latency under high inquiry volume with a lightweight, scalable architecture.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-sm">
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">Node.js</span>
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">Socket.IO</span>
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">Tailwind</span>
+            <span class="rounded-lg bg-gray-100 px-2.5 py-1">WebSockets</span>
+          </div>
+          <a href="#" class="mt-5 inline-block rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50">Code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Core Skills</h2>
+
+      <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <p class="font-semibold">Languages</p>
+          <p class="mt-2 text-gray-700 text-sm">
+            C, C++, Python, Java, JavaScript, PHP, Liquid, Assembly
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <p class="font-semibold">Frameworks & Libraries</p>
+          <p class="mt-2 text-gray-700 text-sm">
+            React, Vue, Angular, Django, Flask, FastAPI, NumPy, Pandas, TensorFlow, PyTorch, OpenCV
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <p class="font-semibold">APIs & Tools</p>
+          <p class="mt-2 text-gray-700 text-sm">
+            Shopify (Liquid, Storefront, Admin), REST APIs, Git, npm, Webpack, SQL, JSON
+          </p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <p class="font-semibold">Real-Time & Infra</p>
+          <p class="mt-2 text-gray-700 text-sm">
+            Socket.IO, WebSockets, performance profiling, clean architecture, TDD
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-gradient-to-r from-[#007bff] to-[#00c9a7]">
+    <div class="mx-auto max-w-7xl px-4 py-12 text-center text-white sm:px-6 lg:px-8 lg:py-16">
+      <h2 class="text-3xl font-bold sm:text-4xl">Let’s build something performant.</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-white/90">
+        Whether it’s a scalable storefront, a real-time system, or a developer tool—I'm focused on measurable impact.
+      </p>
+      <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="index.html#contact" class="rounded-xl bg-white px-5 py-3 font-semibold text-[#007bff] shadow-md transition hover:translate-y-[-1px] hover:shadow-lg">Contact Me</a>
+        <a href="index.html#projects" class="rounded-xl border border-white/70 px-5 py-3 font-semibold text-white transition hover:bg-white/10">See Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#007bff] text-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 text-center text-sm sm:px-6 lg:px-8">
+      &copy; 2024 Gary Samuel — All Rights Reserved.
+    </div>
+  </footer>
 </body>
 </html>
