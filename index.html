@@ -201,6 +201,18 @@
     color: #00c9a7; /* Bright accent color for headings */
 }
 
+/* Light mode mobile menu color fix */
+body:not(.dark) #mobileMenu {
+    background-color: #007bff !important;
+    border-top-color: #00c9a7 !important;
+}
+
+body:not(.dark) #mobileMenu a {
+    color: #ffffff !important;
+}
+
+
+        
 /*Mobile Optimization*/
         html { scroll-behavior: smooth; }
         body { background-color: #f0f2f5; color: #2d2e32; font-family: 'Arial', sans-serif; }
@@ -848,5 +860,6 @@
     </script>
 </body>
 </html>
+
 
 
