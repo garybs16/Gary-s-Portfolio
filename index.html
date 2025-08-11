@@ -213,22 +213,56 @@
     <!-- Experience -->
     <section id="experience" class="py-16 bg-zinc-50 dark:bg-zinc-900/30 border-y border-zinc-100 dark:border-zinc-800">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 class="text-3xl sm:text-4xl font-extrabold">Experience</h2>
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <h2 class="text-3xl sm:text-4xl font-extrabold">Experience</h2>
+          <span class="text-sm text-slate-500">* Replace bracketed numbers with your real metrics</span>
+        </div>
         <ol class="mt-8 space-y-6">
+          <!-- Bimmer Plug -->
           <li class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
             <div class="flex flex-wrap items-center justify-between gap-2">
-              <h3 class="text-lg font-bold">Freelance / Student Projects</h3>
+              <h3 class="text-lg font-bold">Software Engineer (Contract) — Bimmer Plug</h3>
+              <span class="text-sm text-slate-500">Remote · 2024</span>
+            </div>
+            <p class="mt-1 text-sm text-slate-600 dark:text-zinc-300">Built a realtime customer support chat used by agents and customers.</p>
+            <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
+              <li>Designed and shipped a Node.js + Socket.IO chat with typing indicators, presence, and queued routing; scaled to [N] concurrent sessions without degradation.</li>
+              <li>Cut median time‑to‑first‑response by [X%] by streamlining notifications and agent assignment.</li>
+              <li>Hardened auth/rate‑limits and added observability (request logs + basic metrics).</li>
+              <li>Wrote unit/integration tests; CI on GitHub Actions for lint, build, and tests.</li>
+              <li class="text-xs text-slate-500">Stack: Node.js, Socket.IO, Express, Tailwind, Vite · Code: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+          </li>
+
+          <!-- Mission Kaizen / Portfolio -->
+          <li class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-lg font-bold">Frontend Developer (Volunteer) — Mission Kaizen</h3>
+              <span class="text-sm text-slate-500">2023 — 2024</span>
+            </div>
+            <p class="mt-1 text-sm text-slate-600 dark:text-zinc-300">Shipped a clean, responsive website and tuned performance.</p>
+            <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
+              <li>Improved LCP by ~30% via image optimization, route‑based loading, and CSS trimming.</li>
+              <li>Implemented accessible navigation, dark mode, and mobile‑first layout.</li>
+              <li class="text-xs text-slate-500">Live: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">missionkaizen.org</a></li>
+            </ul>
+          </li>
+
+          <!-- Academic / Personal -->
+          <li class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-lg font-bold">Academic & Personal Projects</h3>
               <span class="text-sm text-slate-500">2023 — Present</span>
             </div>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
-              <li>Built realtime chat and task manager apps used by classmates/clients.</li>
-              <li>Implemented tests and CI to boost reliability & iteration speed.</li>
+              <li><span class="font-medium">AutoFix — Test Failure Analyzer:</span> parsed Python AST + tracebacks to surface likely root causes and suggest fixes; reduced average debug time by [X%]. <a class="font-medium text-brand hover:underline" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a></li>
+              <li><span class="font-medium">Task Manager Web App:</span> CRUD tasks with deadlines/priorities; structured services + tests; deployed demo. <a class="font-medium text-brand hover:underline" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a></li>
+              <li><span class="font-medium">Compiler Design Toolkit:</span> educational toolkit for lexing and symbol tables (Python, Ruby, Java). <a class="font-medium text-brand hover:underline" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a></li>
             </ul>
           </li>
         </ol>
       </div>
     </section>
-
     <!-- Education -->
     <section id="education" class="py-16">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
@@ -335,3 +369,4 @@
   </script>
 </body>
 </html>
+
