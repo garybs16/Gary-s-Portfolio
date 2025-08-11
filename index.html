@@ -1,915 +1,381 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gary Samuel | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Smooth Scrolling -->
-    <style>
-        html {
-            scroll-behavior: smooth;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gary Samuel — SWE Intern Portfolio</title>
+  <meta name="description" content="Portfolio of Gary Samuel — software engineer focused on web apps, systems, and tooling. Projects, skills, and contact." />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gary Samuel — SWE Intern Portfolio" />
+  <meta property="og:description" content="Projects, skills, and contact." />
+  <meta property="og:image" content="profile.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="/" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- TailwindCSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0ea5e9',
+              600: '#0284c7',
+            },
+            accent: '#00c9a7',
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2,132,199,.15)'
+          }
         }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link.active::after {
-            content: "";
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: #ffe4d6;
-            border-radius: 2px;
-        }
-        body {
-        background-color: #f0f2f5;
-        color: #2d2e32;
-        font-family: 'Arial', sans-serif;
+      }
     }
+  </script>
 
-    .nav-link {
-        color: #fff;
-        position: relative;
-        transition: color 0.3s ease;
+  <!-- Prefers-reduced-motion safety -->
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
+  </style>
 
-    .nav-link:hover,
-    .nav-link.active {
-        color: #00c9a7;
-    }
-
-    .bg-white {
-        background: #ffffff;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #007bff 0%, #00c9a7 100%);
-        color: #fff;
-        transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        background: #00c9a7;
-        transform: scale(1.05);
-    }
-
-    .shadow-md {
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .bg-gradient-section {
-        background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
-    }
-
-    .text-gradient {
-        background: linear-gradient(90deg, #007bff, #00c9a7);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-
-/* Dark Mode - Full Background & Text */
-.dark {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-/* Dark Mode - Full Background & Text */
-.dark {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-/* === NAVBAR DARK MODE === */
-.dark .navbar {
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-}
-
-.dark .nav-link {
-    color: #ffffff;
-}
-
-.dark .nav-link:hover,
-.dark .nav-link.active {
-    color: #00c9a7; /* Highlight */
-}
-
-/* Dark Mode - Full Background & Text */
-.dark {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-/* Dark Mode for Home Section */
-/* Dark Mode for Home Section */
-.dark #home {
-    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-}
-
-.dark .bg-white,
-.dark .bg-gradient-section,
-.dark .game-area {
-    background-color: #121212; /* Full dark background */
-}
-
-.dark .text-gray-800 {
-    color: #ffffff; /* Ensures text is pure white */
-}
-
-.dark .nav-link {
-    color: #ffffff; /* Navbar links */
-}
-
-.dark .nav-link:hover,
-.dark .nav-link.active {
-    color: #00c9a7; /* Highlight color */
-}
-
-.dark .btn-primary {
-    background: linear-gradient(135deg, #00c9a7 0%, #007bff 100%);
-}
-
-.dark .btn-primary:hover {
-    background: #00c9a7;
-}
-
-.dark .swiper-pagination-bullet {
-    background-color: #00c9a7;
-}
-
-.dark .swiper-pagination-bullet-active {
-    background-color: #ffe4d6;
-}
-
-.dark #particles-js canvas {
-    background: #121212;
-}
-
-/* Profile Picture Glow Effect */
-.dark #home img {
-    border-color: #00c9a7; /* Neon glow effect */
-    box-shadow: 0 0 20px #00c9a7; 
-}
-        
-
-/* Technical Projects - Dark Mode */
-.dark #projects {
-    background-color: #1e1e1e; /* Deep charcoal for better contrast */
-    color: #e0e0e0; /* Light text for readability */
-}
-
-.dark .p-6 {
-    background-color: #252525; /* Slightly lighter gray for project cards */
-    border: 1px solid #00c9a7; /* Add a subtle neon accent */
-    color: #ffffff; /* Pure white text for better contrast */
-}
-
-/* Skills - Dark Mode */
-.dark #skills {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-}
-
-.dark .p-6 {
-    background-color: #252525;
-    color: #ffffff;
-}
-
-.dark .bg-gray-300 {
-    background-color: #3a3a3a; /* Darker background for progress bars */
-}
-
-
-
-/* Headings in Dark Mode */
-.dark h2 {
-    color: #00c9a7; /* Bright accent color for headings */
-}
-
-/* Light mode mobile menu color fix */
-body:not(.dark) #mobileMenu {
-    background-color: #007bff !important;
-    border-top-color: #00c9a7 !important;
-}
-
-body:not(.dark) #mobileMenu a {
-    color: #ffffff !important;
-}
-
-
-        
-/*Mobile Optimization*/
-        html { scroll-behavior: smooth; }
-        body { background-color: #f0f2f5; color: #2d2e32; font-family: 'Arial', sans-serif; }
-        .btn-primary { background: linear-gradient(135deg, #007bff 0%, #00c9a7 100%); color: #fff; }
-        .text-highlight { background: linear-gradient(90deg, #007bff, #00c9a7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .dark { background-color: #121212; color: #ffffff; }
-
-        /* Navigation */
-        .nav-link { color: #fff; }
-        .nav-link:hover, .nav-link.active { color: #00c9a7; }
-
-        /* Mobile Menu */
-        #mobileMenu { display: none; }
-        @media (max-width: 768px) {
-            #mobileMenu { display: block; text-align: center; background-color: #007bff; padding: 1rem 0; }
-            #mobileMenu a { display: block; padding: 0.5rem 0; color: #ffffff; transition: background 0.3s; }
-            #mobileMenu a:hover { background-color: #0056b3; }
-        }
-
-        /* Hero Section */
-        @media (max-width: 768px) {
-            #home img { width: 150px; height: 150px; }
-            #home h1 { font-size: 2.5rem; }
-            #home p { font-size: 1.2rem; }
-            .btn-primary { width: 100%; padding: 0.8rem 0; }
-        }
-
-        /* Projects Section */
-        @media (max-width: 768px) {
-            #projects .grid { grid-template-columns: 1fr; gap: 1rem; }
-            .project-card img { width: 100%; height: auto; }
-        }
-
-        /* Game Section */
-        @media (max-width: 768px) {
-            .game-area { height: 300px; }
-            .star { width: 30px; height: 30px; }
-        }
-
-        /* Contact Section */
-        @media (max-width: 768px) {
-            .contact-info { flex-direction: column; gap: 1rem; }
-            .contact-info a { font-size: 1rem; }
-        }
-
-        /* Font Sizes */
-        body { font-size: 1rem; }
-        h1 { font-size: 2.5rem; }
-        p { font-size: 1rem; }
-
-        /* Buttons */
-        button { padding: 0.75rem 1.5rem; font-size: 1rem; }
-
-        /* Dark Mode for Catch the Star Section */
-.dark #catch-the-star {
-    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-    color: #ffffff;
-}
-
-.dark .game-area {
-    background-color: #1e1e1e; /* Dark background for game area */
-    border-color: #00c9a7; /* Neon border */
-}
-
-.dark #star {
-    background-color: #ffeb3b; /* Make star still bright and visible */
-    box-shadow: 0 0 15px #ffeb3b; /* Glow effect */
-}
-.dark footer {
-    background-color: #1e1e1e; /* or #000000 for pure black */
-    color: #ffffff;
-}
-
-/* dark-mode.css */
-.dark-mode-container {
-  background-color: #1f1f1f; /* Dark grey background */
-  color: #ffffff;           /* White text */
-  padding: 1.5rem;          /* Optional padding */
-  border-radius: 0.5rem;    /* Optional rounded corners */
-  max-width: 28rem;         /* Optional max width */
-  margin: 0 auto;           /* Center the container */
-}
-
-.dark-mode-container a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.dark-mode-container a:hover {
-  text-decoration: underline;
-}
-
-.dark-mode-container .icon {
-  font-size: 1.875rem; /* text-3xl ~ 30px */
-}
-
-.dark-mode-container .link-text {
-  font-size: 1.125rem; /* text-lg ~ 18px */
-}
-
-
-
-        /* Mobile Menu - Horizontal Design */
-#mobileMenu {
-    display: flex;
-    flex-direction: row; /* Horizontal layout */
-    justify-content: center;
-    gap: 1rem; /* Adds spacing between links */
-    background-color: #1e1e1e; /* Dark background for dark mode */
-    padding: 0.75rem 0;
-    border-top: 2px solid #00c9a7; /* Clean accent border */
-}
-
-#mobileMenu a {
-    color: #ffffff; /* White text */
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: background 0.3s, transform 0.2s;
-}
-
-#mobileMenu a:hover {
-    background-color: #00c9a7; /* Highlight effect */
-    transform: scale(1.1); /* Slight enlargement for feedback */
-}
-
-/* Ensuring visibility only on mobile */
-@media (min-width: 768px) {
-    #mobileMenu {
-        display: none; /* Hidden on larger screens */
-    }
-}
-    </style>
-
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Gary Samuel",
+    "jobTitle": "Software Engineer (Intern)",
+    "url": "",
+    "sameAs": [
+      "https://github.com/garybs16",
+      "https://www.linkedin.com/in/gary-samuel-3954261b2/"
+    ]
+  }
+  </script>
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-white text-slate-800 dark:bg-zinc-950 dark:text-zinc-100 selection:bg-brand/20">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 bg-black/80 text-white rounded px-3 py-2">Skip to content</a>
 
-    <body class="bg-white text-gray-800 dark:bg-[#121212] dark:text-white">
-
-
-
-    <!-- Particle Background -->
-    <div id="particles-js" class="absolute top-0 left-0 w-full h-full -z-10"></div>
-
-    <!-- Navbar -->
-
-   <nav class="navbar bg-[#007bff] text-white p-4 shadow-lg sticky top-0 z-50">
-
-        <div class="container mx-auto flex flex-wrap items-center justify-between px-8 py-2">
-    
-            <!-- Left Section: Social Links -->
-            <div class="flex items-center space-x-6">
-                <a href="https://github.com/garybs16" target="_blank" 
-                   class="text-white underline hover:bg-[#0056b3] px-3 py-1 rounded-md">
-                   GitHub
-                </a>
-    
-                <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" 
-                   class="text-white underline hover:bg-[#0056b3] px-3 py-1 rounded-md">
-                   LinkedIn
-                </a>
-            </div>
-    
-            <!-- Middle Section: Navigation Links -->
-            <div class="hidden md:flex space-x-4">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About Me</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-    
-            <!-- Right Section: Dark Mode Toggle -->
-            <div class="flex items-center space-x-4">
-                <button id="darkModeToggle"
-                    class="bg-[#00c9a7] text-white px-4 py-2 rounded-lg shadow-md 
-                    hover:bg-[#0056b3] transition-colors duration-300">
-                    🌙 Dark Mode
-                </button>
-            </div>
-    
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center">
-                <button id="menuToggle" 
-                    class="text-white focus:outline-none text-3xl">
-                    ☰
-                </button>
-            </div>
-        </div>
-    
-        <!-- Mobile Menu (Hidden by Default) -->
-        <div id="mobileMenu" class="hidden md:hidden bg-[#007bff] text-center py-4">
-            <a href="#home" class="block py-2">Home</a>
-            <a href="C:\Users\Garys\OneDrive\Documents\WEB-PROJECT\about.html" class="block py-2">About Me</a>
-            <a href="#skills" class="block py-2">Skills</a>
-            <a href="#projects" class="block py-2">Projects</a>
-            <a href="#contact" class="block py-2">Contact</a>
-        </div>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-950/70 border-b border-zinc-200/70 dark:border-zinc-800">
+    <nav class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 font-semibold tracking-tight">
+        <img src="profile.jpg" alt="Portrait of Gary Samuel" class="h-10 w-10 rounded-full object-cover ring-2 ring-brand/30" loading="lazy" />
+        <span class="hidden sm:inline">Gary Samuel</span>
+      </a>
+      <ul class="hidden md:flex items-center gap-6 text-sm">
+        <li><a class="nav-link hover:text-brand" href="#projects">Projects</a></li>
+        <li><a class="nav-link hover:text-brand" href="#skills">Skills</a></li>
+        <li><a class="nav-link hover:text-brand" href="#experience">Experience</a></li>
+        <li><a class="nav-link hover:text-brand" href="#education">Education</a></li>
+        <li><a class="nav-link hover:text-brand" href="#contact">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-2">
+        <a href="Untitled document (32).pdf" download class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-brand/30 bg-white text-brand hover:bg-brand hover:text-white dark:bg-zinc-900 dark:hover:bg-brand px-3 py-2 text-sm font-semibold shadow-soft transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 8.707 11.293L11 13.586V4a1 1 0 0 1 1-1z"/><path d="M5 19a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2H5z"/></svg>
+          Resume
+        </a>
+        <button id="themeToggle" class="rounded-xl border border-zinc-300/60 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-semibold shadow-soft" aria-label="Toggle dark mode">🌙</button>
+        <button class="md:hidden rounded-xl border border-zinc-300/60 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-semibold shadow-soft" aria-controls="mobileNav" aria-expanded="false" id="mobileBtn">Menu</button>
+      </div>
     </nav>
-    
-    <!-- HERO SECTION - Improved with Tagline -->
-<section id="home" class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-[#007bff] to-[#00c9a7] text-white">
-    <div class="backdrop-blur-md p-12 rounded-lg shadow-2xl max-w-4xl flex items-center space-x-8 transform hover:scale-105 transition-transform duration-500">
-        <img src="profile.jpg" 
-             alt="Profile Picture" 
-             class="w-48 h-48 rounded-full border-4 border-[#ffe4d6] shadow-2xl animate-bounce">
-        
+    <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200/70 dark:border-zinc-800">
+      <ul class="mx-auto max-w-6xl px-4 sm:px-6 py-3 grid grid-cols-2 gap-3 text-sm">
+        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#projects">Projects</a></li>
+        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#skills">Skills</a></li>
+        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#experience">Experience</a></li>
+        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#education">Education</a></li>
+        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#contact">Contact</a></li>
+        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="Untitled document (32).pdf" download>Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="">
+    <!-- Hero -->
+    <section id="home" class="relative overflow-hidden">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 grid md:grid-cols-2 gap-8 items-center py-20">
         <div>
-            <h1 class="text-7xl font-extrabold animate-fade-in">
-                Hi, I'm <span class="text-[#ffe4d6]">Gary Samuel</span>
-            </h1>
-            <p class="text-2xl mt-2 font-medium italic text-[#ffe4d6]">
-                "Building creative web experiences with modern technologies."
-            </p>
-            <p class="text-2xl mt-4">
-                <span id="typed-text"></span>
-            </p>
-            <a href="Untitled document (32).pdf"
-               download 
-               class="btn-primary px-6 py-2 rounded-lg mt-6 inline-block shadow-lg transform hover:scale-105 transition-transform duration-300">
-               📄 Download Resume
+          <p class="text-sm uppercase tracking-widest text-brand font-semibold">Software Engineer — Intern</p>
+          <h1 class="mt-3 text-4xl md:text-6xl font-extrabold leading-tight">
+            Building reliable, fast, and friendly software.
+          </h1>
+          <p class="mt-4 text-lg text-slate-600 dark:text-zinc-300 max-w-prose">
+            I design and ship web apps and tools with a focus on performance, accessibility, and clean code.
+          </p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-2 font-semibold shadow-soft hover:bg-brand-600 transition">
+              GitHub
             </a>
+            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-zinc-300/70 dark:border-zinc-700 px-4 py-2 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+              LinkedIn
+            </a>
+            <a href="#projects" class="inline-flex items-center gap-2 rounded-xl bg-accent text-white px-4 py-2 font-semibold shadow-soft hover:opacity-90 transition">See projects</a>
+          </div>
         </div>
+        <div class="relative">
+          <div class="aspect-square rounded-3xl bg-gradient-to-br from-brand/15 to-accent/20 dark:from-brand/10 dark:to-accent/10 p-4">
+            <img src="profile.jpg" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-16 bg-zinc-50 dark:bg-zinc-900/30 border-y border-zinc-100 dark:border-zinc-800">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Selected Projects</h2>
+          <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="text-sm font-semibold text-brand hover:underline">More on GitHub →</a>
+        </div>
+        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Project card template repeated -->
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+            <img src="IMG_8011.JPG" alt="Screenshot of the portfolio website" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+            <h3 class="mt-4 text-xl font-bold">Portfolio Website</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Responsive portfolio with Tailwind, route-aware nav, and dark mode. Lighthouse performance optimized.</p>
+            <ul class="mt-3 text-xs text-slate-600 dark:text-zinc-400 space-y-1 list-disc list-inside">
+              <li>~30% faster initial load via asset trimming & lazy-loading</li>
+              <li>Accessible, keyboard-friendly controls</li>
+            </ul>
+            <div class="mt-4 flex gap-2">
+              <a class="btn-link" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">Live</a>
+            </div>
+          </article>
+
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+            <img src="taskimg.jpg" alt="Task manager app UI" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+            <h3 class="mt-4 text-xl font-bold">Task Manager Web App</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Python-powered CRUD app with deadlines & priorities. Clean architecture and tests.</p>
+            <p class="mt-2 text-xs">Python · Flask/Django · HTML/CSS/JS</p>
+            <div class="mt-4 flex gap-2">
+              <a class="btn-link" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+            <img src="guessing.jpg" alt="Live chat interface" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+            <h3 class="mt-4 text-xl font-bold">Realtime Support Chat</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Node.js + Socket.IO live chat for customer support. Reduced response time, scales horizontally.</p>
+            <p class="mt-2 text-xs">Node · Socket.IO · Tailwind</p>
+            <div class="mt-4 flex gap-2">
+              <a class="btn-link" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+            <img src="taskimg.jpg" alt="Compiler toolkit screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+            <h3 class="mt-4 text-xl font-bold">Compiler Design Toolkit</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Educational multi-language toolkit for lexical analysis & symbol tables.</p>
+            <p class="mt-2 text-xs">Python · Ruby · Java</p>
+            <div class="mt-4 flex gap-2">
+              <a class="btn-link" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+            <img src="taskimg.jpg" alt="Terminal showing failing tests" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+            <h3 class="mt-4 text-xl font-bold">AutoFix — Test Failure Analyzer</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">AST + traceback analysis for pytest to pinpoint root causes and suggest fixes.</p>
+            <p class="mt-2 text-xs">Python · AST · Pytest</p>
+            <div class="mt-4 flex gap-2">
+              <a class="btn-link" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+            <img src="taskimg.jpg" alt="C++ console calendar preview" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+            <h3 class="mt-4 text-xl font-bold">C++ Calendar & Scheduler</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Console-based event planner with clean data model and tests.</p>
+            <p class="mt-2 text-xs">C++</p>
+            <div class="mt-4 flex gap-2">
+              <a class="btn-link" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Skills</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-semibold tracking-wide text-sm uppercase text-slate-500">Languages</h3>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              <li class="chip">JavaScript</li>
+              <li class="chip">TypeScript</li>
+              <li class="chip">Python</li>
+              <li class="chip">C++</li>
+              <li class="chip">Java</li>
+              <li class="chip">SQL</li>
+              <li class="chip">PHP</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold tracking-wide text-sm uppercase text-slate-500">Frameworks</h3>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              <li class="chip">React</li>
+              <li class="chip">Node.js</li>
+              <li class="chip">Express</li>
+              <li class="chip">Django</li>
+              <li class="chip">Flask</li>
+              <li class="chip">Vue</li>
+              <li class="chip">Angular</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold tracking-wide text-sm uppercase text-slate-500">Tools & Other</h3>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              <li class="chip">Git & GitHub</li>
+              <li class="chip">REST APIs</li>
+              <li class="chip">WebSockets</li>
+              <li class="chip">PyTest</li>
+              <li class="chip">Unit Testing</li>
+              <li class="chip">Linux</li>
+              <li class="chip">Docker (basics)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-16 bg-zinc-50 dark:bg-zinc-900/30 border-y border-zinc-100 dark:border-zinc-800">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Experience</h2>
+        <ol class="mt-8 space-y-6">
+          <li class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-lg font-bold">Freelance / Student Projects</h3>
+              <span class="text-sm text-slate-500">2023 — Present</span>
+            </div>
+            <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
+              <li>Built real‑time chat and task manager apps used by classmates/clients.</li>
+              <li>Implemented tests and CI, boosting reliability and iteration speed.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Education</h2>
+        <div class="mt-8 grid gap-6">
+          <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-lg font-bold">B.S. in Computer Science</h3>
+              <span class="text-sm text-slate-500">Expected 2026</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Data Structures, Algorithms, Operating Systems, Databases, Networks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Contact</h2>
+        <div class="mt-8 grid md:grid-cols-2 gap-8">
+          <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6">
+            <h3 class="font-semibold">Get in touch</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Email is best. I’m open to internships and project collabs.</p>
+            <ul class="mt-4 space-y-3 text-sm">
+              <li><a class="link" href="mailto:garysamuel16@gmail.com">📧 garysamuel16@gmail.com</a></li>
+              <li><a class="link" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li>
+              <li><a class="link" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener">🔗 LinkedIn</a></li>
+            </ul>
+          </div>
+          <form class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6" action="mailto:garysamuel16@gmail.com" method="post" enctype="text/plain">
+            <label class="block text-sm font-medium">Name
+              <input class="mt-1 input" name="name" required />
+            </label>
+            <label class="block text-sm font-medium mt-4">Email
+              <input class="mt-1 input" type="email" name="email" required />
+            </label>
+            <label class="block text-sm font-medium mt-4">Message
+              <textarea class="mt-1 input h-28" name="message" required></textarea>
+            </label>
+            <button class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-2 font-semibold shadow-soft hover:bg-brand-600 transition" type="submit">Send</button>
+            <p class="mt-2 text-xs text-slate-500">Submitting opens your email client.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <p>© <span id="year"></span> Gary Samuel. All rights reserved.</p>
+      <div class="flex items-center gap-3">
+        <a href="#home" class="link">Back to top ↑</a>
+      </div>
     </div>
-</section>
+  </footer>
 
-    
-    
+  <!-- Helpers -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    <!-- Technical Projects Section -->
-<section id="projects" class="py-20 bg-[#f0f8ff]">
-    <div class="container mx-auto text-center">
-        <h2 class="text-5xl font-extrabold mb-10">Technical Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Project 1 -->
-          <!-- Project 1 -->
-<div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
-    <img src="IMG_8011.JPG" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
-    <h3 class="text-2xl font-bold mb-2">Portfolio Website</h3>
-    <p class="text-gray-600 mb-4">A responsive portfolio showcasing my skills, projects, and contact details using Tailwind CSS, AOS animations, and GSAP.</p>
-    <ul class="text-sm text-gray-500 mb-4">
-        <li>✅ Improved site performance by **30%** using lazy loading techniques.</li>
-        <li>✅ Enhanced UX with intuitive navigation and interactive features.</li>
-    </ul>
-    <a href="https://www.missionkaizen.org/" 
-       target="_blank"
-       class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-        🔗 Visit the Website
-    </a>
-</div>
-
-
-            <!-- Project 2 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-                <img src="taskimg.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
-                <h3 class="text-2xl font-bold mb-2">Task Manager App</h3>
-                <p class="text-gray-600 mb-4">A robust, Python-powered web application designed to help users efficiently create, organize, and track tasks, complete with deadline management, priority settings, and intuitive organization features.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Language:</strong> Python</p>
-                <a href="https://github.com/garybs16/Python-Project-FULLSTACK-"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-                <img src="guessing.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
-                <h3 class="text-2xl font-bold mb-2">Live Chat Page</h3>
-                <p class="text-gray-600 mb-4">A real-time customer support chat platform built with Node.js, Socket.IO, Tailwind CSS, HTML, and JavaScript.
-Designed for Bimmer Plug to handle high volumes of customer inquiries efficiently, reducing response times and improving engagement.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Language: HTML, CSS, JavaScript, Node.js, and Socket.IO.</strong> </p>
-                <a href="https://github.com/garybs16/BimmerPlug_Work"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-
-            <!-- Project 4 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-                <img src="taskimg.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
-                <h3 class="text-2xl font-bold mb-2">🛠 Compiler Design Toolkit</h3>
-                <p class="text-gray-600 mb-4">A multi-language educational toolkit demonstrating key concepts in compiler construction, including lexical analysis and symbol table management.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Language:</strong> Python, Ruby, and Java</p>
-                <a href="https://github.com/garybs16/Compiler_Design_Toolkit"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-                <img src="taskimg.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
-                <h3 class="text-2xl font-bold mb-2">AutoFix Bug Fixer – Python Static & Runtime Analysis Tool</h3>
-                <p class="text-gray-600 mb-4">Built a Python CLI tool that analyzes pytest failures using AST parsing and traceback analysis to pinpoint root causes, then suggests targeted fixes—speeding up debugging without changing the original code.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Language:</strong>Python, AST, Pytest, Traceback Parsing
-</p>
-                <a href="https://github.com/garybs16/AutoFix-Bug-Fixer"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-                <img src="taskimg.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-lg mb-4">
-                <h3 class="text-2xl font-bold mb-2">📅 Calendar & Scheduling Program — C++</h3>
-                <p class="text-gray-600 mb-4">A console-based calendar and schedule management system built in C++.
-This program allows users to create, view, and manage scheduled events for specific days using a simple, structured interface.</p>
-                <p class="text-sm text-gray-500 mb-4"><strong>Technologies:</strong> C++</p>
-                <a href="https://github.com/garybs16/calendar.project"
-                   target="_blank"
-                   class="bg-[#007bff] text-white px-4 py-2 rounded-lg hover:bg-[#0056b3] transition-colors duration-300">
-                    🔗 View on GitHub
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-        <!-- Skills, Frameworks & Tools Section -->
-<section id="skills" class="py-20 bg-white">
-    <div class="container mx-auto text-center">
-        <h2 class="text-5xl font-extrabold mb-10">Skills</h2>
-
-        <!-- Skills Category -->
-        <h3 class="text-3xl font-bold mb-4">Core Skills</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">HTML</h3>
-                <p class="text-sm mt-2">Experience with semantic HTML5, accessibility, and SEO best practices.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 95%">95%</div>
-                </div>
-            </div>
-
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">CSS</h3>
-                <p class="text-sm mt-2">Proficient in responsive design, Flexbox, Grid, and CSS animations.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
-                </div>
-            </div>
-
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">JavaScript</h3>
-                <p class="text-sm mt-2">Skilled in ES6+, DOM manipulation, and building interactive web applications.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
-                </div>
-            </div>
-
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Python</h3>
-                <p class="text-sm mt-2">Experience in web development with Django, Flask, and data analysis tools.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">C++</h3>
-                <p class="text-sm mt-2">Experience in web development with Django, Flask, and data analysis tools.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Java</h3>
-                <p class="text-sm mt-2">Experience in web development with Django, Flask, and data analysis tools.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Php</h3>
-                <p class="text-sm mt-2">Experience in web development with Django, Flask, and data analysis tools.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">SQL</h3>
-                <p class="text-sm mt-2">Experience in web development with Django, Flask, and data analysis tools.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
-        </div>
-       <!-- C++ -->
-
-        <!-- Frameworks Category -->
-        <h3 class="text-3xl font-bold mt-10 mb-4">Frameworks</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">React.js</h3>
-                <p class="text-sm mt-2">Building dynamic interfaces and SPAs using component-based architecture.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 80%">80%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Angular</h3>
-                <p class="text-sm mt-2">Developing scalable web apps using TypeScript and Angular CLI.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 75%">75%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Vue.js</h3>
-                <p class="text-sm mt-2">Experience creating reactive user interfaces with Vue and Vuex.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 70%">70%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Bootstrap</h3>
-                <p class="text-sm mt-2">Rapid prototyping and responsive design using Bootstrap 5.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 85%">85%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Node.js</h3>
-                <p class="text-sm mt-2">Backend development with Express, REST APIs, and real-time apps.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 78%">78%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">TensorFlow</h3>
-                <p class="text-sm mt-2">Deep learning and model training with TensorFlow and Keras.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 70%">70%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">PyTorch</h3>
-                <p class="text-sm mt-2">Building and training neural networks with dynamic computation graphs.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 68%">68%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Scikit-learn</h3>
-                <p class="text-sm mt-2">Applying ML models, data preprocessing, and model evaluation techniques.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 72%">72%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Matplotlib</h3>
-                <p class="text-sm mt-2">Creating detailed and customizable data visualizations in Python.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 80%">80%</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tools Category -->
-        <h3 class="text-3xl font-bold mt-10 mb-4">Tools</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Git</h3>
-                <p class="text-sm mt-2">Version control, branching, and team collaboration workflows.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">GitHub</h3>
-                <p class="text-sm mt-2">Repository hosting, PR reviews, and collaborative workflows.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 90%">90%</div>
-                </div>
-            </div>
-            <div class="p-6 bg-[#f0f4f8] rounded-lg shadow-md" data-aos="zoom-in">
-                <h3 class="text-2xl font-bold">Visual Studio Code</h3>
-                <p class="text-sm mt-2">Lightweight editor with extensions for full-stack development.</p>
-                <div class="w-full bg-gray-300 rounded-full mt-2">
-                    <div class="bg-[#ff4081] text-xs text-white p-1 leading-none rounded-full" style="width: 88%">88%</div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-
-
-<!-- Catch the Star Game Section -->
-<section id="catch-the-star" class="py-20 bg-gradient-to-r from-[#007bff] to-[#00c9a7] text-white">
-    <div class="container mx-auto text-center">
-        <h2 class="text-5xl font-extrabold mb-10">🌟 Catch the Star!</h2>
-        <p class="text-lg mb-4">Click the moving star before it disappears!</p>
-
-        <div class="game-area relative w-full h-96 border-4 border-white rounded-lg overflow-hidden bg-[#f0f8ff] shadow-lg">
-            <div id="star" class="absolute w-12 h-12 bg-yellow-400 rounded-full shadow-md cursor-pointer"></div>
-        </div>
-
-        <div class="mt-6 text-xl font-bold">
-            Score: <span id="score">0</span>
-        </div>
-    </div>
-</section>
-
-<script>
-    
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    // Load theme from localStorage
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'dark') {
-        body.classList.add('dark');
-        darkModeToggle.textContent = '☀️ Light Mode';
+    // Theme
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
     }
-
-    // Toggle Dark Mode
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        const theme = body.classList.contains('dark') ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-
-        // Change button text
-        darkModeToggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      themeToggle.textContent = html.classList.contains('dark') ? '☀️' : '🌙';
     });
 
-    // Catch the Star Game Logic
-    document.addEventListener("DOMContentLoaded", () => {
-        const star = document.getElementById("star");
-        const scoreDisplay = document.getElementById("score");
-        const gameArea = document.querySelector(".game-area");  // Fixed class selector
-
-        let score = 0;
-        let gameInterval;
-
-        // Move the star randomly within the game area
-        function moveStar() {
-            const maxX = gameArea.clientWidth - star.clientWidth;
-            const maxY = gameArea.clientHeight - star.clientHeight;
-
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-
-            gsap.to(star, {
-                x: randomX,
-                y: randomY,
-                duration: 0.8,
-                ease: "elastic.out(1, 0.3)"
-            });
-        }
-
-        // Update score when clicked
-        star.addEventListener("click", () => {
-            score++;
-            scoreDisplay.textContent = score;
-            moveStar();
-
-            // Speed up the game as the score increases
-            if (score % 5 === 0 && gameInterval) {
-                clearInterval(gameInterval);  // Clear previous interval
-                const newInterval = Math.max(800, 1500 - score * 50);  // Decrease interval over time
-                gameInterval = setInterval(moveStar, newInterval);
-            }
-
-            // Bonus Animation on Click
-            gsap.fromTo(star,
-                { scale: 1.5 },
-                { scale: 1, duration: 0.3, ease: "bounce.out" }
-            );
-        });
-
-        // Start Game
-        moveStar();  // Initial position
-        gameInterval = setInterval(moveStar, 1500);
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!open));
     });
-</script>
 
+    // Basic scrollspy for header links
+    const sections = Array.from(document.querySelectorAll('main section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    const setActive = () => {
+      const y = window.scrollY + 100;
+      let current = sections[0]?.id;
+      for (const s of sections) if (y >= s.offsetTop) current = s.id;
+      navLinks.forEach(a => {
+        if (a.getAttribute('href') === '#' + current) a.classList.add('text-brand');
+        else a.classList.remove('text-brand');
+      });
+    };
+    setActive();
+    window.addEventListener('scroll', setActive, { passive: true });
+  </script>
 
-
-            <!-- Contact Details -->
-            <div class="flex flex-col justify-center space-y-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex items-center space-x-4">
-                    <span class="text-3xl">📧</span>
-                    <a href="mailto:garysamuel@example.com" class="text-lg hover:underline">garysamuel16@gmail.com</a>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <span class="text-3xl">📞</span>
-                    <a href="tel:+1234567890" class="text-lg hover:underline">+1 (949) 615-2493</a>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <span class="text-3xl">🔗</span>
-                    <a href="https://linkedin.com/in/gary-samuel-3954261b2" 
-                       target="_blank" 
-                       class="text-lg hover:underline">LinkedIn Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="fixed bottom-5 right-5 bg-[#007bff] text-white px-3 py-2 rounded-full shadow-lg hidden">
-        ⬆️
-    </button>
-
-    <!-- Footer -->
-    <footer class="bg-[#007bff] text-white text-center py-4">
-        <p>&copy; 2024 Gary Samuel - All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // Typed.js for Animated Intro
-        new Typed("#typed-text", {
-            strings: ["Web Developer.", "UI/UX Designer.", "Problem Solver."],
-            typeSpeed: 60,
-            backSpeed: 30,
-            loop: true
-        });
-
-        // AOS Animation
-        AOS.init({
-            duration: 1000,
-            offset: 100,
-            once: true
-        });
-
-        // Particle.js Animation
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 120 },
-                size: { value: 3 },
-                move: { speed: 2 },
-                line_linked: { enable: true, color: "#ffffff" },
-                interactivity: {
-                    events: {
-                        onhover: { enable: true, mode: "repulse" }
-                    }
-                }
-            }
-        });
-
-        // Scroll-to-Top Button
-        const scrollBtn = document.getElementById("scrollToTopBtn");
-
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 500) {
-                scrollBtn.classList.remove("hidden");
-            } else {
-                scrollBtn.classList.add("hidden");
-            }
-        });
-
-        scrollBtn.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        // Active Link Highlight
-        const links = document.querySelectorAll(".nav-link");
-
-        window.addEventListener("scroll", () => {
-            let current = "";
-
-            document.querySelectorAll("section").forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= sectionTop - 100) {
-                    current = section.getAttribute("id");
-                }
-            });
-
-            links.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === `#${current}`) {
-                    link.classList.add("active");
-                }
-            });
-        });
-    </script>
+  <!-- Reusable tiny components -->
+  <style>
+    .btn-link { @apply inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline; }
+    .link { @apply inline-flex items-center gap-1 font-medium text-brand hover:underline; }
+    .chip { @apply inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm; }
+    .input { @apply w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm shadow-soft focus:outline-none focus:ring-2 focus:ring-brand/40; }
+  </style>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
