@@ -4,8 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gary Samuel — SWE Intern Portfolio</title>
-  <meta name="description" content="Portfolio of Gary Samuel — software engineer focused on web apps, systems, and tooling. Projects, skills, and contact." />
+  <meta name="description" content="Portfolio of Gary Samuel — software engineer focused on performant, accessible web apps and reliable tooling." />
   <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="favicon.ico" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
@@ -14,13 +15,7 @@
   <meta property="og:image" content="profile.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="/" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" />
-
-  <!-- TailwindCSS (CDN) -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,100 +23,69 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              DEFAULT: '#0ea5e9',
-              600: '#0284c7',
-            },
-            accent: '#00c9a7',
+            brand: { DEFAULT: '#0ea5e9', 600: '#0284c7' },
+            accent: '#00c9a7'
           },
-          boxShadow: {
-            soft: '0 10px 30px rgba(2,132,199,.15)'
-          }
+          boxShadow: { soft: '0 10px 30px rgba(2,132,199,.15)' }
         }
       }
     }
   </script>
 
-  <!-- Prefers-reduced-motion safety -->
+  <!-- Reduced motion safety + anchor offset for sticky header -->
   <style>
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
+    @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+    main section[id]{scroll-margin-top:92px}
   </style>
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Gary Samuel",
-    "jobTitle": "Software Engineer (Intern)",
-    "url": "",
-    "sameAs": [
-      "https://github.com/garybs16",
-      "https://www.linkedin.com/in/gary-samuel-3954261b2/"
-    ]
-  }
-  </script>
 </head>
 <body class="bg-white text-slate-800 dark:bg-zinc-950 dark:text-zinc-100 selection:bg-brand/20">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 bg-black/80 text-white rounded px-3 py-2">Skip to content</a>
 
   <!-- Header -->
-  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-950/70 border-b border-zinc-200/70 dark:border-zinc-800">
+  <header class="sticky top-0 z-50 bg-white/85 dark:bg-zinc-950/85 backdrop-blur border-b border-zinc-200 dark:border-zinc-800">
     <nav class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3 font-semibold tracking-tight">
-        <img src="profile.jpg" alt="Portrait of Gary Samuel" class="h-10 w-10 rounded-full object-cover ring-2 ring-brand/30" loading="lazy" />
-        <span class="hidden sm:inline">Gary Samuel</span>
+      <a href="#home" class="flex items-center gap-3">
+        <img src="profile.jpg" alt="Portrait of Gary Samuel" loading="lazy" class="h-10 w-10 rounded-full ring-2 ring-brand/30 object-cover" />
+        <span class="font-semibold tracking-tight hidden sm:inline">Gary Samuel</span>
       </a>
       <ul class="hidden md:flex items-center gap-6 text-sm">
-        <li><a class="nav-link hover:text-brand" href="#projects">Projects</a></li>
-        <li><a class="nav-link hover:text-brand" href="#skills">Skills</a></li>
-        <li><a class="nav-link hover:text-brand" href="#experience">Experience</a></li>
-        <li><a class="nav-link hover:text-brand" href="#education">Education</a></li>
-        <li><a class="nav-link hover:text-brand" href="#contact">Contact</a></li>
+        <li><a class="hover:text-brand" href="#projects">Projects</a></li>
+        <li><a class="hover:text-brand" href="#skills">Skills</a></li>
+        <li><a class="hover:text-brand" href="#experience">Experience</a></li>
+        <li><a class="hover:text-brand" href="#education">Education</a></li>
+        <li><a class="hover:text-brand" href="#contact">Contact</a></li>
+        <li><a href="Gary_Samuel_Resume.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600">Resume</a></li>
+        <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold" aria-label="Toggle dark mode">🌙</button></li>
       </ul>
-      <div class="flex items-center gap-2">
-        <a href="Untitled document (32).pdf" download class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-brand/30 bg-white text-brand hover:bg-brand hover:text-white dark:bg-zinc-900 dark:hover:bg-brand px-3 py-2 text-sm font-semibold shadow-soft transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 8.707 11.293L11 13.586V4a1 1 0 0 1 1-1z"/><path d="M5 19a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2H5z"/></svg>
-          Resume
-        </a>
-        <button id="themeToggle" class="rounded-xl border border-zinc-300/60 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-semibold shadow-soft" aria-label="Toggle dark mode">🌙</button>
-        <button class="md:hidden rounded-xl border border-zinc-300/60 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-semibold shadow-soft" aria-controls="mobileNav" aria-expanded="false" id="mobileBtn">Menu</button>
+      <div class="md:hidden flex items-center gap-2">
+        <button id="themeToggleSm" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold" aria-label="Toggle dark mode">🌙</button>
+        <button id="mobileBtn" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold" aria-controls="mobileNav" aria-expanded="false">Menu</button>
       </div>
     </nav>
-    <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200/70 dark:border-zinc-800">
-      <ul class="mx-auto max-w-6xl px-4 sm:px-6 py-3 grid grid-cols-2 gap-3 text-sm">
-        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#projects">Projects</a></li>
-        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#skills">Skills</a></li>
-        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#experience">Experience</a></li>
-        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#education">Education</a></li>
-        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="#contact">Contact</a></li>
-        <li><a class="block rounded-lg bg-zinc-100 dark:bg-zinc-900/70 px-3 py-2" href="Untitled document (32).pdf" download>Resume</a></li>
+    <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
+      <ul class="mx-auto max-w-6xl px-4 sm:px-6 py-3 grid grid-cols-1 gap-2 text-base">
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#projects">Projects</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#skills">Skills</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#experience">Experience</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#education">Education</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#contact">Contact</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="Gary_Samuel_Resume.pdf" download>Resume</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="main" class="">
+  <main id="main">
     <!-- Hero -->
-    <section id="home" class="relative overflow-hidden">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 grid md:grid-cols-2 gap-8 items-center py-20">
+    <section id="home" class="relative">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 grid md:grid-cols-2 gap-8 items-center py-14 md:py-20">
         <div>
-          <p class="text-sm uppercase tracking-widest text-brand font-semibold">Software Engineer — Intern</p>
-          <h1 class="mt-3 text-4xl md:text-6xl font-extrabold leading-tight">
-            Building reliable, fast, and friendly software.
-          </h1>
-          <p class="mt-4 text-lg text-slate-600 dark:text-zinc-300 max-w-prose">
-            I design and ship web apps and tools with a focus on performance, accessibility, and clean code.
-          </p>
-          <div class="mt-6 flex flex-wrap items-center gap-3">
-            <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-2 font-semibold shadow-soft hover:bg-brand-600 transition">
-              GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-zinc-300/70 dark:border-zinc-700 px-4 py-2 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-              LinkedIn
-            </a>
-            <a href="#projects" class="inline-flex items-center gap-2 rounded-xl bg-accent text-white px-4 py-2 font-semibold shadow-soft hover:opacity-90 transition">See projects</a>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand">Software Engineer — Intern</p>
+          <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight">I build fast, accessible web apps that don’t break.</h1>
+          <p class="mt-4 text-lg text-slate-600 dark:text-zinc-300 max-w-prose">Focused on performance, a11y, and clean code. Comfortable across the stack with JavaScript/TypeScript, Python, and C++.</p>
+          <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
+            <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600">GitHub</a>
+            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-800">LinkedIn</a>
+            <a href="#projects" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-accent text-white px-4 py-3 font-semibold shadow-soft hover:opacity-90">See Projects</a>
           </div>
         </div>
         <div class="relative">
@@ -136,71 +100,71 @@
     <section id="projects" class="py-16 bg-zinc-50 dark:bg-zinc-900/30 border-y border-zinc-100 dark:border-zinc-800">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="flex items-end justify-between gap-4 flex-wrap">
-          <h2 class="text-3xl md:text-4xl font-extrabold">Selected Projects</h2>
+          <h2 class="text-3xl sm:text-4xl font-extrabold">Selected Projects</h2>
           <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="text-sm font-semibold text-brand hover:underline">More on GitHub →</a>
         </div>
-        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Project card template repeated -->
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
-            <img src="IMG_8011.JPG" alt="Screenshot of the portfolio website" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card -->
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="IMG_8011.JPG" alt="Portfolio site screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Portfolio Website</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Responsive portfolio with Tailwind, route-aware nav, and dark mode. Lighthouse performance optimized.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Tailwind + dark mode + Lighthouse-tuned. Clean IA with a11y focus.</p>
             <ul class="mt-3 text-xs text-slate-600 dark:text-zinc-400 space-y-1 list-disc list-inside">
-              <li>~30% faster initial load via asset trimming & lazy-loading</li>
-              <li>Accessible, keyboard-friendly controls</li>
+              <li>≈30% faster LCP after asset trimming & lazy-load</li>
+              <li>Keyboard‑friendly navigation</li>
             </ul>
             <div class="mt-4 flex gap-2">
-              <a class="btn-link" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">Live</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">Live</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" alt="Task manager app UI" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Task Manager Web App</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Python-powered CRUD app with deadlines & priorities. Clean architecture and tests.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Python CRUD app with deadlines & priorities. Clean architecture + tests.</p>
             <p class="mt-2 text-xs">Python · Flask/Django · HTML/CSS/JS</p>
             <div class="mt-4 flex gap-2">
-              <a class="btn-link" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="guessing.jpg" alt="Live chat interface" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Realtime Support Chat</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Node.js + Socket.IO live chat for customer support. Reduced response time, scales horizontally.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Node + Socket.IO live chat for support. Lower latency, scales horizontally.</p>
             <p class="mt-2 text-xs">Node · Socket.IO · Tailwind</p>
             <div class="mt-4 flex gap-2">
-              <a class="btn-link" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" alt="Compiler toolkit screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Compiler Design Toolkit</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Educational multi-language toolkit for lexical analysis & symbol tables.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Educational toolkit for lexical analysis & symbol tables.</p>
             <p class="mt-2 text-xs">Python · Ruby · Java</p>
             <div class="mt-4 flex gap-2">
-              <a class="btn-link" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" alt="Terminal showing failing tests" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">AutoFix — Test Failure Analyzer</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">AST + traceback analysis for pytest to pinpoint root causes and suggest fixes.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">AST + traceback analysis for pytest to pinpoint root causes.</p>
             <p class="mt-2 text-xs">Python · AST · Pytest</p>
             <div class="mt-4 flex gap-2">
-              <a class="btn-link" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:translate-y-[-2px] transition">
+          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" alt="C++ console calendar preview" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">C++ Calendar & Scheduler</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Console-based event planner with clean data model and tests.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Console planner with clean data model and tests.</p>
             <p class="mt-2 text-xs">C++</p>
             <div class="mt-4 flex gap-2">
-              <a class="btn-link" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
         </div>
@@ -210,42 +174,36 @@
     <!-- Skills -->
     <section id="skills" class="py-16">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Skills</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Skills</h2>
         <div class="mt-6 grid md:grid-cols-3 gap-8">
           <div>
             <h3 class="font-semibold tracking-wide text-sm uppercase text-slate-500">Languages</h3>
             <ul class="mt-3 flex flex-wrap gap-2">
-              <li class="chip">JavaScript</li>
-              <li class="chip">TypeScript</li>
-              <li class="chip">Python</li>
-              <li class="chip">C++</li>
-              <li class="chip">Java</li>
-              <li class="chip">SQL</li>
-              <li class="chip">PHP</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">JavaScript / TypeScript</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Python</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">C++</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Java</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">SQL</li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold tracking-wide text-sm uppercase text-slate-500">Frameworks</h3>
             <ul class="mt-3 flex flex-wrap gap-2">
-              <li class="chip">React</li>
-              <li class="chip">Node.js</li>
-              <li class="chip">Express</li>
-              <li class="chip">Django</li>
-              <li class="chip">Flask</li>
-              <li class="chip">Vue</li>
-              <li class="chip">Angular</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">React</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Node.js (Express)</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Django / Flask</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Vue / Angular</li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold tracking-wide text-sm uppercase text-slate-500">Tools & Other</h3>
             <ul class="mt-3 flex flex-wrap gap-2">
-              <li class="chip">Git & GitHub</li>
-              <li class="chip">REST APIs</li>
-              <li class="chip">WebSockets</li>
-              <li class="chip">PyTest</li>
-              <li class="chip">Unit Testing</li>
-              <li class="chip">Linux</li>
-              <li class="chip">Docker (basics)</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Git & GitHub</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">REST APIs</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">WebSockets</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Testing (PyTest, JUnit)</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Linux</li>
+              <li class="inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm">Docker (basics)</li>
             </ul>
           </div>
         </div>
@@ -255,7 +213,7 @@
     <!-- Experience -->
     <section id="experience" class="py-16 bg-zinc-50 dark:bg-zinc-900/30 border-y border-zinc-100 dark:border-zinc-800">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Experience</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Experience</h2>
         <ol class="mt-8 space-y-6">
           <li class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
             <div class="flex flex-wrap items-center justify-between gap-2">
@@ -263,8 +221,8 @@
               <span class="text-sm text-slate-500">2023 — Present</span>
             </div>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
-              <li>Built real‑time chat and task manager apps used by classmates/clients.</li>
-              <li>Implemented tests and CI, boosting reliability and iteration speed.</li>
+              <li>Built realtime chat and task manager apps used by classmates/clients.</li>
+              <li>Implemented tests and CI to boost reliability & iteration speed.</li>
             </ul>
           </li>
         </ol>
@@ -274,14 +232,14 @@
     <!-- Education -->
     <section id="education" class="py-16">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Education</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Education</h2>
         <div class="mt-8 grid gap-6">
           <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <h3 class="text-lg font-bold">B.S. in Computer Science</h3>
               <span class="text-sm text-slate-500">Expected 2026</span>
             </div>
-            <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Data Structures, Algorithms, Operating Systems, Databases, Networks.</p>
+            <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Data Structures, Algorithms, OS, DBs, Networks.</p>
           </div>
         </div>
       </div>
@@ -290,92 +248,90 @@
     <!-- Contact -->
     <section id="contact" class="py-16">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Contact</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Contact</h2>
         <div class="mt-8 grid md:grid-cols-2 gap-8">
           <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6">
             <h3 class="font-semibold">Get in touch</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Email is best. I’m open to internships and project collabs.</p>
             <ul class="mt-4 space-y-3 text-sm">
-              <li><a class="link" href="mailto:garysamuel16@gmail.com">📧 garysamuel16@gmail.com</a></li>
-              <li><a class="link" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li>
-              <li><a class="link" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener">🔗 LinkedIn</a></li>
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="mailto:garysamuel16@gmail.com">📧 garysamuel16@gmail.com</a></li>
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li>
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener">🔗 LinkedIn</a></li>
             </ul>
           </div>
           <form class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6" action="mailto:garysamuel16@gmail.com" method="post" enctype="text/plain">
             <label class="block text-sm font-medium">Name
-              <input class="mt-1 input" name="name" required />
+              <input class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" name="name" required />
             </label>
             <label class="block text-sm font-medium mt-4">Email
-              <input class="mt-1 input" type="email" name="email" required />
+              <input class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" type="email" name="email" required />
             </label>
             <label class="block text-sm font-medium mt-4">Message
-              <textarea class="mt-1 input h-28" name="message" required></textarea>
+              <textarea class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 h-28 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" name="message" required></textarea>
             </label>
-            <button class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-2 font-semibold shadow-soft hover:bg-brand-600 transition" type="submit">Send</button>
+            <button class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 transition" type="submit">Send</button>
             <p class="mt-2 text-xs text-slate-500">Submitting opens your email client.</p>
           </form>
         </div>
       </div>
     </section>
+
+    <!-- Mobile sticky actions -->
+    <div class="fixed inset-x-0 bottom-0 z-40 md:hidden bg-white/95 dark:bg-zinc-950/95 border-t border-zinc-200 dark:border-zinc-800 backdrop-blur px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+      <div class="mx-auto max-w-6xl flex gap-3">
+        <a href="mailto:garysamuel16@gmail.com" class="flex-1 inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft">Email</a>
+        <a href="Gary_Samuel_Resume.pdf" download class="flex-1 inline-flex justify-center items-center rounded-xl border border-brand/40 text-brand px-4 py-3 font-semibold">Resume</a>
+      </div>
+    </div>
   </main>
 
   <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
       <p>© <span id="year"></span> Gary Samuel. All rights reserved.</p>
-      <div class="flex items-center gap-3">
-        <a href="#home" class="link">Back to top ↑</a>
-      </div>
+      <a href="#home" class="inline-flex items-center gap-1 font-medium text-brand hover:underline">Back to top ↑</a>
     </div>
   </footer>
 
-  <!-- Helpers -->
+  <!-- Scripts: year, theme, mobile menu, simple scrollspy highlighting -->
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Theme
+    // Theme toggles
     const html = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
-    const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      html.classList.add('dark');
-    }
-    themeToggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-      themeToggle.textContent = html.classList.contains('dark') ? '☀️' : '🌙';
-    });
+    const setThemeBtn = (el)=>{ if(!el) return; el.textContent = html.classList.contains('dark') ? '☀️' : '🌙'; };
+    const applyStored = () => {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) html.classList.add('dark');
+      setThemeBtn(document.getElementById('themeToggle'));
+      setThemeBtn(document.getElementById('themeToggleSm'));
+    };
+    applyStored();
+    const toggleTheme = () => { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); setThemeBtn(document.getElementById('themeToggle')); setThemeBtn(document.getElementById('themeToggleSm')); };
+    document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleSm')?.addEventListener('click', toggleTheme);
 
     // Mobile menu
     const mobileBtn = document.getElementById('mobileBtn');
     const mobileNav = document.getElementById('mobileNav');
-    mobileBtn.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('hidden');
-      mobileBtn.setAttribute('aria-expanded', String(!open));
+    mobileBtn?.addEventListener('click', () => {
+      const hidden = mobileNav.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!hidden));
     });
 
-    // Basic scrollspy for header links
+    // Scrollspy: highlight current section link on desktop
     const sections = Array.from(document.querySelectorAll('main section[id]'));
-    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    const headerLinks = Array.from(document.querySelectorAll('header nav ul a[href^="#"]'));
     const setActive = () => {
-      const y = window.scrollY + 100;
+      const y = window.scrollY + 110; // header offset
       let current = sections[0]?.id;
       for (const s of sections) if (y >= s.offsetTop) current = s.id;
-      navLinks.forEach(a => {
-        if (a.getAttribute('href') === '#' + current) a.classList.add('text-brand');
-        else a.classList.remove('text-brand');
+      headerLinks.forEach(a => {
+        a.classList.toggle('text-brand', a.getAttribute('href') === '#' + current);
       });
     };
     setActive();
     window.addEventListener('scroll', setActive, { passive: true });
   </script>
-
-  <!-- Reusable tiny components -->
-  <style>
-    .btn-link { @apply inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline; }
-    .link { @apply inline-flex items-center gap-1 font-medium text-brand hover:underline; }
-    .chip { @apply inline-flex items-center rounded-full border border-zinc-300/70 dark:border-zinc-700 px-3 py-1 text-sm; }
-    .input { @apply w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm shadow-soft focus:outline-none focus:ring-2 focus:ring-brand/40; }
-  </style>
 </body>
 </html>
