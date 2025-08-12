@@ -21,7 +21,7 @@
   <meta property="og:url" content="https://your-domain.example/" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD Person -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,13 +42,7 @@
   <script>
     tailwind.config = {
       darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { brand: { DEFAULT: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' }, accent: '#00c9a7' },
-          boxShadow: { soft: '0 10px 30px rgba(2,132,199,.15)' },
-          borderRadius: { xl: '1rem' }
-        }
-      }
+      theme: { extend: { colors: { brand: { DEFAULT: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' }, accent: '#00c9a7' }, boxShadow: { soft: '0 10px 30px rgba(2,132,199,.15)' }, borderRadius: { xl: '1rem' } } }
     }
   </script>
 
@@ -66,7 +60,7 @@
   <header class="sticky top-0 z-50 bg-white/85 dark:bg-zinc-950/85 backdrop-blur border-b border-zinc-200 dark:border-zinc-800">
     <nav class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3">
-        <img src="profile.jpg" width="80" height="80" alt="Portrait of Gary Samuel" loading="lazy" class="h-10 w-10 rounded-full ring-2 ring-brand/30 object-cover" />
+        <img src="profile.jpg" width="80" height="80" alt="Portrait of Gary Samuel" loading="lazy" decoding="async" class="h-10 w-10 rounded-full ring-2 ring-brand/30 object-cover" />
         <span class="font-semibold tracking-tight hidden sm:inline">Gary Samuel</span>
       </a>
       <ul class="hidden md:flex items-center gap-6 text-sm">
@@ -114,7 +108,7 @@
             <picture>
               <source srcset="profile.avif" type="image/avif" />
               <source srcset="profile.webp" type="image/webp" />
-              <img src="profile.jpg" width="640" height="640" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" fetchpriority="high" />
+              <img src="profile.jpg" width="640" height="640" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" fetchpriority="high" decoding="async" />
             </picture>
           </div>
         </div>
@@ -469,3 +463,4 @@
   </script>
 </body>
 </html>
+
