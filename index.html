@@ -3,18 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gary Samuel — SWE Portfolio</title>
+  <title>Gary Samuel — Software Engineer Portfolio</title>
   <meta name="description" content="Portfolio of Gary Samuel — software engineer focused on performant, accessible web apps and reliable tooling." />
   <meta name="theme-color" content="#0ea5e9" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://your-domain.example/" />
+  <meta name="robots" content="index,follow" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Gary Samuel — SWE Intern Portfolio" />
+  <meta property="og:title" content="Gary Samuel — Software Engineer Portfolio" />
   <meta property="og:description" content="Projects, skills, and contact." />
   <meta property="og:image" content="profile.jpg" />
+  <meta property="og:url" content="https://your-domain.example/" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Gary Samuel",
+    "jobTitle": "Software Engineer",
+    "url": "https://your-domain.example/",
+    "sameAs": [
+      "https://github.com/garybs16",
+      "https://www.linkedin.com/in/gary-samuel-3954261b2/"
+    ],
+    "email": "mailto:garysamuel16@gmail.com"
+  }
+  </script>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,10 +44,7 @@
       darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            brand: { DEFAULT: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' },
-            accent: '#00c9a7'
-          },
+          colors: { brand: { DEFAULT: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' }, accent: '#00c9a7' },
           boxShadow: { soft: '0 10px 30px rgba(2,132,199,.15)' },
           borderRadius: { xl: '1rem' }
         }
@@ -34,7 +52,7 @@
     }
   </script>
 
-  <!-- Reduced motion safety + anchor offset for sticky header + focus styles -->
+  <!-- Reduced motion + anchor offset + focus styles -->
   <style>
     @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
     main section[id]{scroll-margin-top:92px}
@@ -57,15 +75,15 @@
         <li><a class="hover:text-brand focus-ring" href="#experience">Experience</a></li>
         <li><a class="hover:text-brand focus-ring" href="#education">Education</a></li>
         <li><a class="hover:text-brand focus-ring" href="#contact">Contact</a></li>
-        <li><a href="Gary_Samuel_Resume.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring">Resume</a></li>
-        <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode">🌙</button></li>
+        <li><a href="Gary_Samuel_Resume.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring" aria-label="Download resume (PDF)">Resume</a></li>
+        <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode" type="button">🌙</button></li>
       </ul>
       <div class="md:hidden flex items-center gap-2">
-        <button id="themeToggleSm" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode">🌙</button>
-        <button id="mobileBtn" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-controls="mobileNav" aria-expanded="false">Menu</button>
+        <button id="themeToggleSm" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode" type="button">🌙</button>
+        <button id="mobileBtn" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-controls="mobileNav" aria-expanded="false" type="button">Menu</button>
       </div>
     </nav>
-    <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
+    <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200 dark:border-zinc-800" aria-label="Mobile">
       <ul class="mx-auto max-w-6xl px-4 sm:px-6 py-3 grid grid-cols-1 gap-2 text-base">
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#projects">Projects</a></li>
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#skills">Skills</a></li>
@@ -82,18 +100,22 @@
     <section id="home" class="relative">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 grid md:grid-cols-2 gap-8 items-center py-14 md:py-20">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-brand">Software Engineer — Intern</p>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand">Software Engineer</p>
           <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight">I build fast, accessible web apps that don’t break.</h1>
           <p class="mt-4 text-lg text-slate-600 dark:text-zinc-300 max-w-prose">Focused on performance, a11y, and clean code. Comfortable across the stack with JavaScript/TypeScript, Python, and C++.</p>
           <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-            <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-700 focus-ring">GitHub</a>
-            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">LinkedIn</a>
+            <a href="https://github.com/garybs16" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-700 focus-ring">GitHub</a>
+            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">LinkedIn</a>
             <a href="#projects" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-accent text-white px-4 py-3 font-semibold shadow-soft hover:opacity-90 focus-ring">See Projects</a>
           </div>
         </div>
         <div class="relative">
           <div class="aspect-square rounded-3xl bg-gradient-to-br from-brand/15 to-accent/20 dark:from-brand/10 dark:to-accent/10 p-4">
-            <img src="profile.jpg" width="640" height="640" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" fetchpriority="high" />
+            <picture>
+              <source srcset="profile.avif" type="image/avif" />
+              <source srcset="profile.webp" type="image/webp" />
+              <img src="profile.jpg" width="640" height="640" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" fetchpriority="high" />
+            </picture>
           </div>
         </div>
       </div>
@@ -104,79 +126,84 @@
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="flex items-end justify-between gap-4 flex-wrap">
           <h2 class="text-3xl sm:text-4xl font-extrabold">Selected Projects</h2>
-          <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="text-sm font-semibold text-brand hover:underline">More on GitHub →</a>
+          <a href="https://github.com/garybs16" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-brand hover:underline">More on GitHub →</a>
         </div>
 
         <!-- Filter bar -->
         <div class="mt-6 flex flex-wrap gap-2" aria-label="Project filters">
-          <button data-filter="all" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">All</button>
-          <button data-filter="web" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">Web</button>
-          <button data-filter="backend" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">Backend</button>
-          <button data-filter="tools" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">Tools</button>
+          <button data-filter="all" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring" aria-pressed="true" type="button">All</button>
+          <button data-filter="web" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring" aria-pressed="false" type="button">Web</button>
+          <button data-filter="backend" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring" aria-pressed="false" type="button">Backend</button>
+          <button data-filter="tools" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring" aria-pressed="false" type="button">Tools</button>
         </div>
 
         <div id="projectGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card -->
+          <!-- Card 1 -->
           <article data-tags="web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="IMG_8011.JPG" width="640" height="360" alt="Portfolio site screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Portfolio Website</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Tailwind + dark mode + Lighthouse-tuned. Clean IA with a11y focus.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Tailwind with dark mode and Lighthouse-tuned. Clean IA with a11y focus.</p>
             <ul class="mt-3 text-xs text-slate-600 dark:text-zinc-400 space-y-1 list-disc list-inside">
-              <li>≈30% faster LCP after asset trimming & lazy-load</li>
-              <li>Keyboard‑friendly navigation</li>
+              <li>Reduced hero image weight and lazy‑loaded non-critical media.</li>
+              <li>Keyboard‑friendly navigation, visible focus states.</li>
             </ul>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">Live</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://www.missionkaizen.org/" target="_blank" rel="noopener noreferrer">Live</a>
             </div>
           </article>
 
+          <!-- Card 2 -->
           <article data-tags="backend web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" width="640" height="360" alt="Task manager app UI" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Task Manager Web App</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Python CRUD app with deadlines & priorities. Clean architecture + tests.</p>
             <p class="mt-2 text-xs">Python · Flask/Django · HTML/CSS/JS</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener noreferrer">Code</a>
             </div>
           </article>
 
+          <!-- Card 3 -->
           <article data-tags="backend web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="guessing.jpg" width="640" height="360" alt="Live chat interface" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Realtime Support Chat</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Node + Socket.IO live chat for support. Lower latency, scales horizontally.</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Node + Socket.IO live chat for support. Lower latency, horizontal scaling.</p>
             <p class="mt-2 text-xs">Node · Socket.IO · Tailwind</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener noreferrer">Code</a>
             </div>
           </article>
 
+          <!-- Card 4 -->
           <article data-tags="tools backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" width="640" height="360" alt="Compiler toolkit screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Compiler Design Toolkit</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Educational toolkit for lexical analysis & symbol tables.</p>
             <p class="mt-2 text-xs">Python · Ruby · Java</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener noreferrer">Code</a>
             </div>
           </article>
 
+          <!-- Card 5 -->
           <article data-tags="tools backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" width="640" height="360" alt="Terminal showing failing tests" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">AutoFix — Test Failure Analyzer</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">AST + traceback analysis for pytest to pinpoint root causes.</p>
             <p class="mt-2 text-xs">Python · AST · Pytest</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener noreferrer">Code</a>
             </div>
           </article>
 
+          <!-- Card 6 -->
           <article data-tags="backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
             <img src="taskimg.jpg" width="640" height="360" alt="C++ console calendar preview" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">C++ Calendar & Scheduler</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Console planner with clean data model and tests.</p>
             <p class="mt-2 text-xs">C++</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener noreferrer">Code</a>
             </div>
           </article>
         </div>
@@ -237,11 +264,11 @@
             </div>
             <p class="mt-1 text-sm text-slate-600 dark:text-zinc-300">Built a realtime customer support chat used by agents and customers.</p>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
-              <li>Designed and shipped a Node.js + Socket.IO chat with typing indicators, presence, and queued routing; scaled to [N] concurrent sessions without degradation.</li>
-              <li>Cut median time‑to‑first‑response by [X%] by streamlining notifications and agent assignment.</li>
+              <li>Designed and shipped a Node.js + Socket.IO chat with typing indicators, presence, and queued routing; handled peak traffic without noticeable degradation.</li>
+              <li>Reduced time‑to‑first‑response by streamlining notifications and agent assignment.</li>
               <li>Hardened auth/rate‑limits and added observability (request logs + basic metrics).</li>
               <li>Wrote unit/integration tests; CI on GitHub Actions for lint, build, and tests.</li>
-              <li class="text-xs text-slate-500">Stack: Node.js, Socket.IO, Express, Tailwind, Vite · Code: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">GitHub</a></li>
+              <li class="text-xs text-slate-500">Stack: Node.js, Socket.IO, Express, Tailwind, Vite · Code: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             </ul>
           </li>
 
@@ -253,9 +280,9 @@
             </div>
             <p class="mt-1 text-sm text-slate-600 dark:text-zinc-300">Shipped a clean, responsive website and tuned performance.</p>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
-              <li>Improved LCP by ~30% via image optimization, route‑based loading, and CSS trimming.</li>
+              <li>Improved LCP via image optimization, route‑based loading, and CSS trimming.</li>
               <li>Implemented accessible navigation, dark mode, and mobile‑first layout.</li>
-              <li class="text-xs text-slate-500">Live: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">missionkaizen.org</a></li>
+              <li class="text-xs text-slate-500">Live: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://www.missionkaizen.org/" target="_blank" rel="noopener noreferrer">missionkaizen.org</a></li>
             </ul>
           </li>
 
@@ -266,9 +293,9 @@
               <span class="text-sm text-slate-500">2023 — Present</span>
             </div>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
-              <li><span class="font-medium">AutoFix — Test Failure Analyzer:</span> parsed Python AST + tracebacks to surface likely root causes and suggest fixes; reduced average debug time by [X%]. <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a></li>
-              <li><span class="font-medium">Task Manager Web App:</span> CRUD tasks with deadlines/priorities; structured services + tests; deployed demo. <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a></li>
-              <li><span class="font-medium">Compiler Design Toolkit:</span> educational toolkit for lexing and symbol tables (Python, Ruby, Java). <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a></li>
+              <li><span class="font-medium">AutoFix — Test Failure Analyzer:</span> parsed Python AST + tracebacks to surface likely root causes and suggest fixes; reduced debug time for common flake scenarios. <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener noreferrer">Code</a></li>
+              <li><span class="font-medium">Task Manager Web App:</span> CRUD tasks with deadlines/priorities; structured services + tests; deployed demo. <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener noreferrer">Code</a></li>
+              <li><span class="font-medium">Compiler Design Toolkit:</span> educational toolkit for lexing and symbol tables (Python, Ruby, Java). <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener noreferrer">Code</a></li>
             </ul>
           </li>
         </ol>
@@ -277,54 +304,58 @@
 
     <!-- Education -->
     <section id="education" class="py-16">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <h2 class="text-3xl sm:text-4xl font-extrabold">Education</h2>
-    <div class="mt-8 grid gap-6">
-      <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <h3 class="text-lg font-bold">B.S. in Computer Science — Towson University</h3>
-          <span class="text-sm text-slate-500">Expected 2026</span>
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Education</h2>
+        <div class="mt-8 grid gap-6">
+          <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-lg font-bold">B.S. in Computer Science — Towson University</h3>
+              <span class="text-sm text-slate-500">Expected 2026</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Data Structures, Algorithms, Operating Systems, Databases, Networks, Software Engineering.</p>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-lg font-bold">A.S. in Computer Science — Santa Ana College</h3>
+              <span class="text-sm text-slate-500">Completed 2023</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Programming Fundamentals, Object-Oriented Programming, Data Structures, Discrete Mathematics.</p>
+          </div>
         </div>
-        <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Data Structures, Algorithms, Operating Systems, Databases, Networks, Software Engineering.</p>
       </div>
-      <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <h3 class="text-lg font-bold">A.S. in Computer Science — Santa Ana College</h3>
-          <span class="text-sm text-slate-500">Completed 2023</span>
-        </div>
-        <p class="mt-2 text-sm text-slate-700 dark:text-zinc-300">Coursework: Programming Fundamentals, Object-Oriented Programming, Data Structures, Discrete Mathematics.</p>
-      </div>
-    </div>
-  </div>
-</section>
-```
+    </section>
 
     <!-- Contact -->
     <section id="contact" class="py-16">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <h2 class="text-3xl sm:text-4xl font-extrabold">Contact</h2>
-        <div class="mt-8 grid md:grid-cols-2 gap-8">
+        <div class="mt-8 grid md:grid-cols-2 gap-8 items-start">
           <div class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6">
             <h3 class="font-semibold">Get in touch</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Email is best. I’m open to internships and project collabs.</p>
             <ul class="mt-4 space-y-3 text-sm">
               <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="mailto:garysamuel16@gmail.com">📧 garysamuel16@gmail.com</a></li>
-              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li>
-              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener">🔗 LinkedIn</a></li>
+              <!-- Optional: exposing a phone increases spam. Uncomment if you want it visible. -->
+              <!-- <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li> -->
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a></li>
             </ul>
           </div>
-          <form class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6" action="mailto:garysamuel16@gmail.com" method="post" enctype="text/plain">
+
+          <!-- Real form (Formspree). Replace YOUR_ID below. Works on GitHub Pages. -->
+          <form id="contactForm" class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6" novalidate>
             <label class="block text-sm font-medium">Name
-              <input class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" name="name" required />
+              <input class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" name="name" autocomplete="name" required />
             </label>
             <label class="block text-sm font-medium mt-4">Email
-              <input class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" type="email" name="email" required />
+              <input class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" type="email" name="email" autocomplete="email" required />
             </label>
             <label class="block text-sm font-medium mt-4">Message
               <textarea class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 h-28 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" name="message" required></textarea>
             </label>
+            <!-- Honeypot -->
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
             <button class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 transition focus-ring" type="submit">Send</button>
-            <p class="mt-2 text-xs text-slate-500">Submitting opens your email client.</p>
+            <p id="formNote" class="mt-2 text-xs text-slate-500">You’ll get a confirmation if the message sends.</p>
           </form>
         </div>
       </div>
@@ -346,8 +377,8 @@
     </div>
   </footer>
 
-  <!-- Scripts: year, theme, mobile menu, scrollspy, project filter -->
-  <script>
+  <!-- Scripts: year, theme, mobile menu, scrollspy, project filter, contact form -->
+  <script defer>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -389,12 +420,13 @@
     setActive();
     window.addEventListener('scroll', setActive, { passive: true });
 
-    // Project filter
+    // Project filter (ARIA pressed state)
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('#projectGrid article');
     const setFilterActive = (btn) => {
-      filterBtns.forEach(b=>b.classList.remove('bg-brand','text-white'));
+      filterBtns.forEach(b=>{ b.classList.remove('bg-brand','text-white'); b.setAttribute('aria-pressed','false'); });
       btn.classList.add('bg-brand','text-white');
+      btn.setAttribute('aria-pressed','true');
     };
     filterBtns.forEach(btn=>{
       btn.addEventListener('click', ()=>{
@@ -407,10 +439,33 @@
         });
       });
     });
-    // default filter
     setFilterActive(document.querySelector('[data-filter="all"]'));
+
+    // Contact form (Formspree via fetch) — replace YOUR_ID below
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_ID'; // TODO: insert your Formspree form ID
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      note.textContent = 'Sending…';
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (data._gotcha) return; // bot
+      try {
+        const r = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (r.ok) {
+          note.textContent = 'Thanks! Your message was sent.';
+          form.reset();
+        } else {
+          note.textContent = 'Something went wrong. Email me directly.';
+        }
+      } catch {
+        note.textContent = 'Network error. Email me directly.';
+      }
+    });
   </script>
 </body>
 </html>
-
-
