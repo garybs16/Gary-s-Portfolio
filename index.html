@@ -6,6 +6,7 @@
   <title>Gary Samuel — SWE Intern Portfolio</title>
   <meta name="description" content="Portfolio of Gary Samuel — software engineer focused on performant, accessible web apps and reliable tooling." />
   <meta name="theme-color" content="#0ea5e9" />
+  <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="favicon.ico" />
 
   <!-- Open Graph / Twitter -->
@@ -23,19 +24,21 @@
       theme: {
         extend: {
           colors: {
-            brand: { DEFAULT: '#0ea5e9', 600: '#0284c7' },
+            brand: { DEFAULT: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' },
             accent: '#00c9a7'
           },
-          boxShadow: { soft: '0 10px 30px rgba(2,132,199,.15)' }
+          boxShadow: { soft: '0 10px 30px rgba(2,132,199,.15)' },
+          borderRadius: { xl: '1rem' }
         }
       }
     }
   </script>
 
-  <!-- Reduced motion safety + anchor offset for sticky header -->
+  <!-- Reduced motion safety + anchor offset for sticky header + focus styles -->
   <style>
     @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
     main section[id]{scroll-margin-top:92px}
+    .focus-ring:focus-visible{outline:2px solid #0ea5e9; outline-offset:3px}
   </style>
 </head>
 <body class="bg-white text-slate-800 dark:bg-zinc-950 dark:text-zinc-100 selection:bg-brand/20">
@@ -45,31 +48,31 @@
   <header class="sticky top-0 z-50 bg-white/85 dark:bg-zinc-950/85 backdrop-blur border-b border-zinc-200 dark:border-zinc-800">
     <nav class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3">
-        <img src="profile.jpg" alt="Portrait of Gary Samuel" loading="lazy" class="h-10 w-10 rounded-full ring-2 ring-brand/30 object-cover" />
+        <img src="profile.jpg" width="80" height="80" alt="Portrait of Gary Samuel" loading="lazy" class="h-10 w-10 rounded-full ring-2 ring-brand/30 object-cover" />
         <span class="font-semibold tracking-tight hidden sm:inline">Gary Samuel</span>
       </a>
       <ul class="hidden md:flex items-center gap-6 text-sm">
-        <li><a class="hover:text-brand" href="#projects">Projects</a></li>
-        <li><a class="hover:text-brand" href="#skills">Skills</a></li>
-        <li><a class="hover:text-brand" href="#experience">Experience</a></li>
-        <li><a class="hover:text-brand" href="#education">Education</a></li>
-        <li><a class="hover:text-brand" href="#contact">Contact</a></li>
-        <li><a href="Gary_Samuel_Resume.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600">Resume</a></li>
-        <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold" aria-label="Toggle dark mode">🌙</button></li>
+        <li><a class="hover:text-brand focus-ring" href="#projects">Projects</a></li>
+        <li><a class="hover:text-brand focus-ring" href="#skills">Skills</a></li>
+        <li><a class="hover:text-brand focus-ring" href="#experience">Experience</a></li>
+        <li><a class="hover:text-brand focus-ring" href="#education">Education</a></li>
+        <li><a class="hover:text-brand focus-ring" href="#contact">Contact</a></li>
+        <li><a href="Gary_Samuel_Resume.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring">Resume</a></li>
+        <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode">🌙</button></li>
       </ul>
       <div class="md:hidden flex items-center gap-2">
-        <button id="themeToggleSm" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold" aria-label="Toggle dark mode">🌙</button>
-        <button id="mobileBtn" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold" aria-controls="mobileNav" aria-expanded="false">Menu</button>
+        <button id="themeToggleSm" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode">🌙</button>
+        <button id="mobileBtn" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-controls="mobileNav" aria-expanded="false">Menu</button>
       </div>
     </nav>
     <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
       <ul class="mx-auto max-w-6xl px-4 sm:px-6 py-3 grid grid-cols-1 gap-2 text-base">
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#projects">Projects</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#skills">Skills</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#experience">Experience</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#education">Education</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="#contact">Contact</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70" href="Gary_Samuel_Resume.pdf" download>Resume</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#projects">Projects</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#skills">Skills</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#experience">Experience</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#education">Education</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#contact">Contact</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="Gary_Samuel_Resume.pdf" download>Resume</a></li>
       </ul>
     </nav>
   </header>
@@ -83,14 +86,14 @@
           <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight">I build fast, accessible web apps that don’t break.</h1>
           <p class="mt-4 text-lg text-slate-600 dark:text-zinc-300 max-w-prose">Focused on performance, a11y, and clean code. Comfortable across the stack with JavaScript/TypeScript, Python, and C++.</p>
           <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-            <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600">GitHub</a>
-            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-800">LinkedIn</a>
-            <a href="#projects" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-accent text-white px-4 py-3 font-semibold shadow-soft hover:opacity-90">See Projects</a>
+            <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-700 focus-ring">GitHub</a>
+            <a href="https://www.linkedin.com/in/gary-samuel-3954261b2/" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">LinkedIn</a>
+            <a href="#projects" class="w-full sm:w-auto inline-flex justify-center items-center rounded-xl bg-accent text-white px-4 py-3 font-semibold shadow-soft hover:opacity-90 focus-ring">See Projects</a>
           </div>
         </div>
         <div class="relative">
           <div class="aspect-square rounded-3xl bg-gradient-to-br from-brand/15 to-accent/20 dark:from-brand/10 dark:to-accent/10 p-4">
-            <img src="profile.jpg" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" loading="lazy" />
+            <img src="profile.jpg" width="640" height="640" alt="Gary at a computer" class="h-full w-full object-cover rounded-2xl ring-1 ring-brand/20" fetchpriority="high" />
           </div>
         </div>
       </div>
@@ -103,10 +106,19 @@
           <h2 class="text-3xl sm:text-4xl font-extrabold">Selected Projects</h2>
           <a href="https://github.com/garybs16" target="_blank" rel="noopener" class="text-sm font-semibold text-brand hover:underline">More on GitHub →</a>
         </div>
-        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Filter bar -->
+        <div class="mt-6 flex flex-wrap gap-2" aria-label="Project filters">
+          <button data-filter="all" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">All</button>
+          <button data-filter="web" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">Web</button>
+          <button data-filter="backend" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">Backend</button>
+          <button data-filter="tools" class="filter-btn rounded-full border px-3 py-1 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-ring">Tools</button>
+        </div>
+
+        <div id="projectGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Card -->
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
-            <img src="IMG_8011.JPG" alt="Portfolio site screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+          <article data-tags="web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="IMG_8011.JPG" width="640" height="360" alt="Portfolio site screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Portfolio Website</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Tailwind + dark mode + Lighthouse-tuned. Clean IA with a11y focus.</p>
             <ul class="mt-3 text-xs text-slate-600 dark:text-zinc-400 space-y-1 list-disc list-inside">
@@ -114,57 +126,57 @@
               <li>Keyboard‑friendly navigation</li>
             </ul>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">Live</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">Live</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
-            <img src="taskimg.jpg" alt="Task manager app UI" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+          <article data-tags="backend web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="taskimg.jpg" width="640" height="360" alt="Task manager app UI" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Task Manager Web App</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Python CRUD app with deadlines & priorities. Clean architecture + tests.</p>
             <p class="mt-2 text-xs">Python · Flask/Django · HTML/CSS/JS</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
-            <img src="guessing.jpg" alt="Live chat interface" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+          <article data-tags="backend web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="guessing.jpg" width="640" height="360" alt="Live chat interface" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Realtime Support Chat</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Node + Socket.IO live chat for support. Lower latency, scales horizontally.</p>
             <p class="mt-2 text-xs">Node · Socket.IO · Tailwind</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
-            <img src="taskimg.jpg" alt="Compiler toolkit screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+          <article data-tags="tools backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="taskimg.jpg" width="640" height="360" alt="Compiler toolkit screenshot" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">Compiler Design Toolkit</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Educational toolkit for lexical analysis & symbol tables.</p>
             <p class="mt-2 text-xs">Python · Ruby · Java</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
-            <img src="taskimg.jpg" alt="Terminal showing failing tests" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+          <article data-tags="tools backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="taskimg.jpg" width="640" height="360" alt="Terminal showing failing tests" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">AutoFix — Test Failure Analyzer</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">AST + traceback analysis for pytest to pinpoint root causes.</p>
             <p class="mt-2 text-xs">Python · AST · Pytest</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
-            <img src="taskimg.jpg" alt="C++ console calendar preview" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
+          <article data-tags="backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition">
+            <img src="taskimg.jpg" width="640" height="360" alt="C++ console calendar preview" class="h-40 w-full object-cover rounded-xl" loading="lazy"/>
             <h3 class="mt-4 text-xl font-bold">C++ Calendar & Scheduler</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Console planner with clean data model and tests.</p>
             <p class="mt-2 text-xs">C++</p>
             <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener">Code</a>
+              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
         </div>
@@ -215,7 +227,6 @@
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="flex items-end justify-between gap-4 flex-wrap">
           <h2 class="text-3xl sm:text-4xl font-extrabold">Experience</h2>
-          <span class="text-sm text-slate-500"></span>
         </div>
         <ol class="mt-8 space-y-6">
           <!-- Bimmer Plug -->
@@ -230,21 +241,21 @@
               <li>Cut median time‑to‑first‑response by [X%] by streamlining notifications and agent assignment.</li>
               <li>Hardened auth/rate‑limits and added observability (request logs + basic metrics).</li>
               <li>Wrote unit/integration tests; CI on GitHub Actions for lint, build, and tests.</li>
-              <li class="text-xs text-slate-500">Stack: Node.js, Socket.IO, Express, Tailwind, Vite · Code: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">GitHub</a></li>
+              <li class="text-xs text-slate-500">Stack: Node.js, Socket.IO, Express, Tailwind, Vite · Code: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/BimmerPlug_Work" target="_blank" rel="noopener">GitHub</a></li>
             </ul>
           </li>
 
           <!-- Mission Kaizen / Portfolio -->
           <li class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5">
             <div class="flex flex-wrap items-center justify-between gap-2">
-              <h3 class="text-lg font-bold">Lead project Developer — Mission Kaizen</h3>
+              <h3 class="text-lg font-bold">Lead Project Developer — Mission Kaizen</h3>
               <span class="text-sm text-slate-500">March 2023 — June 2024</span>
             </div>
             <p class="mt-1 text-sm text-slate-600 dark:text-zinc-300">Shipped a clean, responsive website and tuned performance.</p>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
               <li>Improved LCP by ~30% via image optimization, route‑based loading, and CSS trimming.</li>
               <li>Implemented accessible navigation, dark mode, and mobile‑first layout.</li>
-              <li class="text-xs text-slate-500">Live: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">missionkaizen.org</a></li>
+              <li class="text-xs text-slate-500">Live: <a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://www.missionkaizen.org/" target="_blank" rel="noopener">missionkaizen.org</a></li>
             </ul>
           </li>
 
@@ -255,14 +266,15 @@
               <span class="text-sm text-slate-500">2023 — Present</span>
             </div>
             <ul class="mt-3 list-disc list-inside text-sm text-slate-700 dark:text-zinc-300 space-y-1">
-              <li><span class="font-medium">AutoFix — Test Failure Analyzer:</span> parsed Python AST + tracebacks to surface likely root causes and suggest fixes; reduced average debug time by [X%]. <a class="font-medium text-brand hover:underline" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a></li>
-              <li><span class="font-medium">Task Manager Web App:</span> CRUD tasks with deadlines/priorities; structured services + tests; deployed demo. <a class="font-medium text-brand hover:underline" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a></li>
-              <li><span class="font-medium">Compiler Design Toolkit:</span> educational toolkit for lexing and symbol tables (Python, Ruby, Java). <a class="font-medium text-brand hover:underline" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a></li>
+              <li><span class="font-medium">AutoFix — Test Failure Analyzer:</span> parsed Python AST + tracebacks to surface likely root causes and suggest fixes; reduced average debug time by [X%]. <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/AutoFix-Bug-Fixer" target="_blank" rel="noopener">Code</a></li>
+              <li><span class="font-medium">Task Manager Web App:</span> CRUD tasks with deadlines/priorities; structured services + tests; deployed demo. <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/Python-Project-FULLSTACK-" target="_blank" rel="noopener">Code</a></li>
+              <li><span class="font-medium">Compiler Design Toolkit:</span> educational toolkit for lexing and symbol tables (Python, Ruby, Java). <a class="font-medium text-brand hover:underline focus-ring" href="https://github.com/garybs16/Compiler_Design_Toolkit" target="_blank" rel="noopener">Code</a></li>
             </ul>
           </li>
         </ol>
       </div>
     </section>
+
     <!-- Education -->
     <section id="education" class="py-16">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
@@ -288,9 +300,9 @@
             <h3 class="font-semibold">Get in touch</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Email is best. I’m open to internships and project collabs.</p>
             <ul class="mt-4 space-y-3 text-sm">
-              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="mailto:garysamuel16@gmail.com">📧 garysamuel16@gmail.com</a></li>
-              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li>
-              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener">🔗 LinkedIn</a></li>
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="mailto:garysamuel16@gmail.com">📧 garysamuel16@gmail.com</a></li>
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="tel:+19496152493">📞 +1 (949) 615‑2493</a></li>
+              <li><a class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring" href="https://linkedin.com/in/gary-samuel-3954261b2" target="_blank" rel="noopener">🔗 LinkedIn</a></li>
             </ul>
           </div>
           <form class="rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6" action="mailto:garysamuel16@gmail.com" method="post" enctype="text/plain">
@@ -303,7 +315,7 @@
             <label class="block text-sm font-medium mt-4">Message
               <textarea class="mt-1 w-full rounded-xl border border-zinc-300/70 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 h-28 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40" name="message" required></textarea>
             </label>
-            <button class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 transition" type="submit">Send</button>
+            <button class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 transition focus-ring" type="submit">Send</button>
             <p class="mt-2 text-xs text-slate-500">Submitting opens your email client.</p>
           </form>
         </div>
@@ -322,11 +334,11 @@
   <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
       <p>© <span id="year"></span> Gary Samuel. All rights reserved.</p>
-      <a href="#home" class="inline-flex items-center gap-1 font-medium text-brand hover:underline">Back to top ↑</a>
+      <a href="#home" class="inline-flex items-center gap-1 font-medium text-brand hover:underline focus-ring">Back to top ↑</a>
     </div>
   </footer>
 
-  <!-- Scripts: year, theme, mobile menu, simple scrollspy highlighting -->
+  <!-- Scripts: year, theme, mobile menu, scrollspy, project filter -->
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -361,14 +373,34 @@
       let current = sections[0]?.id;
       for (const s of sections) if (y >= s.offsetTop) current = s.id;
       headerLinks.forEach(a => {
-        a.classList.toggle('text-brand', a.getAttribute('href') === '#' + current);
+        const active = a.getAttribute('href') === '#' + current;
+        a.classList.toggle('text-brand', active);
+        a.setAttribute('aria-current', active ? 'page' : 'false');
       });
     };
     setActive();
     window.addEventListener('scroll', setActive, { passive: true });
+
+    // Project filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#projectGrid article');
+    const setFilterActive = (btn) => {
+      filterBtns.forEach(b=>b.classList.remove('bg-brand','text-white'));
+      btn.classList.add('bg-brand','text-white');
+    };
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const key = btn.dataset.filter;
+        setFilterActive(btn);
+        cards.forEach(card=>{
+          const tags = card.dataset.tags.split(' ');
+          const show = key==='all' || tags.includes(key);
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+    // default filter
+    setFilterActive(document.querySelector('[data-filter="all"]'));
   </script>
 </body>
 </html>
-
-
-
