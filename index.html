@@ -18,7 +18,8 @@
 
   <!-- Perf: preconnect + prefetch -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
- <link rel="preload" href="/resume_gary.pdf" as="fetch" type="application/pdf" crossorigin="anonymous">
+  <!-- FIX: make resume preload relative so it works on GitHub Pages project sites -->
+  <link rel="preload" href="./resume_gary.pdf" as="fetch" type="application/pdf">
 
   <!-- Canonical (TODO: set your real domain) -->
   <link rel="canonical" href="https://your-domain.example/" />
@@ -102,7 +103,8 @@
         <p class="text-xs sm:text-sm">Open to internships & junior SWE roles · US-based · Remote/Hybrid</p>
         <div class="flex items-center gap-2">
           <a href="mailto:garysamuel16@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand text-white px-3 py-2 text-sm font-semibold hover:bg-brand-600 focus-ring">Email Gary</a>
-          <a href="/resume_gary.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-3 py-2 text-sm font-semibold hover:bg-brand/10 focus-ring">Download Resume</a>
+          <!-- FIX: consistent relative resume link + download filename -->
+          <a href="./resume_gary.pdf" download="Gary_Samuel_Resume.pdf" class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-3 py-2 text-sm font-semibold hover:bg-brand/10 focus-ring">Download Resume</a>
         </div>
       </div>
     </div>
@@ -122,7 +124,8 @@
         <li><a class="hover:text-brand focus-ring" href="#experience">Experience</a></li>
         <li><a class="hover:text-brand focus-ring" href="#education">Education</a></li>
         <li><a class="hover:text-brand focus-ring" href="#contact">Contact</a></li>
-        <li><a href="/resume_gary.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring" aria-label="Download resume (PDF)">Resume</a></li>
+        <!-- FIX: consistent relative resume link + download filename -->
+        <li><a href="./resume_gary.pdf" download="Gary_Samuel_Resume.pdf" class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring" aria-label="Download resume (PDF)">Resume</a></li>
         <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode" aria-pressed="false" type="button">🌙</button></li>
       </ul>
       <div class="md:hidden flex items-center gap-2">
@@ -138,7 +141,8 @@
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#experience">Experience</a></li>
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#education">Education</a></li>
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#contact">Contact</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="/resume_gary.pdf" download>Resume</a></li>
+        <!-- FIX: consistent relative resume link + download filename -->
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="./resume_gary.pdf" download="Gary_Samuel_Resume.pdf">Resume</a></li>
       </ul>
     </nav>
   </header>
@@ -202,7 +206,8 @@
           </ul>
           <div class="flex md:justify-end gap-2">
             <a href="mailto:garysamuel16@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring">Interview Gary</a>
-            <a href="/resume_gary.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-4 py-3 font-semibold hover:bg-brand/10 focus-ring">Resume (PDF)</a>
+            <!-- FIX: consistent relative resume link + download filename -->
+            <a href="./resume_gary.pdf" download="Gary_Samuel_Resume.pdf" class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-4 py-3 font-semibold hover:bg-brand/10 focus-ring">Resume (PDF)</a>
           </div>
         </div>
       </div>
@@ -649,7 +654,8 @@
     <div class="fixed inset-x-0 bottom-0 z-40 md:hidden bg-white/95 dark:bg-zinc-950/95 border-t border-zinc-200 dark:border-zinc-800 backdrop-blur px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
       <div class="mx-auto max-w-6xl flex gap-3">
         <a href="mailto:garysamuel16@gmail.com" class="flex-1 inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold">Email</a>
-        <a href="/Gary_Samuel_Resume.pdf" download class="flex-1 inline-flex justify-center items-center rounded-xl border border-brand/40 text-brand px-4 py-3 font-semibold">Resume</a>
+        <!-- FIX: previously pointed at /Gary_Samuel_Resume.pdf; now consistent relative link + download filename -->
+        <a href="./resume_gary.pdf" download="Gary_Samuel_Resume.pdf" class="flex-1 inline-flex justify-center items-center rounded-xl border border-brand/40 text-brand px-4 py-3 font-semibold">Resume</a>
       </div>
     </div>
   </main>
@@ -767,6 +773,3 @@
   </script>
 </body>
 </html>
-
-
-
