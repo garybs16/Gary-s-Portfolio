@@ -18,7 +18,7 @@
 
   <!-- Perf: preconnect + prefetch -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  <link rel="prefetch" href="/resume_gary.pdf" as="document" type="application/pdf">
+ <link rel="preload" href="/resume_gary.pdf" as="fetch" type="application/pdf" crossorigin="anonymous">
 
   <!-- Canonical (TODO: set your real domain) -->
   <link rel="canonical" href="https://your-domain.example/" />
@@ -767,5 +767,6 @@
   </script>
 </body>
 </html>
+
 
 
