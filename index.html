@@ -16,10 +16,6 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-  <!-- Perf: preconnect + prefetch -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  <link rel="prefetch" href="/resume_gary.pdf" as="document" type="application/pdf">
-
   <!-- Canonical (TODO: set your real domain) -->
   <link rel="canonical" href="https://your-domain.example/" />
   <meta name="robots" content="index,follow" />
@@ -64,7 +60,7 @@
   <link rel="preload" as="image" href="IMG_4711.jpg" />
 
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -89,7 +85,6 @@
     .focus-ring:focus-visible{outline:2px solid #0ea5e9; outline-offset:3px}
     .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease}
     .reveal-in{opacity:1; transform:none}
-    main section{content-visibility:auto;contain-intrinsic-size: 1000px 800px}
   </style>
 </head>
 <body class="bg-white text-slate-800 dark:bg-zinc-950 dark:text-zinc-100 selection:bg-brand/20 bg-mesh">
@@ -102,7 +97,7 @@
         <p class="text-xs sm:text-sm">Open to internships & junior SWE roles · US-based · Remote/Hybrid</p>
         <div class="flex items-center gap-2">
           <a href="mailto:garysamuel16@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand text-white px-3 py-2 text-sm font-semibold hover:bg-brand-600 focus-ring">Email Gary</a>
-          <a href="/resume_gary.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-3 py-2 text-sm font-semibold hover:bg-brand/10 focus-ring">Download Resume</a>
+          <a href="/Gary_Samuel_Resume.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-3 py-2 text-sm font-semibold hover:bg-brand/10 focus-ring">Download Resume</a>
         </div>
       </div>
     </div>
@@ -122,7 +117,7 @@
         <li><a class="hover:text-brand focus-ring" href="#experience">Experience</a></li>
         <li><a class="hover:text-brand focus-ring" href="#education">Education</a></li>
         <li><a class="hover:text-brand focus-ring" href="#contact">Contact</a></li>
-        <li><a href="/resume_gary.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring" aria-label="Download resume (PDF)">Resume</a></li>
+        <li><a href="/Gary_Samuel_Resume.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring" aria-label="Download resume (PDF)">Resume</a></li>
         <li><button id="themeToggle" class="inline-flex items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-label="Toggle dark mode" aria-pressed="false" type="button">🌙</button></li>
       </ul>
       <div class="md:hidden flex items-center gap-2">
@@ -130,7 +125,7 @@
         <button id="mobileBtn" class="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-3 text-sm font-semibold focus-ring" aria-controls="mobileNav" aria-expanded="false" type="button">Menu</button>
       </div>
     </nav>
-    <nav id="mobileNav" inert class="md:hidden hidden border-t border-zinc-200 dark:border-zinc-800" aria-label="Mobile">
+    <nav id="mobileNav" class="md:hidden hidden border-t border-zinc-200 dark:border-zinc-800" aria-label="Mobile">
       <ul class="mx-auto max-w-6xl px-4 sm:px-6 py-3 grid grid-cols-1 gap-2 text-base">
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#projects">Projects</a></li>
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#cases">Case Studies</a></li>
@@ -138,7 +133,7 @@
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#experience">Experience</a></li>
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#education">Education</a></li>
         <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="#contact">Contact</a></li>
-        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="/resume_gary.pdf" download>Resume</a></li>
+        <li><a class="block rounded-lg px-3 py-3 bg-zinc-100 dark:bg-zinc-900/70 focus-ring" href="/Gary_Samuel_Resume.pdf" download>Resume</a></li>
       </ul>
     </nav>
   </header>
@@ -202,7 +197,7 @@
           </ul>
           <div class="flex md:justify-end gap-2">
             <a href="mailto:garysamuel16@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft hover:bg-brand-600 focus-ring">Interview Gary</a>
-            <a href="/resume_gary.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-4 py-3 font-semibold hover:bg-brand/10 focus-ring">Resume (PDF)</a>
+            <a href="/Gary_Samuel_Resume.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-brand/30 text-brand px-4 py-3 font-semibold hover:bg-brand/10 focus-ring">Resume (PDF)</a>
           </div>
         </div>
       </div>
@@ -316,32 +311,6 @@
             <div class="mt-4 flex gap-2">
               <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/calendar.project" target="_blank" rel="noopener noreferrer">Code</a>
               <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="#case-cpp">Case study</a>
-            </div>
-          </article>
-
-          <!-- NEW Card: HackHarvard 2025 -->
-          <article data-tags="web" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition reveal">
-            <img src="hackharvard.jpg" width="640" height="360" alt="HackHarvard 2025 project preview" class="h-40 w-full object-cover rounded-xl" loading="lazy" decoding="async"/>
-            <div class="mt-4 flex items-start justify-between gap-3">
-              <h3 class="text-xl font-bold">HackHarvard 2025</h3>
-              <span class="px-2 py-1 text-xs rounded-full bg-brand/10 text-brand">Web</span>
-            </div>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Hackathon project prototype and demo.</p>
-            <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/Hackharvard-2025" target="_blank" rel="noopener noreferrer">Code</a>
-            </div>
-          </article>
-
-          <!-- NEW Card: UCLA Gene Expression Analysis -->
-          <article data-tags="tools backend" class="group rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 shadow-soft hover:-translate-y-0.5 transition reveal">
-            <img src="gene-analysis.jpg" width="640" height="360" alt="Gene expression analysis preview" class="h-40 w-full object-cover rounded-xl" loading="lazy" decoding="async"/>
-            <div class="mt-4 flex items-start justify-between gap-3">
-              <h3 class="text-xl font-bold">Gene Expression Analysis</h3>
-              <span class="px-2 py-1 text-xs rounded-full bg-brand/10 text-brand">Tools</span>
-            </div>
-            <p class="mt-2 text-sm text-slate-600 dark:text-zinc-300">UCLA dataset: Python notebooks & plots.</p>
-            <div class="mt-4 flex gap-2">
-              <a class="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline focus-ring" href="https://github.com/garybs16/UCLA-gene-expression-analysis" target="_blank" rel="noopener noreferrer">Code</a>
             </div>
           </article>
         </div>
@@ -648,7 +617,7 @@
     <!-- Mobile sticky actions -->
     <div class="fixed inset-x-0 bottom-0 z-40 md:hidden bg-white/95 dark:bg-zinc-950/95 border-t border-zinc-200 dark:border-zinc-800 backdrop-blur px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
       <div class="mx-auto max-w-6xl flex gap-3">
-        <a href="mailto:garysamuel16@gmail.com" class="flex-1 inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold">Email</a>
+        <a href="mailto:garysamuel16@gmail.com" class="flex-1 inline-flex justify-center items-center rounded-xl bg-brand text-white px-4 py-3 font-semibold shadow-soft">Email</a>
         <a href="/Gary_Samuel_Resume.pdf" download class="flex-1 inline-flex justify-center items-center rounded-xl border border-brand/40 text-brand px-4 py-3 font-semibold">Resume</a>
       </div>
     </div>
@@ -680,20 +649,12 @@
     document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
     document.getElementById('themeToggleSm')?.addEventListener('click', toggleTheme);
 
-    // Keyboard shortcut: toggle theme with "t" (ignores typing targets)
-    document.addEventListener('keydown', (e) => {
-      const target = e.target;
-      const typing = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
-      if (!typing && (e.key === 't' || e.key === 'T')) toggleTheme();
-    });
-
     // Mobile menu
     const mobileBtn = document.getElementById('mobileBtn');
     const mobileNav = document.getElementById('mobileNav');
     mobileBtn?.addEventListener('click', () => {
       const hidden = mobileNav.classList.toggle('hidden');
       mobileBtn.setAttribute('aria-expanded', String(!hidden));
-      if (hidden) { mobileNav.setAttribute('inert', ''); } else { mobileNav.removeAttribute('inert'); }
     });
 
     // Scrollspy: highlight current section link on desktop
@@ -767,4 +728,3 @@
   </script>
 </body>
 </html>
-
