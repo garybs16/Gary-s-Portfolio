@@ -76,9 +76,50 @@ button {
   overflow: hidden;
 }
 
+.app::before,
+.app::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+.app::before {
+  width: 420px;
+  height: 420px;
+  top: 120px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(247, 184, 1, 0.28), transparent 65%);
+  animation: drift 18s ease-in-out infinite;
+}
+
+.app::after {
+  width: 520px;
+  height: 520px;
+  bottom: 160px;
+  right: -160px;
+  background: radial-gradient(circle, rgba(27, 153, 139, 0.25), transparent 70%);
+  animation: drift 22s ease-in-out infinite reverse;
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-18px) translateX(14px);
+  }
+}
+
 .container {
   width: min(1140px, 92vw);
   margin: 0 auto;
+}
+
+.app > * {
+  position: relative;
+  z-index: 1;
 }
 
 .skip {
@@ -117,6 +158,7 @@ button {
   background: var(--bg);
   background: color-mix(in srgb, var(--bg) 82%, transparent);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 16px 40px rgba(16, 18, 23, 0.08);
 }
 
 .header-content {
@@ -264,6 +306,10 @@ button {
   transform: translateY(-2px);
 }
 
+.button:active {
+  transform: translateY(0px);
+}
+
 .button:focus-visible,
 .nav-link:focus-visible,
 .mobile-link:focus-visible,
@@ -355,6 +401,12 @@ button {
   border: 1px solid var(--border);
   background: var(--surface);
   box-shadow: var(--shadow);
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portrait-card:hover {
+  transform: rotate(0deg) translateY(-4px);
 }
 
 .portrait-card img {
@@ -425,6 +477,15 @@ button {
   overflow: hidden;
   display: flex;
   gap: 32px;
+  position: relative;
+}
+
+.ticker::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bg), transparent 12%, transparent 88%, var(--bg));
+  pointer-events: none;
 }
 
 .ticker-track {
@@ -498,6 +559,18 @@ button {
   background: var(--surface);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover,
+.case-card:hover,
+.skill-card:hover,
+.education-card:hover,
+.timeline-card:hover,
+.contact-card:hover,
+.contact-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.16);
 }
 
 .project-media {
