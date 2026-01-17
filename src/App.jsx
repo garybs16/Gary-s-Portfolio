@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const navLinks = [
   { id: 'projects', label: 'Projects' },
   { id: 'case-studies', label: 'Case Studies' },
@@ -22,7 +24,7 @@ const projects = [
     tag: 'AI Agents',
     description: 'Deterministic task-execution system for real-time 3D scene generation.',
     points: ['High-level planning separated from low-level spatial computation', '98%+ success on multi-step motion workflows'],
-    image: '/IMG_8011.JPG',
+    image: `${baseUrl}IMG_8011.JPG`,
     links: [
       { label: 'Case study', href: '#case-agent' },
     ],
@@ -32,7 +34,7 @@ const projects = [
     tag: 'Fullstack',
     description: 'Swift + RealityKit app that renders parsed PDF content as spatial overlays.',
     points: ['Event-driven backend for text and speech APIs', 'Gaze-driven interactions and UI flow'],
-    image: '/taskimg.jpg',
+    image: `${baseUrl}taskimg.jpg`,
     links: [
       { label: 'Case study', href: '#case-vision' },
     ],
@@ -42,7 +44,7 @@ const projects = [
     tag: 'Python',
     description: 'AST + traceback analysis to surface likely root causes and fixes.',
     points: ['Heuristic ranking of suspect lines', 'Reduced debug time on flaky tests'],
-    image: '/guessing.jpg',
+    image: `${baseUrl}guessing.jpg`,
     links: [
       { label: 'Code', href: 'https://github.com/garybs16/AutoFix-Bug-Fixer' },
       { label: 'Case study', href: '#case-autofix' },
@@ -236,7 +238,7 @@ export default function App() {
             >
               {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
-            <a className="button button-solid" href="/resume_gary.pdf" download>
+            <a className="button button-solid" href={`${baseUrl}resume_gary.pdf`} download>
               Resume
             </a>
             <button
@@ -298,7 +300,7 @@ export default function App() {
             <div className="hero-visual reveal" style={{ '--delay': '120ms' }}>
               <div className="portrait-card">
                 <div className="portrait-glow" />
-                <img src="/new_pfp.jpg" alt="Gary Samuel" />
+                <img src={`${baseUrl}IMG_4711.jpg`} alt="Gary Samuel" />
               </div>
               <div className="floating-card">
                 <p>Currently exploring</p>
