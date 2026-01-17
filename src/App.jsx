@@ -298,7 +298,7 @@ export default function App() {
             <div className="hero-visual reveal" style={{ '--delay': '120ms' }}>
               <div className="portrait-card">
                 <div className="portrait-glow" />
-                <img src="/IMG_4711.jpg" alt="Gary Samuel" />
+                <img src="new_pfp.jpg" alt="Gary Samuel" />
               </div>
               <div className="floating-card">
                 <p>Currently exploring</p>
