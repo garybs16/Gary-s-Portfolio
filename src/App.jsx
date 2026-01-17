@@ -10,130 +10,128 @@ const navLinks = [
 ];
 
 const stats = [
-  { value: '38%', label: 'LCP improvement' },
-  { value: '42ms', label: 'p95 chat latency' },
-  { value: '100', label: 'Lighthouse a11y' },
-  { value: '88%', label: 'Test coverage' },
+  { value: '5x', label: 'Scene authoring speed' },
+  { value: '98%+', label: 'Multi-step workflow success' },
+  { value: '150ms', label: 'Vision Pro pipeline latency' },
+  { value: '90%', label: 'Asset turnaround cut' },
 ];
 
 const projects = [
   {
-    title: 'Portfolio Website',
-    tag: 'Web',
-    description: 'Performance-tuned marketing site with accessible navigation and clean IA.',
-    points: ['Image optimization and lazy loading', 'Keyboard-first UX with visible focus states'],
+    title: 'AI Scene Orchestrator',
+    tag: 'AI Agents',
+    description: 'Deterministic task-execution system for real-time 3D scene generation.',
+    points: ['High-level planning separated from low-level spatial computation', '98%+ success on multi-step motion workflows'],
     image: '/IMG_8011.JPG',
     links: [
-      { label: 'Live', href: 'https://www.missionkaizen.org/' },
-      { label: 'Case study', href: '#case-portfolio' },
+      { label: 'Case study', href: '#case-agent' },
     ],
   },
   {
-    title: 'Task Manager Web App',
-    tag: 'Backend',
-    description: 'Python CRUD app with deadlines, priorities, and a clean service layer.',
-    points: ['Structured tests for core workflows', 'Role-based permissions and reminders'],
+    title: 'Vision Pro Spatial Reader',
+    tag: 'Fullstack',
+    description: 'Swift + RealityKit app that renders parsed PDF content as spatial overlays.',
+    points: ['Event-driven backend for text and speech APIs', 'Gaze-driven interactions and UI flow'],
     image: '/taskimg.jpg',
     links: [
-      { label: 'Code', href: 'https://github.com/garybs16/Python-Project-FULLSTACK-' },
-      { label: 'Case study', href: '#case-taskapp' },
+      { label: 'Case study', href: '#case-vision' },
     ],
   },
   {
-    title: 'Realtime Support Chat',
-    tag: 'Web',
-    description: 'Node + Socket.IO live chat for support with reliable routing.',
-    points: ['Typing indicators and queue routing', 'Scaled to peak traffic with low latency'],
+    title: 'AI Test Failure Analyzer',
+    tag: 'Python',
+    description: 'AST + traceback analysis to surface likely root causes and fixes.',
+    points: ['Heuristic ranking of suspect lines', 'Reduced debug time on flaky tests'],
     image: '/guessing.jpg',
     links: [
-      { label: 'Code', href: 'https://github.com/garybs16/BimmerPlug_Work' },
-      { label: 'Case study', href: '#case-chat' },
+      { label: 'Code', href: 'https://github.com/garybs16/AutoFix-Bug-Fixer' },
+      { label: 'Case study', href: '#case-autofix' },
     ],
   },
 ];
 
 const caseStudies = [
   {
-    id: 'case-portfolio',
-    title: 'Mission Kaizen Marketing Site',
-    summary: 'Rebuilt the marketing site with a focus on performance, scannability, and accessibility.',
+    id: 'case-agent',
+    title: 'AI Agent for 3D Scene Generation',
+    summary: 'Built deterministic execution for real-time scene generation with strict timing constraints.',
     bullets: [
-      'Trimmed CSS and optimized media to reduce LCP from 3.9s to 1.6s on 4G.',
-      'Introduced an IA refresh with clear content hierarchy and consistent navigation.',
-      'Improved Lighthouse accessibility to 100 with focus management and contrast fixes.',
+      'Separated high-level planning from spatial computation for maintainable pipelines.',
+      'Coordinated object motion, camera state, and timing constraints across steps.',
+      'Integrated external asset-generation services with validation for consistency.',
     ],
-    link: { label: 'Visit site', href: 'https://www.missionkaizen.org/' },
+    link: { label: 'Role details', href: '#experience' },
   },
   {
-    id: 'case-taskapp',
-    title: 'Task Manager Platform',
-    summary: 'Built a CRUD system with deadlines, priorities, and service isolation for maintainability.',
+    id: 'case-vision',
+    title: 'Vision Pro Spatial Reader',
+    summary: 'Rendered PDFs as spatial UI with text-processing and speech-synthesis services.',
     bullets: [
-      'Separated domain logic from routes for easier testing and refactors.',
-      'Added deadline reminders and audit logging for accountability.',
-      'Expanded tests to cover priority edge cases and filtering.',
+      'Event-driven backend with 120-150 ms end-to-end latency.',
+      'Gaze-driven interactions tailored the UI to user attention.',
+      'SwiftUI + RealityKit pipeline for anchored 3D overlays.',
     ],
-    link: { label: 'View code', href: 'https://github.com/garybs16/Python-Project-FULLSTACK-' },
+    link: { label: 'Role details', href: '#experience' },
   },
   {
-    id: 'case-chat',
-    title: 'Realtime Support Chat',
-    summary: 'Delivered a Socket.IO chat platform with routing, presence, and observability.',
+    id: 'case-autofix',
+    title: 'AutoFix Test Failure Analyzer',
+    summary: 'Python tooling to triage failing tests with AST + traceback analysis.',
     bullets: [
-      'Reduced time-to-first-response by 37% with routing automation.',
-      'Added presence tracking and agent availability for smooth handoffs.',
-      'Instrumented request logs and basic metrics for reliability.',
+      'Heuristics for failing assertions and recent diff hotspots.',
+      'Outputs suspect file + line with actionable fix hints.',
+      'Focus on deterministic analysis, no source mutation.',
     ],
-    link: { label: 'View code', href: 'https://github.com/garybs16/BimmerPlug_Work' },
+    link: { label: 'View code', href: 'https://github.com/garybs16/AutoFix-Bug-Fixer' },
   },
 ];
 
 const skills = [
   {
     title: 'Languages',
-    items: ['JavaScript/TypeScript', 'Python', 'C++', 'Java', 'SQL'],
+    items: ['Python', 'JavaScript/TypeScript', 'C++', 'Java', 'SQL'],
   },
   {
     title: 'Frameworks',
-    items: ['React', 'Node.js (Express)', 'Django/Flask', 'Vue/Angular'],
+    items: ['FastAPI', 'React', 'Node.js (Express)', 'Django/Flask'],
   },
   {
     title: 'Tools',
-    items: ['Git/GitHub', 'REST APIs', 'WebSockets', 'Testing (PyTest, JUnit)', 'Docker (basics)'],
+    items: ['LLM tooling', 'Vector search', 'REST APIs', 'Testing (PyTest, JUnit)', 'Docker (basics)'],
   },
 ];
 
 const experience = [
   {
-    role: 'Software Engineer (Contract)',
-    company: 'Bimmer Plug',
-    timeframe: 'Feb 2025 - Aug 2025',
+    role: 'AI Agent Developer',
+    company: 'UnstableML, San Jose',
+    timeframe: 'Nov 2025 - Present',
     bullets: [
-      'Shipped Node.js + Socket.IO chat with routing, presence, and typing indicators.',
-      'Reduced time-to-first-response by 37% with automation and notifications.',
-      'Added observability and rate limits; CI for lint, build, and tests.',
+      'Designed deterministic task execution for real-time 3D scene generation; reduced authoring time by 5x.',
+      'Separated planning from spatial computation, reaching >98% success on multi-step workflows.',
+      'Integrated external asset-generation services with validation to cut turnaround time by 90%.',
     ],
-    link: 'https://github.com/garybs16/BimmerPlug_Work',
+    link: 'https://github.com/garybs16',
   },
   {
-    role: 'Lead Project Developer',
-    company: 'Mission Kaizen',
-    timeframe: 'Mar 2023 - Jun 2024',
+    role: 'Selected Hackathon Participant',
+    company: 'HackHarvard 2025, Cambridge',
+    timeframe: 'Oct 2025',
     bullets: [
-      'Improved LCP from 4.2s to 2.3s with media optimization and CSS trimming.',
-      'Implemented accessible navigation, dark mode, and mobile-first layout.',
-      'Delivered a performance-driven design system for consistent pages.',
+      'Built an Apple Vision Pro app with Swift, SwiftUI, and RealityKit for spatial PDF overlays.',
+      'Integrated text-processing + speech-synthesis APIs with 120-150 ms latency.',
+      'Developed gaze-driven interactions that adapted UI based on attention signals.',
     ],
-    link: 'https://www.missionkaizen.org/',
+    link: 'https://github.com/garybs16',
   },
   {
-    role: 'Academic + Personal Projects',
+    role: 'Fullstack Developer',
     company: 'Independent',
     timeframe: '2023 - Present',
     bullets: [
-      'AutoFix: AST + traceback analyzer that reduces test debug time by ~30%.',
-      'Task Manager: service-based CRUD with deadlines, priorities, and tests.',
-      'Compiler toolkit: educational lexing and symbol table tooling.',
+      'Built Python automation and React apps with clean service boundaries.',
+      'Delivered real-time features with WebSockets and event-driven backends.',
+      'Shipped developer tooling focused on reliability and observability.',
     ],
     link: 'https://github.com/garybs16',
   },
@@ -143,8 +141,8 @@ const education = [
   {
     school: 'California State University, Fullerton',
     program: 'B.S. Computer Science',
-    timeframe: 'Expected 2027',
-    details: 'Coursework: Data Structures, Algorithms, Operating Systems, Databases, Networks.',
+    timeframe: 'Expected May 2027',
+    details: 'Coursework: Data Structures & Algorithms, Compiler Design, Algorithm Engineering, OS, Artificial Intelligence.',
   },
   {
     school: 'Santa Ana College',
@@ -155,15 +153,15 @@ const education = [
 ];
 
 const tickerItems = [
+  'AI Agents',
+  'Python',
+  'FastAPI',
+  'LLM Tooling',
+  'Vector Search',
   'React',
   'Node.js',
-  'Socket.IO',
-  'TypeScript',
-  'Python',
-  'Performance',
-  'Accessibility',
-  'Testing',
-  'Observability',
+  'Fullstack',
+  'Realtime',
 ];
 
 export default function App() {
@@ -273,11 +271,11 @@ export default function App() {
             <div className="hero-copy reveal" style={{ '--delay': '0ms' }}>
               <p className="eyebrow">Software Engineer</p>
               <h1>
-                I build fast, human-centered web apps that feel premium and ship reliably.
+                I build AI agents and Python systems with fullstack experience and real-time rigor.
               </h1>
               <p className="lead">
-                Performance, accessibility, and clean abstractions. Comfortable across the
-                stack with JavaScript/TypeScript, Python, and C++.
+                Focused on deterministic AI workflows, tooling, and product-grade integrations.
+                Comfortable across Python, TypeScript, and spatial computing stacks.
               </p>
               <div className="hero-actions">
                 <a className="button button-solid" href="https://github.com/garybs16" target="_blank" rel="noreferrer">
@@ -291,9 +289,9 @@ export default function App() {
                 </a>
               </div>
               <div className="hero-tags">
-                <span>Performance obsessed</span>
-                <span>Accessible by default</span>
-                <span>Product-minded</span>
+                <span>AI agent systems</span>
+                <span>Python + FastAPI</span>
+                <span>Fullstack delivery</span>
               </div>
             </div>
 
@@ -339,7 +337,7 @@ export default function App() {
             <div className="section-head reveal" style={{ '--delay': '0ms' }}>
               <div>
                 <p className="eyebrow">Selected projects</p>
-                <h2>Work that ships and scales.</h2>
+                <h2>AI-first builds with fullstack depth.</h2>
               </div>
               <a className="link" href="https://github.com/garybs16" target="_blank" rel="noreferrer">
                 More on GitHub
@@ -382,7 +380,7 @@ export default function App() {
             <div className="section-head reveal" style={{ '--delay': '0ms' }}>
               <div>
                 <p className="eyebrow">Case studies</p>
-                <h2>How I think about outcomes.</h2>
+                <h2>How I design AI systems that ship.</h2>
               </div>
             </div>
 
@@ -410,7 +408,7 @@ export default function App() {
             <div className="section-head reveal" style={{ '--delay': '0ms' }}>
               <div>
                 <p className="eyebrow">Skills</p>
-                <h2>The stack I build with.</h2>
+                <h2>Python-first, fullstack ready.</h2>
               </div>
             </div>
 
@@ -436,7 +434,7 @@ export default function App() {
             <div className="section-head reveal" style={{ '--delay': '0ms' }}>
               <div>
                 <p className="eyebrow">Experience</p>
-                <h2>Teams, roles, and impact.</h2>
+                <h2>AI agents, spatial computing, and delivery.</h2>
               </div>
             </div>
 
@@ -469,7 +467,7 @@ export default function App() {
             <div className="section-head reveal" style={{ '--delay': '0ms' }}>
               <div>
                 <p className="eyebrow">Education</p>
-                <h2>Foundations and focus.</h2>
+                <h2>Computer science with AI focus.</h2>
               </div>
             </div>
 
@@ -490,9 +488,9 @@ export default function App() {
           <div className="container contact-grid">
             <div className="contact-card reveal" style={{ '--delay': '0ms' }}>
               <p className="eyebrow">Contact</p>
-              <h2>Let's build the next launch.</h2>
+              <h2>Let's build the next AI product.</h2>
               <p className="lead">
-                Email is best. I am open to internships, junior roles, and collaborative projects.
+                Email is best. I am open to AI agent, Python, and fullstack roles.
               </p>
               <div className="contact-links">
                 <a className="button button-solid" href="mailto:garysamuel16@gmail.com">
