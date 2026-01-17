@@ -295,7 +295,7 @@ export default function App() {
             <div className="hero-copy reveal" style={{ '--delay': '0ms' }}>
               <p className="eyebrow">Software Engineer</p>
               <h1>
-                I build AI agents and Python systems with fullstack experience and real-time rigor.
+                I build <span className="headline-accent">AI agents</span> and Python systems with fullstack experience and real-time rigor.
               </h1>
               <p className="lead">
                 Focused on deterministic AI workflows, tooling, and product-grade integrations.
