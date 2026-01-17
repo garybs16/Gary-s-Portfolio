@@ -169,6 +169,7 @@ const tickerItems = [
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
@@ -206,6 +207,21 @@ export default function App() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll('main section[id]'));
+    const onScroll = () => {
+      const y = window.scrollY + 140;
+      let current = sections[0]?.id || 'home';
+      sections.forEach((section) => {
+        if (y >= section.offsetTop) current = section.id;
+      });
+      setActiveSection(current);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className="app">
       <a className="skip" href="#main">Skip to content</a>
@@ -223,7 +239,12 @@ export default function App() {
 
           <nav className="nav-desktop" aria-label="Primary">
             {navLinks.map((link) => (
-              <a key={link.id} href={`#${link.id}`} className="nav-link">
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                aria-current={activeSection === link.id ? 'page' : undefined}
+              >
                 {link.label}
               </a>
             ))}
@@ -258,7 +279,8 @@ export default function App() {
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="mobile-link"
+              className={`mobile-link ${activeSection === link.id ? 'active' : ''}`}
+              aria-current={activeSection === link.id ? 'page' : undefined}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

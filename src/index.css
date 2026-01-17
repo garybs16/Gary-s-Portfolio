@@ -14,6 +14,10 @@
   --accent: #f25c54;
   --accent-2: #1b998b;
   --accent-3: #f7b801;
+  --button-solid-bg: #101217;
+  --button-solid-text: #ffffff;
+  --button-ghost-text: #1a1f2b;
+  --button-ghost-bg: rgba(16, 18, 23, 0.06);
   --shadow: 0 22px 60px rgba(15, 23, 42, 0.12);
   --radius: 24px;
 }
@@ -30,6 +34,10 @@
   --accent: #ff7b72;
   --accent-2: #3dd6c7;
   --accent-3: #ffd166;
+  --button-solid-bg: #f5f5f6;
+  --button-solid-text: #0e1016;
+  --button-ghost-text: #f5f5f6;
+  --button-ghost-bg: rgba(255, 255, 255, 0.08);
   --shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
 }
 
@@ -149,10 +157,34 @@ button {
   padding-bottom: 4px;
   color: var(--muted);
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus {
+  color: var(--text);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link.active {
   color: var(--text);
 }
 
@@ -193,6 +225,11 @@ button {
   color: var(--muted);
 }
 
+.mobile-link.active {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -206,14 +243,15 @@ button {
 }
 
 .button-solid {
-  background: var(--text);
-  color: #fff;
+  background: var(--button-solid-bg);
+  color: var(--button-solid-text);
   box-shadow: var(--shadow);
 }
 
 .button-ghost {
   border-color: var(--border);
-  color: var(--text);
+  color: var(--button-ghost-text);
+  background: var(--button-ghost-bg);
 }
 
 .button-accent {
@@ -224,6 +262,15 @@ button {
 
 .button:hover {
   transform: translateY(-2px);
+}
+
+.button:focus-visible,
+.nav-link:focus-visible,
+.mobile-link:focus-visible,
+.theme-toggle:focus-visible,
+.menu-button:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
 }
 
 .hero {
