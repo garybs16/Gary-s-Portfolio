@@ -38,3 +38,4 @@ CDNs are used for quick setup; you can self-host for production hardening.
 ---
 
 ## 🚀 Getting Started
+# Deploy trigger
