@@ -109,6 +109,12 @@ const stats = [
   { value: '90%', label: 'asset turnaround cut' },
 ];
 
+const heroHighlights = [
+  'AI agent developer at UnstableML',
+  'CS student at CSU Fullerton',
+  'Open to SWE internships and junior roles',
+];
+
 const techStack = [
   'Python',
   'FastAPI',
@@ -133,6 +139,12 @@ const projects = [
     summary:
       'Deterministic execution layer for real-time 3D scene generation, coordinating planning, spatial operations, assets, camera state, and timing.',
     bullets: ['5x faster authoring loops', '98%+ multi-step workflow success', 'External asset validation pipeline'],
+    stack: ['Python', 'LLM tooling', '3D pipelines'],
+    details: [
+      { label: 'Problem', text: 'Scene generation needed repeatable multi-step execution instead of fragile prompt-only output.' },
+      { label: 'Built', text: 'A deterministic orchestration layer for planning, assets, spatial operations, and camera state.' },
+      { label: 'Result', text: 'Improved authoring speed and workflow completion for complex generated scenes.' },
+    ],
     images: [onlineImages.robotics, onlineImages.aiCircuit, onlineImages.dataCenter],
   },
   {
@@ -143,6 +155,12 @@ const projects = [
     summary:
       'Apple Vision Pro app that turns PDF content into spatial overlays with text-processing, speech synthesis, and gaze-driven interactions.',
     bullets: ['SwiftUI + RealityKit interface', '120-150 ms event-driven backend path', 'Attention-aware spatial UI'],
+    stack: ['SwiftUI', 'RealityKit', 'Node.js'],
+    details: [
+      { label: 'Problem', text: 'Dense reading workflows are hard to navigate inside spatial computing environments.' },
+      { label: 'Built', text: 'A Vision Pro reader with spatial PDF overlays, speech support, and gaze-aware interaction.' },
+      { label: 'Result', text: 'Created a fast event-driven prototype for immersive reading and accessibility.' },
+    ],
     images: [onlineImages.spatialHeadset, onlineImages.productDesk, onlineImages.cyberConsole],
   },
   {
@@ -153,6 +171,12 @@ const projects = [
     summary:
       'Python test-failure analyzer that reads tracebacks and AST structure to identify likely root causes without mutating source code.',
     bullets: ['AST + traceback analysis', 'Ranked suspect lines', 'Actionable fix hints for failing tests'],
+    stack: ['Python', 'AST', 'PyTest'],
+    details: [
+      { label: 'Problem', text: 'Failing tests often hide the useful signal across stack traces and source files.' },
+      { label: 'Built', text: 'A static analyzer that ranks likely suspect lines and explains actionable fixes.' },
+      { label: 'Result', text: 'Makes debugging faster while keeping source files unchanged and inspectable.' },
+    ],
     images: [onlineImages.codeWall, onlineImages.laptopCode, onlineImages.developerSetup],
   },
 ];
@@ -391,80 +415,172 @@ function AnimatedText({ text }: { text: string }) {
 
 function HeroSection() {
   return (
-    <section className="relative flex min-h-screen flex-col overflow-x-clip bg-[#0C0C0C]">
-      <div className="pointer-events-none absolute left-1/2 top-12 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#7621B0]/20 blur-[110px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[360px] w-[520px] rounded-full bg-[#BE4C00]/10 blur-[110px]" />
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#0C0C0C]">
+      <img
+        src={onlineImages.aiCircuit}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.16]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.76),rgba(12,12,12,0.98)),radial-gradient(circle_at_72%_38%,rgba(182,0,168,0.28),transparent_36%)]" />
 
-      <FadeIn as="nav" delay={0} y={-20} className="relative z-30 flex justify-between px-6 pt-6 md:px-10 md:pt-8">
+      <FadeIn
+        as="nav"
+        delay={0}
+        y={-20}
+        className="relative z-30 mx-auto flex w-full max-w-7xl items-center justify-between px-5 pt-5 sm:px-8 md:px-10 md:pt-7"
+      >
+        <a href="#" className="text-sm font-black uppercase tracking-widest text-[#D7E2EA] sm:text-base">
+          Gary Samuel
+        </a>
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-9">
         {[
           ['About', '#about'],
           ['Skills', '#services'],
           ['Projects', '#projects'],
-          ['Contact', `mailto:${email}`],
         ].map(([label, href]) => (
           <a
             key={label}
             href={href}
-            className="text-sm font-medium uppercase tracking-wider text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]"
+            className="text-xs font-medium uppercase tracking-wider text-[#D7E2EA]/80 transition-opacity duration-200 hover:opacity-70 sm:text-sm"
           >
             {label}
           </a>
         ))}
+        </div>
       </FadeIn>
 
-      <div className="absolute left-1/2 top-[46%] z-10 w-[270px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[340px] sm:translate-y-0 md:w-[410px] lg:w-[470px] xl:w-[520px]">
-        <FadeIn delay={0.25} y={24}>
+      <div className="relative z-20 mx-auto grid w-full max-w-7xl flex-1 items-center gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:py-12">
+        <div className="max-w-4xl">
+          <FadeIn
+            as="p"
+            delay={0.1}
+            y={16}
+            className="mb-4 text-xs font-medium uppercase tracking-[0.34em] text-[#D7E2EA]/60 sm:text-sm"
+          >
+            Software engineer focused on useful AI systems
+          </FadeIn>
+          <FadeIn
+            as="h1"
+            delay={0.18}
+            y={24}
+            className="hero-heading max-w-[980px] text-[clamp(4.2rem,13vw,11rem)] font-black uppercase leading-[0.78] tracking-normal"
+          >
+            Gary Samuel
+          </FadeIn>
+          <FadeIn
+            as="p"
+            delay={0.28}
+            y={22}
+            className="mt-6 max-w-2xl text-[clamp(1.05rem,2vw,1.55rem)] font-light leading-relaxed text-[#D7E2EA]/80"
+          >
+            I build deterministic AI workflows, Python debugging tools, spatial computing prototypes,
+            and fullstack apps with clear product outcomes.
+          </FadeIn>
+
+          <FadeIn delay={0.36} y={20} className="mt-7 flex flex-wrap gap-2">
+            {heroHighlights.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-[#D7E2EA]/20 bg-[#D7E2EA]/5 px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#D7E2EA]/80"
+              >
+                {item}
+              </span>
+            ))}
+          </FadeIn>
+
+          <FadeIn delay={0.44} y={20} className="mt-8 flex flex-wrap items-center gap-3">
+            <ContactButton label="Email Gary" />
+            <GhostButton href={`${baseUrl}resume_gary.pdf`} label="Resume" />
+            <GhostButton href={githubUrl} label="GitHub" />
+          </FadeIn>
+        </div>
+
+        <FadeIn delay={0.25} y={24} className="justify-self-center md:justify-self-end">
           <Magnet
-            padding={150}
-            strength={3}
+            padding={120}
+            strength={5}
             activeTransition="transform 0.3s ease-out"
             inactiveTransition="transform 0.6s ease-in-out"
           >
-            <div className="relative rounded-[44px] border border-[#D7E2EA]/20 bg-[#D7E2EA]/5 p-2 shadow-[0_30px_120px_rgba(0,0,0,0.75)] backdrop-blur">
+            <div className="relative w-[min(78vw,430px)] overflow-hidden rounded-[30px] border border-[#D7E2EA]/20 bg-[#D7E2EA]/5 p-2 shadow-[0_34px_100px_rgba(0,0,0,0.72)] backdrop-blur">
               <img
                 src={portraitUrl}
                 alt="Gary Samuel"
-                className="aspect-[4/5] w-full select-none rounded-[36px] object-cover object-center"
+                className="aspect-[4/5] w-full select-none rounded-[24px] object-cover object-center"
                 draggable={false}
               />
+              <div className="absolute inset-x-2 bottom-2 rounded-b-[24px] bg-gradient-to-t from-black/78 to-transparent p-5">
+                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#D7E2EA]/70">Based in California</p>
+                <p className="mt-1 text-lg font-black uppercase leading-none text-[#D7E2EA]">AI Agent Developer</p>
+              </div>
             </div>
           </Magnet>
         </FadeIn>
       </div>
 
-      <div className="relative z-20 mt-10 overflow-hidden px-3 sm:mt-4 md:-mt-3">
-        <h1 className="hero-heading w-full whitespace-nowrap text-center text-[12.5vw] font-black uppercase leading-[0.76] tracking-[-0.08em] sm:text-[13.5vw] md:text-[14.5vw] lg:text-[15vw]">
-          Gary Samuel
-        </h1>
-      </div>
-
-      <div className="relative z-20 mx-auto mt-auto grid w-full max-w-[1500px] gap-8 px-6 pb-7 sm:pb-8 md:grid-cols-[1fr_auto_1fr] md:items-end md:px-10 md:pb-10">
-        <FadeIn
-          as="p"
-          delay={0.35}
-          y={20}
-          className="max-w-[330px] text-[clamp(0.78rem,1.25vw,1.18rem)] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[360px]"
-        >
-          AI agent developer building deterministic workflows, Python tooling, and fullstack systems.
-        </FadeIn>
-
-        <FadeIn delay={0.45} y={20} className="hidden justify-self-center md:block">
-          <div className="grid grid-cols-4 overflow-hidden rounded-[28px] border border-[#D7E2EA]/20 bg-[#D7E2EA]/5 backdrop-blur">
+      <FadeIn delay={0.5} y={18} className="relative z-20 mx-auto w-full max-w-7xl px-5 pb-6 sm:px-8 md:px-10 md:pb-8">
+        <div className="grid overflow-hidden rounded-[24px] border border-[#D7E2EA]/15 bg-[#D7E2EA]/5 backdrop-blur md:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="min-w-[128px] border-r border-[#D7E2EA]/15 px-5 py-4 last:border-r-0">
-                <strong className="block text-3xl font-black leading-none text-[#D7E2EA]">{stat.value}</strong>
-                <span className="mt-2 block text-xs font-light uppercase leading-tight tracking-wider text-[#D7E2EA]/70">
+            <div key={stat.label} className="border-b border-[#D7E2EA]/15 px-5 py-4 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+              <strong className="block text-[clamp(1.8rem,4vw,3rem)] font-black leading-none text-[#D7E2EA]">{stat.value}</strong>
+              <span className="mt-2 block text-xs font-light uppercase leading-tight tracking-wider text-[#D7E2EA]/70">
                   {stat.label}
                 </span>
               </div>
             ))}
           </div>
+      </FadeIn>
+    </section>
+  );
+}
+
+function FeaturedWorkSection() {
+  return (
+    <section id="featured" className="bg-[#D7E2EA] px-5 py-16 text-[#0C0C0C] sm:px-8 md:px-10 md:py-20">
+      <div className="mx-auto max-w-7xl">
+        <FadeIn className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#0C0C0C]/50">Featured work</p>
+            <h2 className="mt-3 max-w-3xl text-[clamp(2.4rem,7vw,6rem)] font-black uppercase leading-[0.86]">
+              Built for real technical workflows.
+            </h2>
+          </div>
+          <p className="max-w-md text-base font-light leading-relaxed text-[#0C0C0C]/60 md:text-lg">
+            Three projects that show the range: AI orchestration, spatial computing, and Python developer tooling.
+          </p>
         </FadeIn>
 
-        <FadeIn delay={0.5} y={20} className="flex flex-wrap items-center gap-3 md:justify-end">
-          <ContactButton label="Email Gary" />
-          <GhostButton href={`${baseUrl}resume_gary.pdf`} label="Resume" />
-        </FadeIn>
+        <div className="grid gap-4 md:grid-cols-3">
+          {projects.map((project, index) => (
+            <FadeIn
+              key={project.name}
+              delay={index * 0.08}
+              className="group overflow-hidden rounded-[24px] border border-[#0C0C0C]/10 bg-white"
+            >
+              <img
+                src={project.images[0]}
+                alt={`${project.name} featured preview`}
+                loading="lazy"
+                className="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="p-5">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#0C0C0C]/50">{project.category}</p>
+                <h3 className="mt-3 text-2xl font-black uppercase leading-none">{project.name}</h3>
+                <p className="mt-4 text-sm font-light leading-relaxed text-[#0C0C0C]/60">{project.details[2].text}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.stack.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-[#0C0C0C]/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-[#0C0C0C]/60"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -626,20 +742,20 @@ function ProjectCard({
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
   return (
-    <div ref={ref} className="h-[85vh]">
+    <div ref={ref} className="mb-10 md:h-[85vh]">
       <motion.article
-        className="sticky overflow-hidden rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 shadow-[0_40px_140px_rgba(0,0,0,0.75)] sm:rounded-[50px] sm:p-6 md:rounded-[60px] md:p-8"
+        className="overflow-hidden rounded-[28px] border border-[#D7E2EA]/70 bg-[#0C0C0C] p-4 shadow-[0_40px_140px_rgba(0,0,0,0.75)] sm:p-6 md:sticky md:rounded-[34px] md:p-8"
         style={{ top: `calc(6rem + ${index * 28}px)`, scale }}
       >
         <div className="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-[#7621B0]/20 blur-[90px]" />
-        <div className="mb-6 flex flex-col gap-5 text-[#D7E2EA] md:mb-8 md:flex-row md:items-center md:justify-between">
+        <div className="mb-6 flex flex-col gap-5 text-[#D7E2EA] md:flex-row md:items-start md:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-8">
-            <span className="text-[clamp(3rem,10vw,140px)] font-black leading-none text-[#D7E2EA]">
+            <span className="text-[clamp(3rem,8vw,110px)] font-black leading-none text-[#D7E2EA]">
               {project.number}
             </span>
             <div className="pb-2">
               <p className="text-sm font-medium uppercase tracking-widest opacity-70 sm:text-base">{project.category}</p>
-              <h3 className="max-w-[780px] text-[clamp(1.45rem,3.2vw,3.4rem)] font-black uppercase leading-[0.9] tracking-normal">
+              <h3 className="max-w-[280px] break-words text-[clamp(1.25rem,7vw,3.4rem)] font-black uppercase leading-[0.94] tracking-normal sm:max-w-[620px] md:max-w-[780px] md:text-[clamp(1.45rem,3.2vw,3.4rem)] md:leading-[0.9]">
                 {project.name}
               </h3>
             </div>
@@ -649,9 +765,19 @@ function ProjectCard({
         <p className="mb-5 max-w-4xl text-[clamp(0.95rem,1.5vw,1.2rem)] font-light leading-relaxed text-[#D7E2EA]/75">
           {project.summary}
         </p>
+
+        <div className="mb-4 grid gap-3 md:grid-cols-3">
+          {project.details.map((item) => (
+            <div key={item.label} className="rounded-[18px] border border-[#D7E2EA]/15 bg-[#D7E2EA]/5 p-4">
+              <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[#D7E2EA]/50">{item.label}</p>
+              <p className="mt-2 text-sm font-light leading-relaxed text-[#D7E2EA]/70">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="mb-6 flex flex-wrap gap-2">
-          {project.bullets.map((bullet) => (
-            <span key={bullet} className="rounded-full border border-[#D7E2EA]/20 px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#D7E2EA]/80">
+          {[...project.stack, ...project.bullets].map((bullet) => (
+            <span key={bullet} className="rounded-full border border-[#D7E2EA]/15 px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#D7E2EA]/75">
               {bullet}
             </span>
           ))}
@@ -661,18 +787,18 @@ function ProjectCard({
             <ProjectImage
               src={project.images[0]}
               alt={`${project.name} preview 1`}
-              className="h-[clamp(120px,14vw,210px)] w-full rounded-[32px] sm:rounded-[42px] md:rounded-[52px]"
+              className="h-[clamp(110px,12vw,180px)] w-full rounded-[22px] md:rounded-[26px]"
             />
             <ProjectImage
               src={project.images[1]}
               alt={`${project.name} preview 2`}
-              className="h-[clamp(140px,18vw,280px)] w-full rounded-[32px] sm:rounded-[42px] md:rounded-[52px]"
+              className="h-[clamp(130px,15vw,230px)] w-full rounded-[22px] md:rounded-[26px]"
             />
           </div>
           <ProjectImage
             src={project.images[2]}
             alt={`${project.name} preview 3`}
-            className="h-full min-h-[280px] w-full rounded-[32px] sm:rounded-[42px] md:rounded-[52px]"
+            className="h-full min-h-[240px] w-full rounded-[22px] md:rounded-[26px]"
           />
         </div>
       </motion.article>
@@ -720,6 +846,7 @@ export default function App() {
   return (
     <main className="min-h-screen overflow-x-clip bg-[#0C0C0C] font-kanit">
       <HeroSection />
+      <FeaturedWorkSection />
       <MarqueeSection />
       <AboutSection />
       <ServicesSection />
