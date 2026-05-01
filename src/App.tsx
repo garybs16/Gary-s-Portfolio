@@ -16,12 +16,40 @@ const email = 'garysamuel16@gmail.com';
 const githubUrl = 'https://github.com/garybs16';
 const linkedInUrl = 'https://www.linkedin.com/in/gary-samuel-3954261b2/';
 
+const onlineImages = {
+  aiCircuit:
+    'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=90',
+  cyberConsole:
+    'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1800&q=90',
+  spatialHeadset:
+    'https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=1800&q=90',
+  dataCenter:
+    'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1800&q=90',
+  codeWall:
+    'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1800&q=90',
+  laptopCode:
+    'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1800&q=90',
+  robotics:
+    'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1800&q=90',
+  productDesk:
+    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1800&q=90',
+  serverRack:
+    'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=90',
+  developerSetup:
+    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=90',
+};
+
 const portfolioImages = [
-  { src: `${baseUrl}IMG_8011.JPG`, label: 'UnstableML', detail: 'AI scene workflows' },
-  { src: `${baseUrl}taskimg.jpg`, label: 'Vision Pro', detail: 'Spatial reader' },
-  { src: `${baseUrl}guessing.jpg`, label: 'AutoFix', detail: 'Python analyzer' },
-  { src: `${baseUrl}profile.jpg`, label: 'Gary Samuel', detail: 'Software engineer' },
-  { src: `${baseUrl}IMG_4711.jpg`, label: 'California', detail: 'Remote friendly' },
+  { src: onlineImages.aiCircuit, label: 'AI Agents', detail: 'Deterministic workflows' },
+  { src: onlineImages.spatialHeadset, label: 'Vision Pro', detail: 'Spatial interfaces' },
+  { src: onlineImages.codeWall, label: 'AutoFix', detail: 'Traceback analysis' },
+  { src: onlineImages.dataCenter, label: 'Backends', detail: 'Reliable services' },
+  { src: onlineImages.robotics, label: 'Automation', detail: 'Applied intelligence' },
+  { src: onlineImages.developerSetup, label: 'Fullstack', detail: 'React + APIs' },
+  { src: onlineImages.serverRack, label: 'Infrastructure', detail: 'Cloud-ready systems' },
+  { src: onlineImages.laptopCode, label: 'Python Tooling', detail: 'Clean diagnostics' },
+  { src: onlineImages.cyberConsole, label: 'Validation', detail: 'Robust execution' },
+  { src: onlineImages.productDesk, label: 'Product Build', detail: 'Useful software' },
 ];
 
 const marqueeImages = [
@@ -105,7 +133,7 @@ const projects = [
     summary:
       'Deterministic execution layer for real-time 3D scene generation, coordinating planning, spatial operations, assets, camera state, and timing.',
     bullets: ['5x faster authoring loops', '98%+ multi-step workflow success', 'External asset validation pipeline'],
-    images: [`${baseUrl}IMG_8011.JPG`, `${baseUrl}taskimg.jpg`, `${baseUrl}guessing.jpg`],
+    images: [onlineImages.robotics, onlineImages.aiCircuit, onlineImages.dataCenter],
   },
   {
     number: '02',
@@ -115,7 +143,7 @@ const projects = [
     summary:
       'Apple Vision Pro app that turns PDF content into spatial overlays with text-processing, speech synthesis, and gaze-driven interactions.',
     bullets: ['SwiftUI + RealityKit interface', '120-150 ms event-driven backend path', 'Attention-aware spatial UI'],
-    images: [`${baseUrl}taskimg.jpg`, `${baseUrl}IMG_8011.JPG`, `${baseUrl}profile.jpg`],
+    images: [onlineImages.spatialHeadset, onlineImages.productDesk, onlineImages.cyberConsole],
   },
   {
     number: '03',
@@ -125,7 +153,7 @@ const projects = [
     summary:
       'Python test-failure analyzer that reads tracebacks and AST structure to identify likely root causes without mutating source code.',
     bullets: ['AST + traceback analysis', 'Ranked suspect lines', 'Actionable fix hints for failing tests'],
-    images: [`${baseUrl}guessing.jpg`, `${baseUrl}taskimg.jpg`, `${baseUrl}IMG_4711.jpg`],
+    images: [onlineImages.codeWall, onlineImages.laptopCode, onlineImages.developerSetup],
   },
 ];
 
@@ -284,6 +312,29 @@ function LiveProjectButton({ href, label = 'View Work' }: { href: string; label?
       {label}
       <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
     </a>
+  );
+}
+
+function ProjectImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) {
+  return (
+    <figure className={`group relative overflow-hidden bg-[#D7E2EA]/5 ${className}`}>
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(215,226,234,0.24),transparent_32%),linear-gradient(180deg,transparent_48%,rgba(0,0,0,0.72))]" />
+      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-[#D7E2EA]/15" />
+    </figure>
   );
 }
 
@@ -588,7 +639,7 @@ function ProjectCard({
             </span>
             <div className="pb-2">
               <p className="text-sm font-medium uppercase tracking-widest opacity-70 sm:text-base">{project.category}</p>
-              <h3 className="text-[clamp(1.5rem,4vw,4.2rem)] font-black uppercase leading-none tracking-tight">
+              <h3 className="max-w-[780px] text-[clamp(1.45rem,3.2vw,3.4rem)] font-black uppercase leading-[0.9] tracking-normal">
                 {project.name}
               </h3>
             </div>
@@ -607,24 +658,21 @@ function ProjectCard({
         </div>
         <div className="grid gap-4 md:grid-cols-[40%_60%]">
           <div className="grid gap-4">
-            <img
+            <ProjectImage
               src={project.images[0]}
               alt={`${project.name} preview 1`}
-              loading="lazy"
-              className="h-[clamp(120px,14vw,210px)] w-full rounded-[32px] object-cover sm:rounded-[42px] md:rounded-[52px]"
+              className="h-[clamp(120px,14vw,210px)] w-full rounded-[32px] sm:rounded-[42px] md:rounded-[52px]"
             />
-            <img
+            <ProjectImage
               src={project.images[1]}
               alt={`${project.name} preview 2`}
-              loading="lazy"
-              className="h-[clamp(140px,18vw,280px)] w-full rounded-[32px] object-cover sm:rounded-[42px] md:rounded-[52px]"
+              className="h-[clamp(140px,18vw,280px)] w-full rounded-[32px] sm:rounded-[42px] md:rounded-[52px]"
             />
           </div>
-          <img
+          <ProjectImage
             src={project.images[2]}
             alt={`${project.name} preview 3`}
-            loading="lazy"
-            className="h-full min-h-[280px] w-full rounded-[32px] object-cover sm:rounded-[42px] md:rounded-[52px]"
+            className="h-full min-h-[280px] w-full rounded-[32px] sm:rounded-[42px] md:rounded-[52px]"
           />
         </div>
       </motion.article>
