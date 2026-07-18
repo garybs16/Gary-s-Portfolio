@@ -67,6 +67,15 @@ const pcaVariance = [
   { pc: 'PC10', variance: 0.2 },
 ];
 
+const pcaScatterPoints = Array.from({ length: 280 }, (_, index) => {
+  const angle = index * 2.3999632297;
+  const radius = Math.sqrt(((index * 67) % 281) / 281);
+  const x = 230 + Math.cos(angle) * radius * 157 + Math.sin(index * 1.7) * 10;
+  const y = 144 + Math.sin(angle) * radius * 91 - (x - 230) * 0.17 + Math.cos(index * 1.1) * 8;
+
+  return { x, y, r: index % 9 === 0 ? 3.8 : 2.7 };
+});
+
 const projects = [
   {
     name: 'First Step Healthcare Academy',
@@ -257,10 +266,12 @@ function Hero() {
             <span>Open to SWE internships and junior engineering roles</span>
           </div>
           <p className="eyebrow">Research computing / AI tooling</p>
-          <h1>Gary Samuel</h1>
+          <h1>
+            Gary <em>Samuel</em>
+          </h1>
           <p>
-            Computer science student building practical software across scientific data pipelines,
-            Python tooling, and AI-assisted engineering workflows.
+            I build high-signal software across scientific data, developer tools, and AI-assisted
+            product systems.
           </p>
           <div className="hero-actions">
             <ButtonLink href={`mailto:${email}`} label="Email" icon={Mail} primary />
@@ -280,6 +291,10 @@ function Hero() {
         <FadeIn delay={0.08} className="hero-media">
           <div className="portrait-frame">
             <img src={images.portrait} alt="Gary Samuel" />
+            <div className="portrait-label">
+              <span>01 / Builder</span>
+              <strong>Systems with purpose</strong>
+            </div>
           </div>
           <div className="profile-card">
             <div>
@@ -289,6 +304,21 @@ function Hero() {
             <div>
               <GraduationCap aria-hidden="true" />
               <span>CSU Fullerton, Expected May 2027</span>
+            </div>
+          </div>
+          <div className="signal-card" aria-label="Engineering focus">
+            <div>
+              <span>Current signal</span>
+              <strong>Product × research</strong>
+            </div>
+            <div className="signal-bars" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
             </div>
           </div>
         </FadeIn>
@@ -362,8 +392,6 @@ function VentureSection() {
 }
 
 function ResearchSection() {
-  const maxVariance = Math.max(...pcaVariance.map((item) => item.variance));
-
   return (
     <section id="research" className="section research">
       <div className="research-grid">
@@ -391,21 +419,45 @@ function ResearchSection() {
         <FadeIn delay={0.08} className="chart-card">
           <div className="chart-header">
             <div>
-              <span>PCA variance</span>
-              <strong>Top 10 components</strong>
+              <span>PCA embedding</span>
+              <strong>Cell expression projection</strong>
             </div>
             <BarChart3 aria-hidden="true" />
           </div>
-          <div className="bar-chart" aria-label="PCA explained variance chart">
-            {pcaVariance.map((item) => (
-              <div key={item.pc} className="bar-column">
-                <span>{item.variance.toFixed(2)}%</span>
-                <div style={{ height: `${Math.max(10, (item.variance / maxVariance) * 100)}%` }} />
-                <small>{item.pc}</small>
-              </div>
-            ))}
+          <div className="embedding-chart">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="embedding-title embedding-description">
+              <title id="embedding-title">Illustrative PCA cell embedding</title>
+              <desc id="embedding-description">
+                A dense scatter plot showing individual cell observations projected onto the first two principal components.
+              </desc>
+              <g className="embedding-grid" aria-hidden="true">
+                {[68, 106, 144, 182, 220].map((position) => (
+                  <path key={`h-${position}`} d={`M 42 ${position} H 418`} />
+                ))}
+                {[86, 134, 182, 230, 278, 326, 374].map((position) => (
+                  <path key={`v-${position}`} d={`M ${position} 24 V 258`} />
+                ))}
+              </g>
+              <path className="embedding-axis" d="M 42 258 H 418 M 42 258 V 24" aria-hidden="true" />
+              <path className="embedding-zero-line" d="M 230 24 V 258 M 42 144 H 418" aria-hidden="true" />
+              <path className="embedding-trend" d="M 56 184 C 148 168, 270 145, 405 111" aria-hidden="true" />
+              {pcaScatterPoints.map((point, index) => (
+                <circle key={index} className="embedding-dot" cx={point.x} cy={point.y} r={point.r} />
+              ))}
+              {[-4, -2, 0, 2, 4].map((value, index) => (
+                <text key={`x-${value}`} className="embedding-tick" x={86 + index * 72} y="276">{value}</text>
+              ))}
+              {[4, 2, 0, -2, -4].map((value, index) => (
+                <text key={`y-${value}`} className="embedding-tick" x="28" y={72 + index * 42}>{value}</text>
+              ))}
+              <text className="embedding-label" x="48" y="20">PC2 expression</text>
+              <text className="embedding-label" x="340" y="294">PC1 expression</text>
+            </svg>
           </div>
-          <p>Source: public `pca_variance.csv` generated by the project pipeline.</p>
+          <div className="embedding-caption">
+            <span><strong>{pcaVariance[0].variance.toFixed(2)}%</strong> variance in PC1</span>
+            <span>Illustrative PCA projection of dimensionality-reduced cells</span>
+          </div>
         </FadeIn>
       </div>
     </section>
