@@ -1,624 +1,267 @@
-import { type ElementType, type HTMLAttributes, type ReactNode, useEffect } from 'react';
+import { useState, type ElementType, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import {
+  ArrowDownRight,
   ArrowUpRight,
-  BarChart3,
-  Briefcase,
-  Bug,
+  BrainCircuit,
   Code2,
-  Database,
-  HeartPulse,
-  FileText,
+  Download,
   Github,
-  GraduationCap,
   Linkedin,
   Mail,
-  MapPin,
-  Orbit,
-  ShieldCheck,
+  Menu,
   Sparkles,
-  UsersRound,
+  X,
 } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
-const email = 'garysamuel16@gmail.com';
-const githubUrl = 'https://github.com/garybs16';
-const linkedInUrl = 'https://www.linkedin.com/in/gary-samuel-3954261b2/';
-const uclaProjectUrl = 'https://github.com/garybs16/UCLA-gene-expression-analysis';
-const autofixProjectUrl = 'https://github.com/garybs16/AutoFix-Bug-Fixer';
-const cosmosimProjectUrl = 'https://github.com/garybs16/cosmosim-lambdaCDM';
-const firstStepUrl = 'https://firststepha.com/';
 
-const images = {
-  portrait: `${baseUrl}IMG_4711.jpg`,
-  genomics:
-    'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=1400&q=90',
-  code:
-    'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=90',
-  cosmos:
-    'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1400&q=90',
-  firstStep: `${baseUrl}first-step-home.png`,
+const links = {
+  email: 'mailto:garysamuel16@gmail.com',
+  github: 'https://github.com/garybs16',
+  linkedin: 'https://www.linkedin.com/in/gary-samuel-3954261b2/',
+  resume: `${baseUrl}resume_gary.pdf`,
 };
 
-const navItems = [
-  ['Venture', '#venture'],
-  ['Research', '#research'],
-  ['Projects', '#projects'],
+const navigation = [
+  ['About', '#about'],
+  ['Experience', '#experience'],
+  ['Work', '#work'],
   ['Skills', '#skills'],
   ['Contact', '#contact'],
 ];
 
-const heroStats = [
-  ['4', 'featured engineering projects'],
-  ['2027', 'CSUF computer science candidate'],
-  ['Co-founder', 'production education platform'],
+const proof = [
+  ['100M+', 'single-cell profiles processed'],
+  ['40%', 'faster product-page loads'],
+  ['85%', 'fewer inventory update errors'],
+  ['500+', 'test cases analyzed by AutoFix'],
 ];
 
-const proofSignals = [
+const experience = [
   {
-    number: '01',
-    label: 'Production product',
-    title: 'Technical co-founder',
-    detail: 'Built the admissions and enrollment system behind a live healthcare academy.',
+    period: 'May 2024 — Present',
+    role: 'Math & Computer Science Instructor',
+    company: 'Tutoring Club & Novel Prep',
+    wins: [
+      'Guide students through Python projects, algorithm debugging, and data-structure optimization, contributing to a 4.3 average AP score.',
+      'Built a project-learning platform that increased engagement 35% and reduced repetitive grading time 50%.',
+    ],
+    stack: 'Python · Git · GitHub · Web development',
+    tag: 'Current',
   },
   {
-    number: '02',
-    label: 'Research at scale',
-    title: 'Tahoe-100M pipeline',
-    detail: 'Streaming single-cell data into reproducible PCA and clustering artifacts.',
+    period: 'Feb 2025 — Aug 2025',
+    role: 'Shopify Developer Intern',
+    company: 'Bimmer Plug · Irvine, CA',
+    wins: [
+      'Improved page-load performance 40% across an API-driven catalog of 700+ SKUs.',
+      'Reduced inventory errors 85%, supported 1,000+ concurrent chat interactions, and cut deployment time 60% with CI/CD.',
+    ],
+    stack: 'JavaScript · Node.js · WebSockets · Shopify APIs · GitHub Actions',
+    tag: 'Internship',
   },
   {
-    number: '03',
-    label: 'Systems thinking',
-    title: 'C++ parallel simulation',
-    detail: 'Numerical computing with tree gravity, OpenMP, and scientific snapshots.',
+    period: 'Jun 2024 — Dec 2024',
+    role: 'Open Source Contributor',
+    company: 'AsyncAPI',
+    wins: [
+      'Implemented features and fixed core bugs across JavaScript, TypeScript, and Go SDK tooling.',
+      'Strengthened schema validation and documentation workflows, reducing configuration errors by 30%.',
+    ],
+    stack: 'TypeScript · JavaScript · Go · Event-driven architecture',
+    tag: 'Open source',
+  },
+  {
+    period: 'Mar 2023 — Jun 2024',
+    role: 'Lead Project Developer',
+    company: 'Mission Kaizen · San Jose, CA',
+    wins: [
+      'Led a three-person engineering team to ship a production site that increased engagement 45%.',
+      'Created a custom content framework that reduced update time 70% and supported 3× projected growth.',
+    ],
+    stack: 'Leadership · Responsive UI · CMS architecture · Deployment',
+    tag: 'Leadership',
   },
 ];
-
-const pcaVariance = [
-  { pc: 'PC1', variance: 2.13 },
-  { pc: 'PC2', variance: 0.76 },
-  { pc: 'PC3', variance: 0.62 },
-  { pc: 'PC4', variance: 0.41 },
-  { pc: 'PC5', variance: 0.37 },
-  { pc: 'PC6', variance: 0.3 },
-  { pc: 'PC7', variance: 0.27 },
-  { pc: 'PC8', variance: 0.25 },
-  { pc: 'PC9', variance: 0.25 },
-  { pc: 'PC10', variance: 0.2 },
-];
-
-const pcaScatterPoints = Array.from({ length: 280 }, (_, index) => {
-  const angle = index * 2.3999632297;
-  const radius = Math.sqrt(((index * 67) % 281) / 281);
-  const x = 230 + Math.cos(angle) * radius * 157 + Math.sin(index * 1.7) * 10;
-  const y = 144 + Math.sin(angle) * radius * 91 - (x - 230) * 0.17 + Math.cos(index * 1.1) * 8;
-
-  return { x, y, r: index % 9 === 0 ? 3.8 : 2.7 };
-});
 
 const projects = [
   {
+    number: '01',
     name: 'First Step Healthcare Academy',
-    type: 'Technical co-founder · Live product',
-    href: firstStepUrl,
-    image: images.firstStep,
-    icon: HeartPulse,
-    summary:
-      'A production admissions and enrollment platform for a CNA training academy, connecting public program discovery, registration, payments, and secure operational tools.',
+    category: 'Live product · Technical co-founder',
+    image: `${baseUrl}first-step-home.png`,
+    href: 'https://firststepha.com/',
+    metric: 'Live',
+    description: 'A production admissions and enrollment platform for a CNA training academy.',
+    detail: 'Public program discovery, registration, payments, and protected operations in one platform.',
     stack: ['React', 'Node.js', 'Express', 'SQLite', 'Stripe'],
   },
   {
+    number: '02',
     name: 'UCLA Gene Expression Analysis',
-    type: 'Research computing',
-    href: uclaProjectUrl,
-    image: images.genomics,
-    icon: Database,
-    summary:
-      'Python pipeline for streaming Tahoe-100M single-cell expression data, reducing dimensions, clustering cells, and exporting PCA artifacts.',
-    stack: ['Python', 'SciPy', 'scikit-learn', 'datasets'],
+    category: 'Research computing',
+    image: 'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=1400&q=90',
+    href: 'https://github.com/garybs16/UCLA-gene-expression-analysis',
+    metric: '100M+',
+    description: 'A reproducible pipeline for large-scale single-cell expression analysis.',
+    detail: 'Streaming Tahoe-100M data into PCA, clustering, and portable analysis artifacts.',
+    stack: ['Python', 'SciPy', 'scikit-learn', 'Datasets'],
   },
   {
+    number: '03',
     name: 'AutoFix Bug Fixer',
-    type: 'Developer tooling',
-    href: autofixProjectUrl,
-    image: images.code,
-    icon: Bug,
-    summary:
-      'Static and runtime analysis tool that reads tracebacks and AST structure to surface likely root causes in failing Python tests.',
+    category: 'Developer tooling',
+    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=90',
+    href: 'https://github.com/garybs16/AutoFix-Bug-Fixer',
+    metric: '60%',
+    description: 'A debugging assistant for finding the likely source of failing Python tests.',
+    detail: 'Cut triage time across 500+ test cases with AST parsing, O(1) lookups, and fix suggestions.',
     stack: ['Python', 'AST', 'PyTest', 'Tracebacks'],
   },
   {
+    number: '04',
     name: 'LambdaCDM N-Body Simulator',
-    type: 'Scientific computing',
-    href: cosmosimProjectUrl,
-    image: images.cosmos,
-    icon: Orbit,
-    summary:
-      'C++20 cosmology simulator with Barnes-Hut tree gravity, Hubble expansion, OpenMP parallelism, and snapshot output.',
+    category: 'Scientific computing',
+    image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1400&q=90',
+    href: 'https://github.com/garybs16/cosmosim-lambdaCDM',
+    metric: 'C++20',
+    description: 'A C++ cosmology simulator for observing a changing universe in motion.',
+    detail: 'Barnes-Hut tree gravity, Hubble expansion, OpenMP, and persistent scientific snapshots.',
     stack: ['C++20', 'OpenMP', 'Numerics', 'Simulation'],
   },
 ];
 
-const productCapabilities = [
-  { label: 'Student experience', detail: 'Programs, schedules, registration, and payment status.', icon: UsersRound },
-  { label: 'Operations layer', detail: 'Cohort capacity, inquiries, records, and protected admin workflows.', icon: ShieldCheck },
-  { label: 'Production foundation', detail: 'Express API, SQLite persistence, Stripe Checkout, and health checks.', icon: HeartPulse },
+const skillGroups = [
+  ['Languages', 'Python · C · C++ · Java · JavaScript · TypeScript · Swift · SQL · Bash'],
+  ['Frameworks', 'React · Node.js · FastAPI · Socket.IO · SwiftUI · RealityKit'],
+  ['Ship with', 'Docker · GitHub Actions · PyTest · Git · REST APIs · Shopify APIs'],
 ];
 
-const skills = [
-  'Python',
-  'C++20',
-  'TypeScript',
-  'React',
-  'SciPy',
-  'scikit-learn',
-  'PyTest',
-  'OpenMP',
-  'FastAPI',
-  'Node.js',
-  'SQL',
-  'SwiftUI',
-];
-
-const timeline = [
-  {
-    date: 'Nov 2025 - Present',
-    title: 'AI Agent Developer',
-    place: 'UnstableML',
+const heroItem = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] as const },
   },
-  {
-    date: 'Expected May 2027',
-    title: 'B.S. Computer Science',
-    place: 'California State University, Fullerton',
-  },
-  {
-    date: 'Oct 2025',
-    title: 'Selected HackHarvard Participant',
-    place: 'Cambridge, MA',
-  },
-];
-
-const focusAreas = [
-  {
-    title: 'Research pipelines',
-    text: 'Streaming datasets, PCA artifacts, clustering workflows, and reproducible analysis outputs.',
-    icon: Database,
-  },
-  {
-    title: 'Developer tools',
-    text: 'Python traceback analysis, AST inspection, testing flows, and AI-assisted debugging.',
-    icon: Code2,
-  },
-  {
-    title: 'Simulation systems',
-    text: 'C++ numerical projects with parallel compute, tree methods, and scientific snapshots.',
-    icon: Orbit,
-  },
-];
-
-type FadeInProps = HTMLAttributes<HTMLElement> & {
-  as?: ElementType;
-  children: ReactNode;
-  delay?: number;
 };
 
-function FadeIn({ as = 'div', children, delay = 0, ...props }: FadeInProps) {
-  const MotionComponent = motion.create(as) as ElementType;
-
+function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
   return (
-    <MotionComponent
-      initial={{ opacity: 0, y: 16 }}
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px', amount: 0.2 }}
-      transition={{ duration: 0.48, delay, ease: [0.22, 1, 0.36, 1] }}
-      {...props}
+      viewport={{ once: true, amount: 0.16 }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </MotionComponent>
+    </motion.div>
   );
 }
 
-function ButtonLink({
-  href,
-  label,
-  icon: Icon,
-  primary = false,
-}: {
-  href: string;
-  label: string;
-  icon: ElementType;
-  primary?: boolean;
-}) {
+function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   const external = href.startsWith('http');
-
-  return (
-    <a
-      className={primary ? 'button button-primary' : 'button button-secondary'}
-      href={href}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noreferrer' : undefined}
-    >
-      <Icon aria-hidden="true" />
-      <span>{label}</span>
-    </a>
-  );
+  return <a className={className} href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{children}</a>;
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  text,
-}: {
-  eyebrow: string;
-  title: string;
-  text?: string;
-}) {
-  return (
-    <FadeIn className="section-heading">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title}</h2>
-      {text ? <p>{text}</p> : null}
-    </FadeIn>
-  );
+function SectionIntro({ overline, title, children }: { overline: string; title: string; children: ReactNode }) {
+  return <Reveal className="section-intro"><p className="overline">{overline}</p><h2>{title}</h2><p>{children}</p></Reveal>;
 }
 
-function Hero() {
-  return (
-    <section className="hero">
-      <nav className="nav">
-        <a href="#" className="brand">
-          <span>Gary</span>
-          Samuel
-        </a>
-        <div className="nav-links" aria-label="Primary navigation">
-          {navItems.map(([label, href]) => (
-            <a key={label} href={href}>
-              {label}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      <div className="hero-grid">
-        <FadeIn className="hero-copy">
-          <div className="availability">
-            <Sparkles aria-hidden="true" />
-            <span>Open to SWE internships and junior engineering roles</span>
-          </div>
-          <p className="eyebrow">Research computing / AI tooling</p>
-          <h1>
-            Make hard <em>things</em> useful.
-          </h1>
-          <p>
-            <strong>Gary Samuel</strong> is a CS student and technical co-founder building high-signal
-            software across scientific data, developer tools, and AI-assisted product systems.
-          </p>
-          <div className="hero-actions">
-            <ButtonLink href={`mailto:${email}`} label="Email" icon={Mail} primary />
-            <ButtonLink href={`${baseUrl}resume_gary.pdf`} label="Resume" icon={FileText} />
-            <ButtonLink href={githubUrl} label="GitHub" icon={Github} />
-          </div>
-          <div className="hero-stats" aria-label="Portfolio highlights">
-            {heroStats.map(([value, label]) => (
-              <div key={label}>
-                <strong>{value}</strong>
-                <span>{label}</span>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.08} className="hero-media">
-          <div className="portrait-frame">
-            <img src={images.portrait} alt="Gary Samuel" />
-            <div className="portrait-label">
-              <span>01 / Builder</span>
-              <strong>Systems with purpose</strong>
-            </div>
-          </div>
-          <div className="profile-card">
-            <div>
-              <MapPin aria-hidden="true" />
-              <span>California</span>
-            </div>
-            <div>
-              <GraduationCap aria-hidden="true" />
-              <span>CSU Fullerton, Expected May 2027</span>
-            </div>
-          </div>
-          <div className="signal-card" aria-label="Engineering focus">
-            <div>
-              <span>Current signal</span>
-              <strong>Product + research</strong>
-            </div>
-            <div className="signal-bars" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-function ProofRail() {
-  return (
-    <section className="proof-rail" aria-label="Career proof points">
-      <div className="proof-rail-inner">
-        <p className="proof-rail-label">Built for signal</p>
-        <div className="proof-grid">
-          {proofSignals.map((signal) => (
-            <FadeIn key={signal.number} as="article" className="proof-card" delay={Number(signal.number) * 0.04}>
-              <span>{signal.number}</span>
-              <p>{signal.label}</p>
-              <h2>{signal.title}</h2>
-              <div className="proof-rule" />
-              <small>{signal.detail}</small>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function VentureSection() {
-  return (
-    <section id="venture" className="section venture">
-      <div className="venture-intro">
-        <SectionHeading
-          eyebrow="Co-founded product"
-          title="Turning enrollment into a clearer digital journey."
-          text="First Step Healthcare Academy is a live, full-stack admissions platform built for prospective CNA students and the team supporting them."
-        />
-        <FadeIn delay={0.04} className="venture-link-wrap">
-          <ButtonLink href={firstStepUrl} label="Visit First Step" icon={ArrowUpRight} primary />
-          <span>Live at firststepha.com</span>
-        </FadeIn>
-      </div>
-
-      <div className="venture-grid">
-        <FadeIn delay={0.08} className="venture-preview">
-          <div className="browser-bar" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <strong>firststepha.com</strong>
-          </div>
-          <img src={images.firstStep} alt="First Step Healthcare Academy homepage" loading="lazy" />
-          <div className="venture-stamp">
-            <span>01</span>
-            <strong>Technical co-founder</strong>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.14} className="product-map">
-          <div className="product-map-header">
-            <span>System map</span>
-            <strong>From interest to enrollment</strong>
-          </div>
-          <div className="flow-graph" aria-label="First Step product system flow">
-            <div className="flow-node flow-node-primary">Prospective students</div>
-            <div className="flow-line" />
-            <div className="flow-node">React + Vite experience</div>
-            <div className="flow-line" />
-            <div className="flow-node">Express API</div>
-            <div className="flow-branches">
-              <div>SQLite records</div>
-              <div>Stripe payments</div>
-              <div>Admin operations</div>
-            </div>
-          </div>
-          <div className="capability-list">
-            {productCapabilities.map((capability) => (
-              <article key={capability.label}>
-                <capability.icon aria-hidden="true" />
-                <div>
-                  <strong>{capability.label}</strong>
-                  <p>{capability.detail}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-function ResearchSection() {
-  return (
-    <section id="research" className="section research">
-      <div className="research-grid">
-        <div>
-          <SectionHeading
-            eyebrow="Featured project"
-            title="UCLA gene expression analysis"
-            text="A focused case study built around reproducible data processing, dimensionality reduction, and clear research artifacts."
-          />
-          <FadeIn className="research-facts">
-            <span>Streams Tahoe-100M samples</span>
-            <span>Exports 50 PCA dimensions</span>
-            <span>Clusters embeddings with K-Means</span>
-          </FadeIn>
-          <FadeIn delay={0.06} className="inline-actions">
-            <ButtonLink href={uclaProjectUrl} label="View repo" icon={Github} primary />
-            <ButtonLink
-              href="https://huggingface.co/datasets/tahoebio/Tahoe-100M"
-              label="Dataset"
-              icon={Database}
-            />
-          </FadeIn>
-        </div>
-
-        <FadeIn delay={0.08} className="chart-card">
-          <div className="chart-header">
-            <div>
-              <span>PCA embedding</span>
-              <strong>Cell expression projection</strong>
-            </div>
-            <BarChart3 aria-hidden="true" />
-          </div>
-          <div className="embedding-chart">
-            <svg viewBox="0 0 440 300" role="img" aria-labelledby="embedding-title embedding-description">
-              <title id="embedding-title">Illustrative PCA cell embedding</title>
-              <desc id="embedding-description">
-                A dense scatter plot showing individual cell observations projected onto the first two principal components.
-              </desc>
-              <g className="embedding-grid" aria-hidden="true">
-                {[68, 106, 144, 182, 220].map((position) => (
-                  <path key={`h-${position}`} d={`M 42 ${position} H 418`} />
-                ))}
-                {[86, 134, 182, 230, 278, 326, 374].map((position) => (
-                  <path key={`v-${position}`} d={`M ${position} 24 V 258`} />
-                ))}
-              </g>
-              <path className="embedding-axis" d="M 42 258 H 418 M 42 258 V 24" aria-hidden="true" />
-              <path className="embedding-zero-line" d="M 230 24 V 258 M 42 144 H 418" aria-hidden="true" />
-              <path className="embedding-trend" d="M 56 184 C 148 168, 270 145, 405 111" aria-hidden="true" />
-              {pcaScatterPoints.map((point, index) => (
-                <circle key={index} className="embedding-dot" cx={point.x} cy={point.y} r={point.r} />
-              ))}
-              {[-4, -2, 0, 2, 4].map((value, index) => (
-                <text key={`x-${value}`} className="embedding-tick" x={86 + index * 72} y="276">{value}</text>
-              ))}
-              {[4, 2, 0, -2, -4].map((value, index) => (
-                <text key={`y-${value}`} className="embedding-tick" x="28" y={72 + index * 42}>{value}</text>
-              ))}
-              <text className="embedding-label" x="48" y="20">PC2 expression</text>
-              <text className="embedding-label" x="340" y="294">PC1 expression</text>
-            </svg>
-          </div>
-          <div className="embedding-caption">
-            <span><strong>{pcaVariance[0].variance.toFixed(2)}%</strong> variance in PC1</span>
-            <span>Illustrative PCA projection of dimensionality-reduced cells</span>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-function ProjectsSection() {
-  return (
-    <section id="projects" className="section projects">
-      <SectionHeading
-        eyebrow="Selected work"
-        title="Selected engineering work"
-        text="A focused project set spanning a live product, research computing, Python tooling, and performance-oriented C++."
-      />
-      <div className="project-list">
-        {projects.map((project, index) => (
-          <FadeIn key={project.name} delay={index * 0.06} as="article" className="project-row">
-            <img src={project.image} alt="" loading="lazy" />
-            <div className="project-content">
-              <div className="project-meta">
-                <span>{project.type}</span>
-                <project.icon aria-hidden="true" />
-              </div>
-              <h3>{project.name}</h3>
-              <p>{project.summary}</p>
-              <div className="tag-row">
-                {project.stack.map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-            </div>
-            <a className="project-link" href={project.href} target="_blank" rel="noreferrer">
-              <ArrowUpRight aria-hidden="true" />
-              <span>Open</span>
-            </a>
-          </FadeIn>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function SkillsSection() {
-  return (
-    <section id="skills" className="section skills">
-      <SectionHeading
-        eyebrow="Skills and signal"
-        title="Clear technical range"
-        text="The stack is grouped around practical engineering work: data, tooling, systems, and product-facing frontend."
-      />
-      <div className="skills-grid">
-        <div className="skill-column">
-          <FadeIn className="focus-grid">
-            {focusAreas.map((area) => (
-              <article key={area.title}>
-                <area.icon aria-hidden="true" />
-                <h3>{area.title}</h3>
-                <p>{area.text}</p>
-              </article>
-            ))}
-          </FadeIn>
-          <FadeIn delay={0.06} className="skill-cloud">
-            {skills.map((skill) => (
-              <span key={skill}>{skill}</span>
-            ))}
-          </FadeIn>
-        </div>
-        <FadeIn delay={0.08} className="timeline">
-          {timeline.map((item) => (
-            <article key={`${item.title}-${item.date}`}>
-              <time>{item.date}</time>
-              <strong>{item.title}</strong>
-              <span>{item.place}</span>
-            </article>
-          ))}
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-function ContactSection() {
-  return (
-    <section id="contact" className="section contact">
-      <FadeIn className="contact-panel">
-        <div>
-          <p className="eyebrow">Contact</p>
-          <h2>Let&apos;s build useful software.</h2>
-        </div>
-        <div className="contact-actions">
-          <ButtonLink href={`mailto:${email}`} label="Email Gary" icon={Mail} primary />
-          <ButtonLink href={linkedInUrl} label="LinkedIn" icon={Linkedin} />
-          <ButtonLink href={githubUrl} label="GitHub" icon={Github} />
-          <ButtonLink href={`${baseUrl}resume_gary.pdf`} label="Resume" icon={Briefcase} />
-        </div>
-      </FadeIn>
-    </section>
-  );
-}
-
-export default function App() {
-  useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (!hash) return;
-
-    requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView();
-    });
-  }, []);
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <main>
-      <Hero />
-      <ProofRail />
-      <VentureSection />
-      <ResearchSection />
-      <ProjectsSection />
-      <SkillsSection />
-      <ContactSection />
+      <header className="site-header">
+        <a href="#top" className="wordmark" aria-label="Gary Samuel home"><span>Gary</span> Samuel</a>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">
+          {menuOpen ? <X /> : <Menu />}
+        </button>
+        <nav className={menuOpen ? 'nav-open' : ''} aria-label="Main navigation">
+          {navigation.map(([label, href]) => <a key={label} href={href} onClick={closeMenu}>{label}</a>)}
+          <ExternalLink href={links.resume} className="resume-link"><Download /> Resume</ExternalLink>
+        </nav>
+      </header>
+
+      <section className="hero" id="top">
+        <div className="hero-sun" aria-hidden="true" />
+        <div className="hero-orbit orbit-one" aria-hidden="true" />
+        <div className="hero-orbit orbit-two" aria-hidden="true" />
+        <motion.div
+          className="hero-copy"
+          initial="hidden"
+          animate="visible"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11, delayChildren: 0.12 } } }}
+        >
+          <motion.p className="overline" variants={heroItem}>CS + Data Science @ CSUF · May 2027</motion.p>
+          <motion.h1 variants={heroItem}>Gary<br /><em>Samuel.</em></motion.h1>
+          <motion.p className="hero-summary" variants={heroItem}><strong>I turn complicated systems into software that performs.</strong> Production web platforms, developer tools, and research pipelines — built with measurable outcomes.</motion.p>
+          <motion.div className="hero-actions" variants={heroItem}>
+            <a className="button button-dark" href="#work">See my work <ArrowDownRight /></a>
+            <ExternalLink href={links.resume} className="text-link">View résumé <ArrowUpRight /></ExternalLink>
+          </motion.div>
+        </motion.div>
+        <motion.div className="hero-portrait" initial={{ opacity: 0, scale: 0.92, rotate: -2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.95, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="portrait-crop"><img src={`${baseUrl}IMG_4711.jpg`} alt="Gary Samuel" /></div>
+          <div className="portrait-note"><Sparkles /> <span>Open to 2026–27<br />SWE opportunities.</span></div>
+        </motion.div>
+        <p className="hero-side-note">CS student · builder · researcher<br />California, USA</p>
+      </section>
+
+      <div className="story-break" aria-hidden="true"><div className="story-track"><span>From questions to code</span><i /><span>And into the world</span><b>✦</b><span>From questions to code</span><i /><span>And into the world</span><b>✦</b></div></div>
+
+      <section className="proof-strip" aria-label="Selected impact">
+        <p>Impact at a glance</p>
+        <div>{proof.map(([value, label]) => <article key={label}><strong>{value}</strong><span>{label}</span></article>)}</div>
+      </section>
+
+      <section className="about section" id="about">
+        <SectionIntro overline="Engineer, researcher, teacher" title="I build like the outcome matters.">
+          I move comfortably from algorithms and data pipelines to product interfaces and deployment. The through-line is simple: understand the real constraint, then ship the clearest solution.
+        </SectionIntro>
+        <Reveal className="about-grid" delay={0.08}>
+          <div className="about-statement"><span>01</span><p>Production experience, open-source contributions, research at scale, and the communication skills to bring people with me.</p></div>
+          <div className="about-details"><p>I’m completing a B.S. in Computer Science with a Data Science minor at Cal State Fullerton, with coursework spanning algorithms, compilers, operating systems, and computer architecture.</p><p>Teaching CS sharpened how I explain systems. Shipping for real customers taught me to measure them. Research taught me to stay rigorous when the answer is not obvious.</p><ExternalLink href={links.linkedin} className="text-link">More on LinkedIn <ArrowUpRight /></ExternalLink></div>
+        </Reveal>
+      </section>
+
+      <section className="experience section" id="experience">
+        <SectionIntro overline="Building in the open" title="Experience">
+          Production engineering, open source, technical teaching, and team leadership — with the numbers to show what changed.
+        </SectionIntro>
+        <div className="experience-list">
+          {experience.map((item, index) => <Reveal key={item.role} delay={index * 0.05}><article className="experience-item"><div className="experience-index">{String(index + 1).padStart(2, '0')}</div><div><p className="period">{item.period} <span>{item.tag}</span></p><h3>{item.role}</h3><h4>{item.company}</h4><p className="experience-stack">{item.stack}</p></div><ul className="experience-copy">{item.wins.map((win) => <li key={win}>{win}</li>)}</ul></article></Reveal>)}
+        </div>
+      </section>
+
+      <section className="work section" id="work">
+        <SectionIntro overline="Things I’ve made" title="Selected work">
+          Four builds, four different engineering muscles: product ownership, machine-learning infrastructure, developer tooling, and high-performance simulation.
+        </SectionIntro>
+        <div className="project-grid">
+          {projects.map((project, index) => <Reveal key={project.name} delay={(index % 2) * 0.08}><article className="project-card"><div className="project-image"><img src={project.image} alt="" /><span>{project.number}</span></div><div className="project-body"><div className="project-meta"><p className="project-category">{project.category}</p><strong>{project.metric}</strong></div><h3>{project.name}</h3><p className="project-summary">{project.description}</p><p className="project-detail">{project.detail}</p><div className="project-bottom"><div className="tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div><ExternalLink href={project.href} className="project-open" aria-label={`Open ${project.name}`}><ArrowUpRight /></ExternalLink></div></div></article></Reveal>)}
+        </div>
+      </section>
+
+      <section className="skills section" id="skills">
+        <div className="skills-illustration" aria-hidden="true"><BrainCircuit /><Code2 /><i /><i /><i /></div>
+        <SectionIntro overline="My toolkit" title="Technical, but never just technical.">
+          Broad enough to move across the stack, grounded enough to choose the simplest tool that can carry the job.
+        </SectionIntro>
+        <Reveal className="skill-rows" delay={0.1}>{skillGroups.map(([label, value], index) => <div key={label}><span>{String(index + 1).padStart(2, '0')}</span><h3>{label}</h3><p>{value}</p></div>)}</Reveal>
+      </section>
+
+      <section className="contact section" id="contact">
+        <Reveal className="contact-panel"><p className="overline">Let’s make something useful</p><h2>Have a question<br />worth building on?</h2><p>I’m always glad to meet people thinking carefully about software, research, and what comes next.</p><div className="contact-actions"><ExternalLink href={links.email} className="button button-light"><Mail /> Say hello</ExternalLink><ExternalLink href={links.github} className="text-link light-link"><Github /> GitHub</ExternalLink><ExternalLink href={links.linkedin} className="text-link light-link"><Linkedin /> LinkedIn</ExternalLink></div></Reveal>
+      </section>
+
+      <footer><span>© {new Date().getFullYear()} Gary Samuel</span><span>Made with curiosity and coffee.</span></footer>
     </main>
   );
 }
+
+export default App;
