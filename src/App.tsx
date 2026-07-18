@@ -7,6 +7,7 @@ import {
   Bug,
   Code2,
   Database,
+  HeartPulse,
   FileText,
   Github,
   GraduationCap,
@@ -14,7 +15,9 @@ import {
   Mail,
   MapPin,
   Orbit,
+  ShieldCheck,
   Sparkles,
+  UsersRound,
 } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -24,6 +27,7 @@ const linkedInUrl = 'https://www.linkedin.com/in/gary-samuel-3954261b2/';
 const uclaProjectUrl = 'https://github.com/garybs16/UCLA-gene-expression-analysis';
 const autofixProjectUrl = 'https://github.com/garybs16/AutoFix-Bug-Fixer';
 const cosmosimProjectUrl = 'https://github.com/garybs16/cosmosim-lambdaCDM';
+const firstStepUrl = 'https://firststepha.com/';
 
 const images = {
   portrait: `${baseUrl}IMG_4711.jpg`,
@@ -33,9 +37,11 @@ const images = {
     'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=90',
   cosmos:
     'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1400&q=90',
+  firstStep: `${baseUrl}first-step-home.png`,
 };
 
 const navItems = [
+  ['Venture', '#venture'],
   ['Research', '#research'],
   ['Projects', '#projects'],
   ['Skills', '#skills'],
@@ -43,9 +49,9 @@ const navItems = [
 ];
 
 const heroStats = [
-  ['3', 'featured engineering projects'],
+  ['4', 'featured engineering projects'],
   ['2027', 'CSUF computer science candidate'],
-  ['AI + data', 'primary build focus'],
+  ['Co-founder', 'production education platform'],
 ];
 
 const pcaVariance = [
@@ -62,6 +68,16 @@ const pcaVariance = [
 ];
 
 const projects = [
+  {
+    name: 'First Step Healthcare Academy',
+    type: 'Technical co-founder · Live product',
+    href: firstStepUrl,
+    image: images.firstStep,
+    icon: HeartPulse,
+    summary:
+      'A production admissions and enrollment platform for a CNA training academy, connecting public program discovery, registration, payments, and secure operational tools.',
+    stack: ['React', 'Node.js', 'Express', 'SQLite', 'Stripe'],
+  },
   {
     name: 'UCLA Gene Expression Analysis',
     type: 'Research computing',
@@ -92,6 +108,12 @@ const projects = [
       'C++20 cosmology simulator with Barnes-Hut tree gravity, Hubble expansion, OpenMP parallelism, and snapshot output.',
     stack: ['C++20', 'OpenMP', 'Numerics', 'Simulation'],
   },
+];
+
+const productCapabilities = [
+  { label: 'Student experience', detail: 'Programs, schedules, registration, and payment status.', icon: UsersRound },
+  { label: 'Operations layer', detail: 'Cohort capacity, inquiries, records, and protected admin workflows.', icon: ShieldCheck },
+  { label: 'Production foundation', detail: 'Express API, SQLite persistence, Stripe Checkout, and health checks.', icon: HeartPulse },
 ];
 
 const skills = [
@@ -275,6 +297,70 @@ function Hero() {
   );
 }
 
+function VentureSection() {
+  return (
+    <section id="venture" className="section venture">
+      <div className="venture-intro">
+        <SectionHeading
+          eyebrow="Co-founded product"
+          title="Turning enrollment into a clearer digital journey."
+          text="First Step Healthcare Academy is a live, full-stack admissions platform built for prospective CNA students and the team supporting them."
+        />
+        <FadeIn delay={0.04} className="venture-link-wrap">
+          <ButtonLink href={firstStepUrl} label="Visit First Step" icon={ArrowUpRight} primary />
+          <span>Live at firststepha.com</span>
+        </FadeIn>
+      </div>
+
+      <div className="venture-grid">
+        <FadeIn delay={0.08} className="venture-preview">
+          <div className="browser-bar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <strong>firststepha.com</strong>
+          </div>
+          <img src={images.firstStep} alt="First Step Healthcare Academy homepage" loading="lazy" />
+          <div className="venture-stamp">
+            <span>01</span>
+            <strong>Technical co-founder</strong>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.14} className="product-map">
+          <div className="product-map-header">
+            <span>System map</span>
+            <strong>From interest to enrollment</strong>
+          </div>
+          <div className="flow-graph" aria-label="First Step product system flow">
+            <div className="flow-node flow-node-primary">Prospective students</div>
+            <div className="flow-line" />
+            <div className="flow-node">React + Vite experience</div>
+            <div className="flow-line" />
+            <div className="flow-node">Express API</div>
+            <div className="flow-branches">
+              <div>SQLite records</div>
+              <div>Stripe payments</div>
+              <div>Admin operations</div>
+            </div>
+          </div>
+          <div className="capability-list">
+            {productCapabilities.map((capability) => (
+              <article key={capability.label}>
+                <capability.icon aria-hidden="true" />
+                <div>
+                  <strong>{capability.label}</strong>
+                  <p>{capability.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 function ResearchSection() {
   const maxVariance = Math.max(...pcaVariance.map((item) => item.variance));
 
@@ -330,9 +416,9 @@ function ProjectsSection() {
   return (
     <section id="projects" className="section projects">
       <SectionHeading
-        eyebrow="Selected GitHub work"
-        title="Three strong projects"
-        text="A concise project set that shows range across research computing, Python tooling, and performance-oriented C++."
+        eyebrow="Selected work"
+        title="Selected engineering work"
+        text="A focused project set spanning a live product, research computing, Python tooling, and performance-oriented C++."
       />
       <div className="project-list">
         {projects.map((project, index) => (
@@ -433,6 +519,7 @@ export default function App() {
   return (
     <main>
       <Hero />
+      <VentureSection />
       <ResearchSection />
       <ProjectsSection />
       <SkillsSection />
