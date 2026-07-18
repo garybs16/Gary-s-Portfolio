@@ -111,6 +111,15 @@ const skillGroups = [
   ['Work with', 'Git · PyTest · ASTs · OpenMP · REST APIs · Stripe'],
 ];
 
+const heroItem = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
@@ -155,23 +164,28 @@ function App() {
         <div className="hero-sun" aria-hidden="true" />
         <div className="hero-orbit orbit-one" aria-hidden="true" />
         <div className="hero-orbit orbit-two" aria-hidden="true" />
-        <Reveal className="hero-copy">
-          <p className="overline">Hello, I’m</p>
-          <h1>Gary<br /><em>Samuel.</em></h1>
-          <p className="hero-summary">I build thoughtful software for curious people — from research pipelines and developer tools to live products with real-world stakes.</p>
-          <div className="hero-actions">
+        <motion.div
+          className="hero-copy"
+          initial="hidden"
+          animate="visible"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11, delayChildren: 0.12 } } }}
+        >
+          <motion.p className="overline" variants={heroItem}>Hello, I’m</motion.p>
+          <motion.h1 variants={heroItem}>Gary<br /><em>Samuel.</em></motion.h1>
+          <motion.p className="hero-summary" variants={heroItem}>I build thoughtful software for curious people — from research pipelines and developer tools to live products with real-world stakes.</motion.p>
+          <motion.div className="hero-actions" variants={heroItem}>
             <a className="button button-dark" href="#work">See my work <ArrowDownRight /></a>
             <ExternalLink href={links.resume} className="text-link">View résumé <ArrowUpRight /></ExternalLink>
-          </div>
-        </Reveal>
-        <Reveal className="hero-portrait" delay={0.13}>
+          </motion.div>
+        </motion.div>
+        <motion.div className="hero-portrait" initial={{ opacity: 0, scale: 0.92, rotate: -2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.95, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}>
           <div className="portrait-crop"><img src={`${baseUrl}IMG_4711.jpg`} alt="Gary Samuel" /></div>
           <div className="portrait-note"><Sparkles /> <span>Building systems<br />that make sense.</span></div>
-        </Reveal>
+        </motion.div>
         <p className="hero-side-note">CS student · builder · researcher<br />California, USA</p>
       </section>
 
-      <div className="story-break" aria-hidden="true"><span>From questions to code</span><i /><span>And into the world</span></div>
+      <div className="story-break" aria-hidden="true"><div className="story-track"><span>From questions to code</span><i /><span>And into the world</span><b>✦</b><span>From questions to code</span><i /><span>And into the world</span><b>✦</b></div></div>
 
       <section className="about section" id="about">
         <SectionIntro overline="A little about me" title="I like following a good question.">
