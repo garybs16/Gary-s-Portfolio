@@ -54,6 +54,27 @@ const heroStats = [
   ['Co-founder', 'production education platform'],
 ];
 
+const proofSignals = [
+  {
+    number: '01',
+    label: 'Production product',
+    title: 'Technical co-founder',
+    detail: 'Built the admissions and enrollment system behind a live healthcare academy.',
+  },
+  {
+    number: '02',
+    label: 'Research at scale',
+    title: 'Tahoe-100M pipeline',
+    detail: 'Streaming single-cell data into reproducible PCA and clustering artifacts.',
+  },
+  {
+    number: '03',
+    label: 'Systems thinking',
+    title: 'C++ parallel simulation',
+    detail: 'Numerical computing with tree gravity, OpenMP, and scientific snapshots.',
+  },
+];
+
 const pcaVariance = [
   { pc: 'PC1', variance: 2.13 },
   { pc: 'PC2', variance: 0.76 },
@@ -267,11 +288,11 @@ function Hero() {
           </div>
           <p className="eyebrow">Research computing / AI tooling</p>
           <h1>
-            Gary <em>Samuel</em>
+            Make hard <em>things</em> useful.
           </h1>
           <p>
-            I build high-signal software across scientific data, developer tools, and AI-assisted
-            product systems.
+            <strong>Gary Samuel</strong> is a CS student and technical co-founder building high-signal
+            software across scientific data, developer tools, and AI-assisted product systems.
           </p>
           <div className="hero-actions">
             <ButtonLink href={`mailto:${email}`} label="Email" icon={Mail} primary />
@@ -309,7 +330,7 @@ function Hero() {
           <div className="signal-card" aria-label="Engineering focus">
             <div>
               <span>Current signal</span>
-              <strong>Product × research</strong>
+              <strong>Product + research</strong>
             </div>
             <div className="signal-bars" aria-hidden="true">
               <i />
@@ -322,6 +343,27 @@ function Hero() {
             </div>
           </div>
         </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+function ProofRail() {
+  return (
+    <section className="proof-rail" aria-label="Career proof points">
+      <div className="proof-rail-inner">
+        <p className="proof-rail-label">Built for signal</p>
+        <div className="proof-grid">
+          {proofSignals.map((signal) => (
+            <FadeIn key={signal.number} as="article" className="proof-card" delay={Number(signal.number) * 0.04}>
+              <span>{signal.number}</span>
+              <p>{signal.label}</p>
+              <h2>{signal.title}</h2>
+              <div className="proof-rule" />
+              <small>{signal.detail}</small>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -571,6 +613,7 @@ export default function App() {
   return (
     <main>
       <Hero />
+      <ProofRail />
       <VentureSection />
       <ResearchSection />
       <ProjectsSection />

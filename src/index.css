@@ -1284,6 +1284,11 @@ main {
   font-size: 1.14rem;
 }
 
+.hero-copy > p:not(.eyebrow) strong {
+  color: #fff;
+  font-weight: 800;
+}
+
 .hero .button-primary {
   border-color: var(--lime);
   background: var(--lime);
@@ -1476,6 +1481,96 @@ main {
 .signal-bars i:nth-child(5) { height: 42%; animation-delay: -0.95s; }
 .signal-bars i:nth-child(6) { height: 78%; animation-delay: -0.15s; }
 .signal-bars i:nth-child(7) { height: 55%; animation-delay: -0.65s; }
+
+.proof-rail {
+  position: relative;
+  z-index: 2;
+  margin-top: -1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 82% 10%, rgba(105, 215, 204, 0.14), transparent 22rem),
+    #0b101a;
+  color: #f9fbff;
+  padding: 1.2rem 1.5rem;
+}
+
+.proof-rail-inner {
+  display: grid;
+  width: min(100%, var(--max));
+  grid-template-columns: 145px minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-inline: auto;
+}
+
+.proof-rail-label {
+  align-self: start;
+  margin: 0;
+  color: var(--aqua);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.proof-card {
+  min-height: 140px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0 1.25rem;
+}
+
+.proof-card:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.proof-card > span,
+.proof-card > p {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.proof-card > span {
+  color: var(--lime);
+}
+
+.proof-card > p {
+  margin: 0.5rem 0 0;
+  color: rgba(249, 251, 255, 0.52);
+}
+
+.proof-card h2 {
+  margin: 0.4rem 0 0;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.proof-rule {
+  width: 2.7rem;
+  height: 2px;
+  margin: 0.8rem 0 0.62rem;
+  background: linear-gradient(90deg, var(--lime), var(--aqua));
+}
+
+.proof-card small {
+  display: block;
+  max-width: 30ch;
+  color: rgba(249, 251, 255, 0.62);
+  font-size: 0.73rem;
+  line-height: 1.45;
+}
 
 @keyframes equalize {
   from { transform: scaleY(0.42); }
@@ -1694,6 +1789,11 @@ main {
   .signal-card {
     right: -0.5rem;
   }
+
+  .proof-rail-inner {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 680px) {
@@ -1752,5 +1852,26 @@ main {
     right: -0.25rem;
     width: 145px;
     padding: 0.68rem;
+  }
+
+  .proof-rail {
+    padding-inline: 0.9rem;
+  }
+
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-card,
+  .proof-card:first-child {
+    min-height: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 0;
+    padding: 1rem 0;
+  }
+
+  .proof-card:first-child {
+    padding-top: 0;
+    border-top: 0;
   }
 }
