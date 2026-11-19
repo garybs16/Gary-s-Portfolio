@@ -1,12 +1,25 @@
-import { lazy, Suspense, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Copy, FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+import Galaxy from './Galaxy';
+import Diagram from './Diagram';
 import Tilt from './Tilt';
 import { AgentViz, ProjectVisual } from './visuals';
 import { useActiveSection, useCountUp, useReveal, useScroll } from './hooks';
-import { experience, facts, featured, links, navigation, photo, projects, skills, stats, type Stat } from './data';
-
-// three.js is large; load it after the text has painted.
-const Galaxy = lazy(() => import('./Galaxy'));
+import {
+  caseStudies,
+  credentials,
+  experience,
+  facts,
+  firstStepShot,
+  links,
+  navigation,
+  photo,
+  projects,
+  skills,
+  stats,
+  type CaseStudy,
+  type Stat,
+} from './data';
 
 const delay = (i: number) => ({ '--d': i }) as CSSProperties;
 
@@ -69,6 +82,97 @@ function CopyEmail() {
   );
 }
 
+function CaseMedia({ kind }: { kind: CaseStudy['media'] }) {
+  if (kind === 'firststep') {
+    return (
+      <External href={firstStepShot.href} className="browser" label="Open firststepha.com">
+        <span className="browser-bar" aria-hidden="true">
+          <span className="browser-dots"><i /><i /><i /></span>
+          <span className="browser-url">{firstStepShot.domain}</span>
+        </span>
+        <span className="browser-view">
+          <img src={firstStepShot.image} alt="Homepage of First Step Healthcare Academy" loading="lazy" width={1280} height={978} />
+        </span>
+      </External>
+    );
+  }
+  if (kind === 'agent') return <AgentViz className="case-terminal" />;
+  return (
+    <div className="case-panel card-visual card-visual-bridge">
+      <ProjectVisual kind="bridge" />
+    </div>
+  );
+}
+
+function CaseStudyView({ cs }: { cs: CaseStudy }) {
+  return (
+    <article className="case" id={`case-${cs.id}`} aria-labelledby={`case-${cs.id}-title`}>
+      <span className="case-index" aria-hidden="true">{cs.index}</span>
+
+      <div className="case-head" data-reveal>
+        <div className="case-intro">
+          <p className="card-kicker">
+            {cs.status && (
+              <span className={`badge ${cs.status.tone === 'live' ? 'badge-live' : 'badge-progress'}`}>
+                {cs.status.tone === 'live' && <span className="dot" aria-hidden="true" />}
+                {cs.status.label}
+              </span>
+            )}
+            {cs.org}
+          </p>
+          <h3 className="case-title" id={`case-${cs.id}-title`}>{cs.title}</h3>
+          <p className="case-role">{cs.role} · {cs.period}</p>
+          <p className="case-summary">{cs.summary}</p>
+          <div className="case-metrics">
+            {cs.metrics.map((m) => (
+              <div key={m.label} className="case-metric">
+                <p className="case-metric-value">{m.value}</p>
+                <p className="case-metric-label">{m.label}</p>
+              </div>
+            ))}
+          </div>
+          {cs.links.length > 0 && (
+            <div className="case-links">
+              {cs.links.map((l) => (
+                <External key={l.href} href={l.href} className="btn btn-primary btn-sm">
+                  {l.label} <ArrowUpRight aria-hidden="true" />
+                </External>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="case-media">
+          <CaseMedia kind={cs.media} />
+        </div>
+      </div>
+
+      <div data-reveal>
+        <Diagram spec={cs.diagram} caption={cs.diagramCaption} note={cs.diagramNote} />
+      </div>
+
+      <div className="case-cols" data-reveal>
+        <section>
+          <h4>The problem</h4>
+          <p>{cs.problem}</p>
+        </section>
+        <section>
+          <h4>{cs.builtLabel}</h4>
+          <ul>{cs.built.map((b) => <li key={b}>{b}</li>)}</ul>
+        </section>
+        <section>
+          <h4>Decisions &amp; results</h4>
+          <ul>{cs.decisions.map((d) => <li key={d}><Rich text={d} /></li>)}</ul>
+        </section>
+      </div>
+
+      <footer className="case-foot">
+        <Tags items={cs.stack} />
+        {cs.roleNote && <p className="case-role-note">{cs.roleNote}</p>}
+      </footer>
+    </article>
+  );
+}
+
 export default function App() {
   const { scrolled, progress } = useScroll();
   const active = useActiveSection(['home', ...navigation.map(([, id]) => id)]);
@@ -115,9 +219,7 @@ export default function App() {
       <main>
         <section className="hero" id="home">
           <div className="hero-sky" aria-hidden="true" />
-          <Suspense fallback={null}>
-            <Galaxy className="hero-canvas" />
-          </Suspense>
+          <Galaxy className="hero-canvas" />
           <div className="hero-scrim" aria-hidden="true" />
 
           <div className="container hero-content">
@@ -149,7 +251,7 @@ export default function App() {
 
           <div className="container hero-foot">
             <p className="hero-caption">
-              A 60,000-star spiral galaxy, rendered live in WebGL. A nod to my <External href={links.cosmosim}>N-body simulator</External>.
+              A 60,000-star spiral galaxy in raw WebGL, no 3D library. A nod to my <External href={links.cosmosim}>N-body simulator</External>.
             </p>
             <a className="hero-scroll" href="#impact" aria-label="Scroll down">
               <ArrowDown aria-hidden="true" />
@@ -157,7 +259,17 @@ export default function App() {
           </div>
         </section>
 
-        <section className="container impact" id="impact" aria-label="Impact at a glance">
+        <section className="container impact" id="impact" aria-label="Experience and impact at a glance">
+          <div className="creds" data-reveal>
+            <p className="creds-label">Built at</p>
+            <ul className="creds-list">
+              {credentials.builtAt.map((name) => <li key={name}>{name}</li>)}
+            </ul>
+            <p className="creds-label">Recognized by</p>
+            <ul className="creds-list">
+              {credentials.recognition.map((r) => <li key={r.name}>{r.name}<span>{r.detail}</span></li>)}
+            </ul>
+          </div>
           <ul className="stats">
             {stats.map((stat, i) => <StatTile key={stat.label} stat={stat} index={i} />)}
           </ul>
@@ -165,54 +277,25 @@ export default function App() {
 
         <section className="section container" id="work">
           <div className="aurora aurora-a" aria-hidden="true" />
-          <SectionHead index="01" label="Work" title={<>Selected <span className="grad">work</span></>}>
-            A live product I co-founded, plus the capstone, research and hackathon work around it.
+          <SectionHead index="01" label="Work" title={<>Case <span className="grad">studies</span></>}>
+            How I build: the problem, the architecture, the trade-offs and the results.
           </SectionHead>
 
-          <div data-reveal>
-            <Tilt className="featured" max={3}>
-              <article className="card card-featured">
-                <External href={featured.href} className="browser" label={`Open ${featured.name}`}>
-                  <span className="browser-bar" aria-hidden="true">
-                    <span className="browser-dots"><i /><i /><i /></span>
-                    <span className="browser-url">{featured.domain}</span>
-                  </span>
-                  <span className="browser-view">
-                    <img src={featured.image} alt={`Homepage of ${featured.name}`} loading="lazy" />
-                  </span>
-                </External>
-                <div className="card-text">
-                  <p className="card-kicker">
-                    <span className="badge badge-live"><span className="dot" aria-hidden="true" />Live</span>
-                    {featured.role}
-                  </p>
-                  <h3>{featured.name}</h3>
-                  <p>{featured.summary}</p>
-                  <ul className="checks">
-                    {featured.points.map((p) => <li key={p}><Check aria-hidden="true" />{p}</li>)}
-                  </ul>
-                  <Tags items={featured.stack} />
-                  <External href={featured.href} className="btn btn-primary btn-sm">
-                    Visit {featured.domain} <ArrowUpRight aria-hidden="true" />
-                  </External>
-                </div>
-              </article>
-            </Tilt>
+          <div className="cases">
+            {caseStudies.map((cs) => <CaseStudyView key={cs.id} cs={cs} />)}
           </div>
 
+          <h3 className="subhead" data-reveal>More projects</h3>
           <div className="project-grid">
             {projects.map((project, i) => (
-              <div key={project.name} data-reveal style={delay(i % 2)}>
+              <div key={project.name} data-reveal style={delay(i)}>
                 <Tilt>
                   <article className="card card-project">
                     <div className={`card-visual card-visual-${project.visual}`}>
                       <ProjectVisual kind={project.visual} />
                     </div>
                     <div className="card-text">
-                      <p className="card-kicker">
-                        {project.status && <span className="badge badge-progress">{project.status}</span>}
-                        {project.context}
-                      </p>
+                      <p className="card-kicker">{project.context}</p>
                       <h3>
                         <External href={project.href} className="card-link">
                           {project.name}
@@ -255,7 +338,6 @@ export default function App() {
                   <ul>
                     {item.points.map((point) => <li key={point}><Rich text={point} /></li>)}
                   </ul>
-                  {item.visual === 'agent' && <AgentViz />}
                 </div>
               </li>
             ))}
@@ -338,7 +420,7 @@ export default function App() {
       </main>
 
       <footer className="container site-footer">
-        <span>© {new Date().getFullYear()} Gary Samuel · Designed and built with React and Three.js</span>
+        <span>© {new Date().getFullYear()} Gary Samuel · Designed and built by hand: React, TypeScript and raw WebGL</span>
         <External href={links.source}>Source on GitHub <ArrowUpRight aria-hidden="true" /></External>
       </footer>
     </>

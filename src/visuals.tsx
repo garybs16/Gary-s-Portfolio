@@ -217,9 +217,9 @@ function SpatialViz() {
 
 /* UnstableML: a vague prompt resolved into deterministic tool calls,
  * checked by the evaluation harness. */
-export function AgentViz() {
+export function AgentViz({ className = '' }: { className?: string }) {
   return (
-    <div className="viz viz-terminal timeline-viz" role="img" aria-label="An LLM agent turns the prompt 'orbit the car, then dolly in' into two deterministic camera function calls; the evaluation suite reports 95%+ task success across orbit, follow, dolly, pan and tracking shots.">
+    <div className={`viz viz-terminal ${className}`} role="img" aria-label="An LLM agent turns the prompt 'orbit the car, then dolly in' into two deterministic camera function calls; the evaluation suite reports 95%+ task success across orbit, follow, dolly, pan and tracking shots.">
       <p><span className="t-prompt">&gt;</span> "orbit the car, then dolly in"</p>
       <p><span className="t-accent">→</span> <span className="t-file">orbit</span>(target="car", speed=0.25)</p>
       <p><span className="t-accent">→</span> <span className="t-file">dolly</span>(target="car", dist=-2.0)</p>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://garybs16.github.io/Gary-s-Portfolio/sitemap.xml
