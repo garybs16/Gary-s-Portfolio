@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Copy, FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import Tilt from './Tilt';
-import { ProjectVisual } from './visuals';
+import { AgentViz, ProjectVisual } from './visuals';
 import { useActiveSection, useCountUp, useReveal, useScroll } from './hooks';
 import { experience, facts, featured, links, navigation, photo, projects, skills, stats, type Stat } from './data';
 
@@ -129,7 +129,7 @@ export default function App() {
               Gary <span className="h1-last">Samuel</span>
             </h1>
             <p className="hero-lede">
-              Software engineer building <span className="grad">web products, developer tools and data pipelines</span>, from a live admissions platform to a 100M-cell genomics pipeline.
+              Software engineer building <span className="grad">full-stack products and LLM agents</span>, from the live admissions platform I co-founded to production agent orchestration at UnstableML.
             </p>
             <p className="hero-sub">B.S. Computer Science &amp; Data Science minor · Cal State Fullerton · May 2027</p>
             <div className="hero-actions">
@@ -166,7 +166,7 @@ export default function App() {
         <section className="section container" id="work">
           <div className="aurora aurora-a" aria-hidden="true" />
           <SectionHead index="01" label="Work" title={<>Selected <span className="grad">work</span></>}>
-            Products I’ve shipped and the research and tooling behind them.
+            A live product I co-founded, plus the capstone, research and hackathon work around it.
           </SectionHead>
 
           <div data-reveal>
@@ -237,7 +237,7 @@ export default function App() {
 
         <section className="section container" id="experience">
           <SectionHead index="02" label="Experience" title={<>Where I’ve <span className="grad">worked</span></>}>
-            Teaching, interning, hacking and open source, most recent first.
+            Founding, interning and running production systems, most recent first.
           </SectionHead>
 
           <ol className="timeline">
@@ -255,6 +255,7 @@ export default function App() {
                   <ul>
                     {item.points.map((point) => <li key={point}><Rich text={point} /></li>)}
                   </ul>
+                  {item.visual === 'agent' && <AgentViz />}
                 </div>
               </li>
             ))}
@@ -273,10 +274,10 @@ export default function App() {
             </figure>
             <div className="about-text" data-reveal style={delay(1)}>
               <p className="about-lead">
-                I like building software people actually use, and I care about the unglamorous parts that make it hold up: validation, tests, CI, and pages that load fast.
+                I like building software people actually use, and I care about the unglamorous parts that make it hold up: validation, evals, runbooks, and pages that load fast.
               </p>
               <p>
-                I’m the technical co-founder behind First Step Healthcare Academy’s live admissions platform, I interned as a Shopify developer at Bimmer Plug, and I’ve contributed to AsyncAPI’s SDKs. On the side I gravitate to scientific computing; the galaxy at the top of this page is a nod to my N-body simulator.
+                I’m the technical co-founder of First Step Healthcare Academy, where I architected and run the production platform behind its admissions and payments. At UnstableML I built LLM agent orchestration for real-time 3D scene and video generation, and before that I built Shopify integrations at Bimmer Plug. On the side I gravitate to scientific computing; the galaxy at the top of this page is a nod to my N-body simulator.
               </p>
               <dl className="facts">
                 {facts.map(([k, v]) => (

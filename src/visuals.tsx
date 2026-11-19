@@ -153,15 +153,78 @@ function ClusterViz() {
   );
 }
 
-function TerminalViz() {
+/* Vision Pro: a parsed PDF page becomes a floating text panel over a
+ * spatial floor grid; the gazed-at line lights up, and a summary panel
+ * narrates alongside. */
+const spatial = (() => {
+  const top = 122;
+  const spread = (t: number) => 16 + t * 46; // radial line spacing from horizon (t=0) to bottom (t=1)
+  const radial = Array.from({ length: 15 }, (_, k) => k - 7).map((i) => `M${f(200 + i * spread(0))} ${top} L${f(200 + i * spread(1))} 175`);
+  const across = [125, 130, 138, 150, 168].map((y) => {
+    const half = 7 * spread((y - top) / 53);
+    return `M${f(200 - half)} ${y} H${f(200 + half)}`;
+  });
+  const main = [118, 96, 124, 132, 104, 120, 70];
+  const ghost = [40, 34, 42, 30, 38, 34, 24];
+  const wave = [4, 8, 12, 7, 10, 14, 9, 6, 11, 7, 5, 3];
+  return { floor: [...radial, ...across].join(' '), main, ghost, wave };
+})();
+
+function SpatialViz() {
+  const hot = 3;
+  const lineY = (k: number) => 32 + k * 9.5;
   return (
-    <div className="viz viz-terminal" role="img" aria-label="Terminal output: AutoFix reads a failing pytest run, names the line that likely caused it, and suggests a fix.">
-      <p><span className="t-prompt">$</span> autofix tests/</p>
-      <p><span className="t-bad">✗</span> test_invoice_total <span className="t-bad">FAILED</span></p>
-      <p className="t-dim">  ZeroDivisionError: division by zero</p>
-      <p><span className="t-accent">→</span> likely cause <span className="t-file">billing.py:48</span></p>
-      <p className="t-dim">  avg = total / len(items)</p>
-      <p><span className="t-good">✓</span> suggest: guard empty <span className="t-file">items</span> first<span className="t-caret" /></p>
+    <svg viewBox="0 0 400 175" className="viz" role="img" aria-label="A PDF page parsed into a floating 3D text panel above a spatial grid. The line being looked at is highlighted, and a summary panel narrates beside it.">
+      <defs>
+        <linearGradient id="sp-floor" gradientUnits="userSpaceOnUse" x1="0" y1="122" x2="0" y2="175">
+          <stop offset="0" stopColor="#8ec5ff" stopOpacity="0" />
+          <stop offset="1" stopColor="#8ec5ff" stopOpacity="0.45" />
+        </linearGradient>
+      </defs>
+      <path d={spatial.floor} stroke="url(#sp-floor)" strokeWidth="0.75" fill="none" />
+
+      <g transform="matrix(1 0.1 0 1 0 -4)" className="viz-seq" style={{ ['--i' as string]: 0 }} opacity="0.6">
+        <rect x="40" y="30" width="56" height="74" rx="4" className="viz-panel-ghost" />
+        {spatial.ghost.map((w, k) => <rect key={k} x="47" y={40 + k * 8} width={w} height="2.4" rx="1.2" className="viz-text-line" />)}
+      </g>
+      <path d="M100 70 C110 70 108 62 118 62" className="viz-threshold viz-seq" style={{ ['--i' as string]: 1 }} />
+
+      <g transform="matrix(1 0.06 0 1 0 -10)">
+        <rect x="118" y="14" width="152" height="100" rx="7" className="viz-panel viz-seq" style={{ ['--i' as string]: 1 }} />
+        <rect x="130" y="22" width="64" height="4" rx="2" className="viz-text-title viz-seq" style={{ ['--i' as string]: 2 }} />
+        <rect x="126" y={lineY(hot) - 3} width={spatial.main[hot] + 8} height="9" rx="3" className="viz-gaze-glow viz-fade-in" />
+        {spatial.main.map((w, k) => (
+          <rect key={k} x="130" y={lineY(k)} width={w} height="3.2" rx="1.6" className={`viz-seq ${k === hot ? 'viz-text-hot' : 'viz-text-line'}`} style={{ ['--i' as string]: k + 3 }} />
+        ))}
+        <g className="viz-alert" transform={`translate(${130 + spatial.main[hot] - 14} ${lineY(hot) + 1.6})`}>
+          <circle r="8" className="viz-pulse viz-pulse-warm" />
+          <circle r="5" className="viz-reticle" />
+          <circle r="1.4" className="viz-reticle-dot" />
+        </g>
+      </g>
+
+      <g transform="matrix(1 -0.07 0 1 0 22)" className="viz-seq" style={{ ['--i' as string]: 6 }}>
+        <rect x="284" y="34" width="88" height="60" rx="6" className="viz-panel viz-panel-alt" />
+        <text x="292" y="45" className="viz-tiny">SUMMARY</text>
+        {[66, 58, 44].map((w, k) => <rect key={k} x="292" y={52 + k * 7} width={w} height="2.6" rx="1.3" className="viz-text-alt" />)}
+        {spatial.wave.map((h, j) => (
+          <rect key={j} x={292 + j * 6} y={83 - h / 2} width="3" height={h} rx="1.5" className="viz-wave" style={{ ['--i' as string]: j }} />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+/* UnstableML: a vague prompt resolved into deterministic tool calls,
+ * checked by the evaluation harness. */
+export function AgentViz() {
+  return (
+    <div className="viz viz-terminal timeline-viz" role="img" aria-label="An LLM agent turns the prompt 'orbit the car, then dolly in' into two deterministic camera function calls; the evaluation suite reports 95%+ task success across orbit, follow, dolly, pan and tracking shots.">
+      <p><span className="t-prompt">&gt;</span> "orbit the car, then dolly in"</p>
+      <p><span className="t-accent">→</span> <span className="t-file">orbit</span>(target="car", speed=0.25)</p>
+      <p><span className="t-accent">→</span> <span className="t-file">dolly</span>(target="car", dist=-2.0)</p>
+      <p><span className="t-good">✓</span> eval suite  <span className="t-good">95%+</span> task success</p>
+      <p className="t-dim">  orbit · follow · dolly · pan · tracking<span className="t-caret" /></p>
     </div>
   );
 }
@@ -171,6 +234,6 @@ export function ProjectVisual({ kind }: { kind: Project['visual'] }) {
     case 'bridge': return <BridgeViz />;
     case 'quadtree': return <QuadtreeViz />;
     case 'clusters': return <ClusterViz />;
-    case 'terminal': return <TerminalViz />;
+    case 'spatial': return <SpatialViz />;
   }
 }
