@@ -1,41 +1,31 @@
-# 🌐 Gary Samuel — Portfolio Website
+# Gary Samuel — Portfolio
 
-A responsive, animated **personal portfolio** built with **HTML + Tailwind CSS** and a handful of lightweight JS libraries.  
-Features dark mode (with persistence), animated hero text, particle background, project gallery, skills grid with progress bars, a playful mini-game, and smooth UX touches throughout.
+**Live:** https://garybs16.github.io/Gary-s-Portfolio/
 
----
+Personal portfolio for Gary Samuel, a software engineer and CS + Data Science student at Cal State Fullerton.
 
-## ✨ Highlights
+## Highlights
 
-- **Responsive UI** with Tailwind CSS
-- **Dark Mode** toggle (persists via `localStorage`)
-- **Animated Hero** using Typed.js + subtle GSAP motion
-- **Particles Background** (particles.js)
-- **AOS On-Scroll Animations**
-- **“Catch the Star”** mini-game (GSAP-powered)
-- Sticky **Navbar**, smooth scrolling, active link highlight
-- Projects section with external links
-- Skills, Frameworks & Tools with progress bars
-- Contact block and footer
+- **Live WebGL galaxy hero.** A 60,000-particle spiral galaxy with differential rotation and nebula dust, written as custom Three.js shaders. It nods to my [N-body simulator](https://github.com/garybs16/cosmosim-lambdaCDM) and is lazy-loaded so text paints first.
+- **Generative project visuals.** Each project card draws an SVG of what the project does: an anomaly spike for BridgeWatch, a Barnes-Hut quadtree for CosmoSim, PCA clusters for the gene-expression pipeline, and a terminal for AutoFix.
+- **Motion with restraint.** Scroll reveals, count-up impact numbers, pointer-tracking 3D tilt cards, and an active-section nav. All of it is disabled under `prefers-reduced-motion`.
+- **Responsive and accessible.** Mobile menu, skip link, keyboard focus styles, and labelled visuals.
 
----
+## Stack
 
-## 📸 Demo / Screenshots
+React 18 · TypeScript · Vite · Three.js · hand-written CSS · lucide-react icons
 
-- Live Demo: _add your link here (e.g., GitHub Pages, Vercel, Netlify)_
-- Screenshots: _drop a few PNGs/GIFs in the repo and reference them here_
+## Develop
 
----
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # type-check + production build to dist/
+npm run preview  # serve the production build
+```
 
-## 🧱 Tech Stack
+Content (projects, experience, skills) lives in [`src/data.ts`](src/data.ts).
 
-- **Frontend:** HTML, Tailwind CSS
-- **Animations:** AOS, GSAP, Typed.js, particles.js
-- **(Optional) Swiper:** Included via CDN but not currently used in this page
+## Deploy
 
-CDNs are used for quick setup; you can self-host for production hardening.
-
----
-
-## 🚀 Getting Started
-# Deploy trigger
+Pushing to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site and publishes `dist/` to GitHub Pages.

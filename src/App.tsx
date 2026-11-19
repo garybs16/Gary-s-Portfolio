@@ -1,267 +1,345 @@
-import { useState, type ElementType, type ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import {
-  ArrowDownRight,
-  ArrowUpRight,
-  BrainCircuit,
-  Code2,
-  Download,
-  Github,
-  Linkedin,
-  Mail,
-  Menu,
-  Sparkles,
-  X,
-} from 'lucide-react';
+import { lazy, Suspense, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, Copy, FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+import Tilt from './Tilt';
+import { ProjectVisual } from './visuals';
+import { useActiveSection, useCountUp, useReveal, useScroll } from './hooks';
+import { experience, facts, featured, links, navigation, photo, projects, skills, stats, type Stat } from './data';
 
-const baseUrl = import.meta.env.BASE_URL;
+// three.js is large; load it after the text has painted.
+const Galaxy = lazy(() => import('./Galaxy'));
 
-const links = {
-  email: 'mailto:garysamuel16@gmail.com',
-  github: 'https://github.com/garybs16',
-  linkedin: 'https://www.linkedin.com/in/gary-samuel-3954261b2/',
-  resume: `${baseUrl}resume_gary.pdf`,
-};
+const delay = (i: number) => ({ '--d': i }) as CSSProperties;
 
-const navigation = [
-  ['About', '#about'],
-  ['Experience', '#experience'],
-  ['Work', '#work'],
-  ['Skills', '#skills'],
-  ['Contact', '#contact'],
-];
-
-const proof = [
-  ['100M+', 'single-cell profiles processed'],
-  ['40%', 'faster product-page loads'],
-  ['85%', 'fewer inventory update errors'],
-  ['500+', 'test cases analyzed by AutoFix'],
-];
-
-const experience = [
-  {
-    period: 'May 2024 — Present',
-    role: 'Math & Computer Science Instructor',
-    company: 'Tutoring Club & Novel Prep',
-    wins: [
-      'Guide students through Python projects, algorithm debugging, and data-structure optimization, contributing to a 4.3 average AP score.',
-      'Built a project-learning platform that increased engagement 35% and reduced repetitive grading time 50%.',
-    ],
-    stack: 'Python · Git · GitHub · Web development',
-    tag: 'Current',
-  },
-  {
-    period: 'Feb 2025 — Aug 2025',
-    role: 'Shopify Developer Intern',
-    company: 'Bimmer Plug · Irvine, CA',
-    wins: [
-      'Improved page-load performance 40% across an API-driven catalog of 700+ SKUs.',
-      'Reduced inventory errors 85%, supported 1,000+ concurrent chat interactions, and cut deployment time 60% with CI/CD.',
-    ],
-    stack: 'JavaScript · Node.js · WebSockets · Shopify APIs · GitHub Actions',
-    tag: 'Internship',
-  },
-  {
-    period: 'Jun 2024 — Dec 2024',
-    role: 'Open Source Contributor',
-    company: 'AsyncAPI',
-    wins: [
-      'Implemented features and fixed core bugs across JavaScript, TypeScript, and Go SDK tooling.',
-      'Strengthened schema validation and documentation workflows, reducing configuration errors by 30%.',
-    ],
-    stack: 'TypeScript · JavaScript · Go · Event-driven architecture',
-    tag: 'Open source',
-  },
-  {
-    period: 'Mar 2023 — Jun 2024',
-    role: 'Lead Project Developer',
-    company: 'Mission Kaizen · San Jose, CA',
-    wins: [
-      'Led a three-person engineering team to ship a production site that increased engagement 45%.',
-      'Created a custom content framework that reduced update time 70% and supported 3× projected growth.',
-    ],
-    stack: 'Leadership · Responsive UI · CMS architecture · Deployment',
-    tag: 'Leadership',
-  },
-];
-
-const projects = [
-  {
-    number: '01',
-    name: 'First Step Healthcare Academy',
-    category: 'Live product · Technical co-founder',
-    image: `${baseUrl}first-step-home.png`,
-    href: 'https://firststepha.com/',
-    metric: 'Live',
-    description: 'A production admissions and enrollment platform for a CNA training academy.',
-    detail: 'Public program discovery, registration, payments, and protected operations in one platform.',
-    stack: ['React', 'Node.js', 'Express', 'SQLite', 'Stripe'],
-  },
-  {
-    number: '02',
-    name: 'UCLA Gene Expression Analysis',
-    category: 'Research computing',
-    image: 'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=1400&q=90',
-    href: 'https://github.com/garybs16/UCLA-gene-expression-analysis',
-    metric: '100M+',
-    description: 'A reproducible pipeline for large-scale single-cell expression analysis.',
-    detail: 'Streaming Tahoe-100M data into PCA, clustering, and portable analysis artifacts.',
-    stack: ['Python', 'SciPy', 'scikit-learn', 'Datasets'],
-  },
-  {
-    number: '03',
-    name: 'AutoFix Bug Fixer',
-    category: 'Developer tooling',
-    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=90',
-    href: 'https://github.com/garybs16/AutoFix-Bug-Fixer',
-    metric: '60%',
-    description: 'A debugging assistant for finding the likely source of failing Python tests.',
-    detail: 'Cut triage time across 500+ test cases with AST parsing, O(1) lookups, and fix suggestions.',
-    stack: ['Python', 'AST', 'PyTest', 'Tracebacks'],
-  },
-  {
-    number: '04',
-    name: 'LambdaCDM N-Body Simulator',
-    category: 'Scientific computing',
-    image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1400&q=90',
-    href: 'https://github.com/garybs16/cosmosim-lambdaCDM',
-    metric: 'C++20',
-    description: 'A C++ cosmology simulator for observing a changing universe in motion.',
-    detail: 'Barnes-Hut tree gravity, Hubble expansion, OpenMP, and persistent scientific snapshots.',
-    stack: ['C++20', 'OpenMP', 'Numerics', 'Simulation'],
-  },
-];
-
-const skillGroups = [
-  ['Languages', 'Python · C · C++ · Java · JavaScript · TypeScript · Swift · SQL · Bash'],
-  ['Frameworks', 'React · Node.js · FastAPI · Socket.IO · SwiftUI · RealityKit'],
-  ['Ship with', 'Docker · GitHub Actions · PyTest · Git · REST APIs · Shopify APIs'],
-];
-
-const heroItem = {
-  hidden: { opacity: 0, y: 26 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
-function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
+function External({ href, children, className, label }: { href: string; children: ReactNode; className?: string; label?: string }) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.16 }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <a className={className} href={href} target="_blank" rel="noreferrer" aria-label={label}>
       {children}
-    </motion.div>
+    </a>
   );
 }
 
-function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
-  const external = href.startsWith('http');
-  return <a className={className} href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{children}</a>;
+/** Renders **highlighted** phrases from the content strings. */
+function Rich({ text }: { text: string }) {
+  return <>{text.split('**').map((part, i) => (i % 2 ? <strong key={i}>{part}</strong> : part))}</>;
 }
 
-function SectionIntro({ overline, title, children }: { overline: string; title: string; children: ReactNode }) {
-  return <Reveal className="section-intro"><p className="overline">{overline}</p><h2>{title}</h2><p>{children}</p></Reveal>;
+function SectionHead({ index, label, title, children }: { index: string; label: string; title: ReactNode; children?: ReactNode }) {
+  return (
+    <header className="section-head" data-reveal>
+      <p className="eyebrow"><span className="eyebrow-index">{index}</span>{label}</p>
+      <h2 className="display">{title}</h2>
+      {children && <p className="section-lede">{children}</p>}
+    </header>
+  );
 }
 
-function App() {
+function StatTile({ stat, index }: { stat: Stat; index: number }) {
+  const { ref, text } = useCountUp(stat.value, stat.decimals);
+  return (
+    <li className="stat" data-reveal style={delay(index)}>
+      <p className="stat-value">
+        <span className="sr-only">{text}{stat.suffix}</span>
+        <span aria-hidden="true"><span ref={ref}>{text}</span>{stat.suffix}</span>
+      </p>
+      <p className="stat-label">{stat.label}</p>
+    </li>
+  );
+}
+
+function Tags({ items }: { items: string[] }) {
+  return <ul className="tags">{items.map((item) => <li key={item}>{item}</li>)}</ul>;
+}
+
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(links.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${links.email}`;
+    }
+  };
+  return (
+    <button type="button" className="btn btn-ghost btn-icon" onClick={copy} aria-label={copied ? 'Email copied' : 'Copy email address'}>
+      {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+      <span aria-live="polite">{copied ? 'Copied' : 'Copy'}</span>
+    </button>
+  );
+}
+
+export default function App() {
+  const { scrolled, progress } = useScroll();
+  const active = useActiveSection(['home', ...navigation.map(([, id]) => id)]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
+  useReveal();
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
+
+  const headerClass = ['site-header', scrolled && 'is-scrolled', menuOpen && 'menu-open'].filter(Boolean).join(' ');
 
   return (
-    <main>
-      <header className="site-header">
-        <a href="#top" className="wordmark" aria-label="Gary Samuel home"><span>Gary</span> Samuel</a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">
-          {menuOpen ? <X /> : <Menu />}
-        </button>
-        <nav className={menuOpen ? 'nav-open' : ''} aria-label="Main navigation">
-          {navigation.map(([label, href]) => <a key={label} href={href} onClick={closeMenu}>{label}</a>)}
-          <ExternalLink href={links.resume} className="resume-link"><Download /> Resume</ExternalLink>
-        </nav>
+    <>
+      <a className="skip-link" href="#work">Skip to content</a>
+      <div className="starfield" aria-hidden="true" />
+
+      <header className={headerClass} style={{ '--progress': progress } as CSSProperties}>
+        <div className="container header-inner">
+          <a href="#home" className="wordmark" onClick={() => setMenuOpen(false)}>
+            <span className="monogram" aria-hidden="true">GS</span>
+            Gary Samuel
+          </a>
+          <nav aria-label="Main" id="site-nav">
+            {navigation.map(([label, id]) => (
+              <a key={id} href={`#${id}`} className={active === id ? 'is-active' : undefined} aria-current={active === id ? 'true' : undefined} onClick={() => setMenuOpen(false)}>
+                {label}
+              </a>
+            ))}
+            <External href={links.resume} className="nav-resume">
+              <FileText aria-hidden="true" /> Resume
+            </External>
+          </nav>
+          <button type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="site-nav" aria-label={menuOpen ? 'Close menu' : 'Open menu'} onClick={() => setMenuOpen((o) => !o)}>
+            {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          </button>
+        </div>
+        <span className="progress" aria-hidden="true" />
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-sun" aria-hidden="true" />
-        <div className="hero-orbit orbit-one" aria-hidden="true" />
-        <div className="hero-orbit orbit-two" aria-hidden="true" />
-        <motion.div
-          className="hero-copy"
-          initial="hidden"
-          animate="visible"
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11, delayChildren: 0.12 } } }}
-        >
-          <motion.p className="overline" variants={heroItem}>CS + Data Science @ CSUF · May 2027</motion.p>
-          <motion.h1 variants={heroItem}>Gary<br /><em>Samuel.</em></motion.h1>
-          <motion.p className="hero-summary" variants={heroItem}><strong>I turn complicated systems into software that performs.</strong> Production web platforms, developer tools, and research pipelines — built with measurable outcomes.</motion.p>
-          <motion.div className="hero-actions" variants={heroItem}>
-            <a className="button button-dark" href="#work">See my work <ArrowDownRight /></a>
-            <ExternalLink href={links.resume} className="text-link">View résumé <ArrowUpRight /></ExternalLink>
-          </motion.div>
-        </motion.div>
-        <motion.div className="hero-portrait" initial={{ opacity: 0, scale: 0.92, rotate: -2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.95, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}>
-          <div className="portrait-crop"><img src={`${baseUrl}IMG_4711.jpg`} alt="Gary Samuel" /></div>
-          <div className="portrait-note"><Sparkles /> <span>Open to 2026–27<br />SWE opportunities.</span></div>
-        </motion.div>
-        <p className="hero-side-note">CS student · builder · researcher<br />California, USA</p>
-      </section>
+      <main>
+        <section className="hero" id="home">
+          <div className="hero-sky" aria-hidden="true" />
+          <Suspense fallback={null}>
+            <Galaxy className="hero-canvas" />
+          </Suspense>
+          <div className="hero-scrim" aria-hidden="true" />
 
-      <div className="story-break" aria-hidden="true"><div className="story-track"><span>From questions to code</span><i /><span>And into the world</span><b>✦</b><span>From questions to code</span><i /><span>And into the world</span><b>✦</b></div></div>
+          <div className="container hero-content">
+            <p className="hero-status">
+              <span className="dot" aria-hidden="true" />
+              Open to SWE internships &amp; new-grad roles
+            </p>
+            <h1>
+              Gary <span className="h1-last">Samuel</span>
+            </h1>
+            <p className="hero-lede">
+              Software engineer building <span className="grad">web products, developer tools and data pipelines</span>, from a live admissions platform to a 100M-cell genomics pipeline.
+            </p>
+            <p className="hero-sub">B.S. Computer Science &amp; Data Science minor · Cal State Fullerton · May 2027</p>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href="#work">
+                See my work <ArrowRight aria-hidden="true" />
+              </a>
+              <External className="btn btn-ghost" href={links.resume}>
+                <FileText aria-hidden="true" /> Resume
+              </External>
+              <span className="hero-social">
+                <External className="icon-link" href={links.github} label="GitHub"><Github aria-hidden="true" /></External>
+                <External className="icon-link" href={links.linkedin} label="LinkedIn"><Linkedin aria-hidden="true" /></External>
+                <a className="icon-link" href={`mailto:${links.email}`} aria-label="Email"><Mail aria-hidden="true" /></a>
+              </span>
+            </div>
+          </div>
 
-      <section className="proof-strip" aria-label="Selected impact">
-        <p>Impact at a glance</p>
-        <div>{proof.map(([value, label]) => <article key={label}><strong>{value}</strong><span>{label}</span></article>)}</div>
-      </section>
+          <div className="container hero-foot">
+            <p className="hero-caption">
+              A 60,000-star spiral galaxy, rendered live in WebGL. A nod to my <External href={links.cosmosim}>N-body simulator</External>.
+            </p>
+            <a className="hero-scroll" href="#impact" aria-label="Scroll down">
+              <ArrowDown aria-hidden="true" />
+            </a>
+          </div>
+        </section>
 
-      <section className="about section" id="about">
-        <SectionIntro overline="Engineer, researcher, teacher" title="I build like the outcome matters.">
-          I move comfortably from algorithms and data pipelines to product interfaces and deployment. The through-line is simple: understand the real constraint, then ship the clearest solution.
-        </SectionIntro>
-        <Reveal className="about-grid" delay={0.08}>
-          <div className="about-statement"><span>01</span><p>Production experience, open-source contributions, research at scale, and the communication skills to bring people with me.</p></div>
-          <div className="about-details"><p>I’m completing a B.S. in Computer Science with a Data Science minor at Cal State Fullerton, with coursework spanning algorithms, compilers, operating systems, and computer architecture.</p><p>Teaching CS sharpened how I explain systems. Shipping for real customers taught me to measure them. Research taught me to stay rigorous when the answer is not obvious.</p><ExternalLink href={links.linkedin} className="text-link">More on LinkedIn <ArrowUpRight /></ExternalLink></div>
-        </Reveal>
-      </section>
+        <section className="container impact" id="impact" aria-label="Impact at a glance">
+          <ul className="stats">
+            {stats.map((stat, i) => <StatTile key={stat.label} stat={stat} index={i} />)}
+          </ul>
+        </section>
 
-      <section className="experience section" id="experience">
-        <SectionIntro overline="Building in the open" title="Experience">
-          Production engineering, open source, technical teaching, and team leadership — with the numbers to show what changed.
-        </SectionIntro>
-        <div className="experience-list">
-          {experience.map((item, index) => <Reveal key={item.role} delay={index * 0.05}><article className="experience-item"><div className="experience-index">{String(index + 1).padStart(2, '0')}</div><div><p className="period">{item.period} <span>{item.tag}</span></p><h3>{item.role}</h3><h4>{item.company}</h4><p className="experience-stack">{item.stack}</p></div><ul className="experience-copy">{item.wins.map((win) => <li key={win}>{win}</li>)}</ul></article></Reveal>)}
-        </div>
-      </section>
+        <section className="section container" id="work">
+          <div className="aurora aurora-a" aria-hidden="true" />
+          <SectionHead index="01" label="Work" title={<>Selected <span className="grad">work</span></>}>
+            Products I’ve shipped and the research and tooling behind them.
+          </SectionHead>
 
-      <section className="work section" id="work">
-        <SectionIntro overline="Things I’ve made" title="Selected work">
-          Four builds, four different engineering muscles: product ownership, machine-learning infrastructure, developer tooling, and high-performance simulation.
-        </SectionIntro>
-        <div className="project-grid">
-          {projects.map((project, index) => <Reveal key={project.name} delay={(index % 2) * 0.08}><article className="project-card"><div className="project-image"><img src={project.image} alt="" /><span>{project.number}</span></div><div className="project-body"><div className="project-meta"><p className="project-category">{project.category}</p><strong>{project.metric}</strong></div><h3>{project.name}</h3><p className="project-summary">{project.description}</p><p className="project-detail">{project.detail}</p><div className="project-bottom"><div className="tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div><ExternalLink href={project.href} className="project-open" aria-label={`Open ${project.name}`}><ArrowUpRight /></ExternalLink></div></div></article></Reveal>)}
-        </div>
-      </section>
+          <div data-reveal>
+            <Tilt className="featured" max={3}>
+              <article className="card card-featured">
+                <External href={featured.href} className="browser" label={`Open ${featured.name}`}>
+                  <span className="browser-bar" aria-hidden="true">
+                    <span className="browser-dots"><i /><i /><i /></span>
+                    <span className="browser-url">{featured.domain}</span>
+                  </span>
+                  <span className="browser-view">
+                    <img src={featured.image} alt={`Homepage of ${featured.name}`} loading="lazy" />
+                  </span>
+                </External>
+                <div className="card-text">
+                  <p className="card-kicker">
+                    <span className="badge badge-live"><span className="dot" aria-hidden="true" />Live</span>
+                    {featured.role}
+                  </p>
+                  <h3>{featured.name}</h3>
+                  <p>{featured.summary}</p>
+                  <ul className="checks">
+                    {featured.points.map((p) => <li key={p}><Check aria-hidden="true" />{p}</li>)}
+                  </ul>
+                  <Tags items={featured.stack} />
+                  <External href={featured.href} className="btn btn-primary btn-sm">
+                    Visit {featured.domain} <ArrowUpRight aria-hidden="true" />
+                  </External>
+                </div>
+              </article>
+            </Tilt>
+          </div>
 
-      <section className="skills section" id="skills">
-        <div className="skills-illustration" aria-hidden="true"><BrainCircuit /><Code2 /><i /><i /><i /></div>
-        <SectionIntro overline="My toolkit" title="Technical, but never just technical.">
-          Broad enough to move across the stack, grounded enough to choose the simplest tool that can carry the job.
-        </SectionIntro>
-        <Reveal className="skill-rows" delay={0.1}>{skillGroups.map(([label, value], index) => <div key={label}><span>{String(index + 1).padStart(2, '0')}</span><h3>{label}</h3><p>{value}</p></div>)}</Reveal>
-      </section>
+          <div className="project-grid">
+            {projects.map((project, i) => (
+              <div key={project.name} data-reveal style={delay(i % 2)}>
+                <Tilt>
+                  <article className="card card-project">
+                    <div className={`card-visual card-visual-${project.visual}`}>
+                      <ProjectVisual kind={project.visual} />
+                    </div>
+                    <div className="card-text">
+                      <p className="card-kicker">
+                        {project.status && <span className="badge badge-progress">{project.status}</span>}
+                        {project.context}
+                      </p>
+                      <h3>
+                        <External href={project.href} className="card-link">
+                          {project.name}
+                          <ArrowUpRight aria-hidden="true" />
+                        </External>
+                      </h3>
+                      <p>{project.summary}</p>
+                      <Tags items={project.stack} />
+                    </div>
+                  </article>
+                </Tilt>
+              </div>
+            ))}
+          </div>
 
-      <section className="contact section" id="contact">
-        <Reveal className="contact-panel"><p className="overline">Let’s make something useful</p><h2>Have a question<br />worth building on?</h2><p>I’m always glad to meet people thinking carefully about software, research, and what comes next.</p><div className="contact-actions"><ExternalLink href={links.email} className="button button-light"><Mail /> Say hello</ExternalLink><ExternalLink href={links.github} className="text-link light-link"><Github /> GitHub</ExternalLink><ExternalLink href={links.linkedin} className="text-link light-link"><Linkedin /> LinkedIn</ExternalLink></div></Reveal>
-      </section>
+          <p className="more" data-reveal>
+            <External href={links.github} className="btn btn-ghost">
+              <Github aria-hidden="true" /> More on GitHub <ArrowUpRight aria-hidden="true" />
+            </External>
+          </p>
+        </section>
 
-      <footer><span>© {new Date().getFullYear()} Gary Samuel</span><span>Made with curiosity and coffee.</span></footer>
-    </main>
+        <section className="section container" id="experience">
+          <SectionHead index="02" label="Experience" title={<>Where I’ve <span className="grad">worked</span></>}>
+            Teaching, interning, hacking and open source, most recent first.
+          </SectionHead>
+
+          <ol className="timeline">
+            {experience.map((item) => (
+              <li key={item.role + item.company} className={item.current ? 'is-current' : undefined} data-reveal>
+                <span className="timeline-node" aria-hidden="true" />
+                <div className="timeline-meta">
+                  <p className="period">{item.period}</p>
+                  <p className="location">{item.location}</p>
+                </div>
+                <div className="timeline-body">
+                  <h3>
+                    {item.role} <span className="at">· {item.company}</span>
+                  </h3>
+                  <ul>
+                    {item.points.map((point) => <li key={point}><Rich text={point} /></li>)}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="section container" id="about">
+          <div className="aurora aurora-b" aria-hidden="true" />
+          <SectionHead index="03" label="About" title={<>A little <span className="grad">about me</span></>} />
+
+          <div className="about">
+            <figure className="portrait" data-reveal>
+              <span className="portrait-ring">
+                <img src={photo} alt="Portrait of Gary Samuel" loading="lazy" width={800} height={800} />
+              </span>
+            </figure>
+            <div className="about-text" data-reveal style={delay(1)}>
+              <p className="about-lead">
+                I like building software people actually use, and I care about the unglamorous parts that make it hold up: validation, tests, CI, and pages that load fast.
+              </p>
+              <p>
+                I’m the technical co-founder behind First Step Healthcare Academy’s live admissions platform, I interned as a Shopify developer at Bimmer Plug, and I’ve contributed to AsyncAPI’s SDKs. On the side I gravitate to scientific computing; the galaxy at the top of this page is a nod to my N-body simulator.
+              </p>
+              <dl className="facts">
+                {facts.map(([k, v]) => (
+                  <div key={k}>
+                    <dt>{k}</dt>
+                    <dd>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+
+          <div className="toolkit">
+            <h3 className="toolkit-title" data-reveal>Toolkit</h3>
+            <div className="skill-grid">
+              {skills.map(([group, list], i) => (
+                <div key={group} className="skill-card" data-reveal style={delay(i)}>
+                  <p className="skill-group">{group}</p>
+                  <ul className="chips">{list.map((s) => <li key={s}>{s}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="container contact-wrap" id="contact">
+          <div className="contact" data-reveal>
+            <div className="contact-glow" aria-hidden="true" />
+            <div className="orbit" aria-hidden="true">
+              <div className="orbit-plane">
+                <span className="orbit-ring"><i /></span>
+                <span className="orbit-ring"><i /></span>
+                <span className="orbit-ring"><i /></span>
+              </div>
+              <span className="orbit-core" />
+            </div>
+            <p className="eyebrow"><span className="eyebrow-index">04</span>Contact</p>
+            <h2 className="display">
+              Let’s build something <span className="grad">worth shipping.</span>
+            </h2>
+            <p className="contact-lede">
+              I’m looking for software engineering internships and new-grad roles. If you’re hiring, or want to talk about any of the work above, email is the fastest way to reach me.
+            </p>
+            <div className="email-row">
+              <a className="contact-email" href={`mailto:${links.email}`}>{links.email}</a>
+              <CopyEmail />
+            </div>
+            <div className="contact-actions">
+              <a className="btn btn-primary" href={`mailto:${links.email}`}>
+                <Mail aria-hidden="true" /> Email me
+              </a>
+              <External className="btn btn-ghost" href={links.linkedin}><Linkedin aria-hidden="true" /> LinkedIn</External>
+              <External className="btn btn-ghost" href={links.github}><Github aria-hidden="true" /> GitHub</External>
+              <External className="btn btn-ghost" href={links.resume}><FileText aria-hidden="true" /> Resume</External>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="container site-footer">
+        <span>© {new Date().getFullYear()} Gary Samuel · Designed and built with React and Three.js</span>
+        <External href={links.source}>Source on GitHub <ArrowUpRight aria-hidden="true" /></External>
+      </footer>
+    </>
   );
 }
-
-export default App;
