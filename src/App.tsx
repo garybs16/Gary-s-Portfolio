@@ -1,10 +1,11 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Copy, FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, Copy, FileText, Github, Linkedin, Mail, Menu, Search, X } from 'lucide-react';
 import Galaxy from './Galaxy';
 import Diagram from './Diagram';
 import Tilt from './Tilt';
+import CommandPalette, { useCommandShortcut } from './CommandPalette';
 import { AgentViz, ProjectVisual } from './visuals';
-import { useActiveSection, useCountUp, useReveal, useScroll } from './hooks';
+import { useActiveSection, useCountUp, useReveal, useScroll, useSpotlight, useTimelineProgress } from './hooks';
 import {
   caseStudies,
   credentials,
@@ -22,6 +23,9 @@ import {
 } from './data';
 
 const delay = (i: number) => ({ '--d': i }) as CSSProperties;
+
+const deployed = new Date(__BUILD_DATE__);
+const deployedLabel = deployed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Los_Angeles' });
 
 function External({ href, children, className, label }: { href: string; children: ReactNode; className?: string; label?: string }) {
   return (
@@ -49,7 +53,7 @@ function SectionHead({ index, label, title, children }: { index: string; label: 
 function StatTile({ stat, index }: { stat: Stat; index: number }) {
   const { ref, text } = useCountUp(stat.value, stat.decimals);
   return (
-    <li className="stat" data-reveal style={delay(index)}>
+    <li className="stat" data-reveal data-spot style={delay(index)}>
       <p className="stat-value">
         <span className="sr-only">{text}{stat.suffix}</span>
         <span aria-hidden="true"><span ref={ref}>{text}</span>{stat.suffix}</span>
@@ -106,7 +110,7 @@ function CaseMedia({ kind }: { kind: CaseStudy['media'] }) {
 
 function CaseStudyView({ cs }: { cs: CaseStudy }) {
   return (
-    <article className="case" id={`case-${cs.id}`} aria-labelledby={`case-${cs.id}-title`}>
+    <article className="case" id={`case-${cs.id}`} aria-labelledby={`case-${cs.id}-title`} data-spot>
       <span className="case-index" aria-hidden="true">{cs.index}</span>
 
       <div className="case-head" data-reveal>
@@ -177,7 +181,11 @@ export default function App() {
   const { scrolled, progress } = useScroll();
   const active = useActiveSection(['home', ...navigation.map(([, id]) => id)]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const shortcut = useCommandShortcut();
+  const timeline = useTimelineProgress<HTMLDivElement>();
   useReveal();
+  useSpotlight();
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -205,6 +213,10 @@ export default function App() {
                 {label}
               </a>
             ))}
+            <button type="button" className="nav-cmdk" onClick={() => setPaletteOpen(true)} aria-label="Open command menu" aria-keyshortcuts="Meta+K Control+K">
+              <Search aria-hidden="true" />
+              <kbd>{shortcut}</kbd>
+            </button>
             <External href={links.resume} className="nav-resume">
               <FileText aria-hidden="true" /> Resume
             </External>
@@ -323,6 +335,8 @@ export default function App() {
             Founding, interning and running production systems, most recent first.
           </SectionHead>
 
+          <div className="timeline-wrap" ref={timeline}>
+          <span className="timeline-rail" aria-hidden="true"><span className="timeline-fill" /><span className="timeline-head" /></span>
           <ol className="timeline">
             {experience.map((item) => (
               <li key={item.role + item.company} className={item.current ? 'is-current' : undefined} data-reveal>
@@ -342,6 +356,7 @@ export default function App() {
               </li>
             ))}
           </ol>
+          </div>
         </section>
 
         <section className="section container" id="about">
@@ -376,7 +391,7 @@ export default function App() {
             <h3 className="toolkit-title" data-reveal>Toolkit</h3>
             <div className="skill-grid">
               {skills.map(([group, list], i) => (
-                <div key={group} className="skill-card" data-reveal style={delay(i)}>
+                <div key={group} className="skill-card" data-reveal data-spot style={delay(i)}>
                   <p className="skill-group">{group}</p>
                   <ul className="chips">{list.map((s) => <li key={s}>{s}</li>)}</ul>
                 </div>
@@ -420,9 +435,15 @@ export default function App() {
       </main>
 
       <footer className="container site-footer">
-        <span>© {new Date().getFullYear()} Gary Samuel · Designed and built by hand: React, TypeScript and raw WebGL</span>
-        <External href={links.source}>Source on GitHub <ArrowUpRight aria-hidden="true" /></External>
+        <span>© {deployed.getFullYear()} Gary Samuel · Designed and built by hand: React, TypeScript and raw WebGL</span>
+        <span className="footer-meta">
+          <span>Last deployed <time dateTime={__BUILD_DATE__}>{deployedLabel}</time></span>
+          <button type="button" className="footer-cmdk" onClick={() => setPaletteOpen(true)}>Press <kbd>{shortcut}</kbd> to navigate</button>
+          <External href={links.source}>Source on GitHub <ArrowUpRight aria-hidden="true" /></External>
+        </span>
       </footer>
+
+      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
     </>
   );
 }

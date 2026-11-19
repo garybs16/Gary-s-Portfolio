@@ -3,6 +3,7 @@
  * deterministic SVG computed once at module load, drawn to echo what the
  * project actually does rather than a stock image.
  */
+import type { CSSProperties } from 'react';
 import type { Project } from './data';
 
 function rng(seed: number) {
@@ -217,14 +218,34 @@ function SpatialViz() {
 
 /* UnstableML: a vague prompt resolved into deterministic tool calls,
  * checked by the evaluation harness. */
+/*
+ * A replayed agent session. Lines appear on a timeline when the case study
+ * scrolls into view; typed lines reveal one character per step (--n is the
+ * character count, --at the start time in ms).
+ */
+const line = (at: number, n?: number) => ({ '--at': `${at}ms`, ...(n ? { '--n': n } : {}) }) as CSSProperties;
+
 export function AgentViz({ className = '' }: { className?: string }) {
   return (
-    <div className={`viz viz-terminal ${className}`} role="img" aria-label="An LLM agent turns the prompt 'orbit the car, then dolly in' into two deterministic camera function calls; the evaluation suite reports 95%+ task success across orbit, follow, dolly, pan and tracking shots.">
-      <p><span className="t-prompt">&gt;</span> "orbit the car, then dolly in"</p>
-      <p><span className="t-accent">→</span> <span className="t-file">orbit</span>(target="car", speed=0.25)</p>
-      <p><span className="t-accent">→</span> <span className="t-file">dolly</span>(target="car", dist=-2.0)</p>
-      <p><span className="t-good">✓</span> eval suite  <span className="t-good">95%+</span> task success</p>
-      <p className="t-dim">  orbit · follow · dolly · pan · tracking<span className="t-caret" /></p>
+    <div
+      className={`term ${className}`}
+      role="img"
+      aria-label="A replayed agent session: the prompt 'orbit the car, then dolly in' is parsed by a LangGraph agent into two deterministic camera calls, orbit and dolly. Running the evaluation suite across orbit, follow, dolly, pan and tracking shots reports 95%+ task success."
+    >
+      <div className="term-bar" aria-hidden="true">
+        <span className="browser-dots"><i /><i /><i /></span>
+        <span className="term-title">camera-agent — zsh</span>
+      </div>
+      <div className="viz-terminal term-body" aria-hidden="true">
+        <p className="t-type" style={line(300, 32)}><span className="t-prompt">❯</span> "orbit the car, then dolly in"</p>
+        <p className="t-dim" style={line(1500)}>  langgraph  intent → plan → tool calls</p>
+        <p style={line(2000)}><span className="t-accent">→</span> <span className="t-file">orbit</span>(target="car", speed=0.25)</p>
+        <p style={line(2250)}><span className="t-accent">→</span> <span className="t-file">dolly</span>(target="car", dist=-2.0)</p>
+        <p style={line(2600)}><span className="t-good">✓</span> 2 deterministic calls · scene updated</p>
+        <p className="t-type" style={line(3300, 16)}><span className="t-prompt">❯</span> run eval-suite</p>
+        <p className="t-dim" style={line(4100)}>  shots  orbit · follow · dolly · pan · tracking</p>
+        <p style={line(4700)}><span className="t-good">✓</span> <span className="t-good">95%+</span> task success<span className="t-caret" /></p>
+      </div>
     </div>
   );
 }

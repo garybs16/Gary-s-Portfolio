@@ -9,7 +9,9 @@ Personal portfolio for Gary Samuel, a software engineer and CS + Data Science st
 - **Engineering case studies.** First Step Healthcare Academy, UnstableML and BridgeWatch, each covering the problem, an architecture diagram, the decisions and trade-offs, and measured results. Diagrams are data-driven SVG (`src/architecture.ts`) with packets animated along each connection.
 - **A 60,000-star WebGL galaxy, no 3D library.** One shader program and three point clouds, with differential rotation computed on the GPU. Star data is generated in a Web Worker and transferred without copying, so the main thread only uploads buffers. It falls back to the main thread if module workers are unavailable, and to a CSS gradient without WebGL.
 - **Generative project visuals.** Each card draws what the project does: an anomaly spike for BridgeWatch, PCA clusters for the gene-expression pipeline, floating spatial panels for the Vision Pro assistant, and a Barnes-Hut quadtree for CosmoSim.
-- **Motion with restraint.** Scroll reveals, count-up numbers, pointer-tracking tilt cards and an active-section nav. All of it is switched off under `prefers-reduced-motion`.
+- **⌘K command menu.** Press ⌘K, Ctrl+K or `/` to jump to any section or case study, open links or copy the email. Built on the native `<dialog>` element as an accessible combobox and listbox (`src/CommandPalette.tsx`).
+- **A replayed agent session.** The UnstableML case types out a prompt, the tool calls the agent produces and the eval result when it scrolls into view.
+- **Motion with restraint.** Scroll reveals, count-up numbers, a timeline rail that fills as you read, a cursor-lit border on cards, pointer-tracking tilt and an active-section nav. All of it is switched off under `prefers-reduced-motion`.
 
 ## Performance
 
